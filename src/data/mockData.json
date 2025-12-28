@@ -1,0 +1,132 @@
+{
+    "news": [
+        {
+            "id": 1,
+            "title": "Aumento Salarial Confirmado",
+            "slug": "aumento-salarial-confirmado",
+            "date": "2023-10-25",
+            "category": "Paritarias",
+            "summary": "Se logró un acuerdo del 15% para el próximo mes tras intensas negociaciones.",
+            "image_url": "https://placehold.co/600x400/002855/white?text=Paritarias"
+        },
+        {
+            "id": 2,
+            "title": "Nuevos Convenios Turísticos",
+            "slug": "nuevos-convenios-turisticos",
+            "date": "2023-11-01",
+            "category": "Turismo",
+            "summary": "Descuentos exclusivos en la Costa Atlántica para la temporada de verano.",
+            "image_url": "https://placehold.co/600x400/008751/white?text=Turismo"
+        },
+        {
+            "id": 3,
+            "title": "Novedades de ARBA",
+            "slug": "novedades-arba",
+            "date": "2023-11-05",
+            "category": "Gremial",
+            "summary": "Información importante sobre recategorizaciones.",
+            "image_url": "https://placehold.co/600x400/002855/white?text=ARBA"
+        }
+    ],
+    "quickAccess": [
+        {
+            "id": "subsidios",
+            "title": "Subsidios",
+            "icon": "Banknote",
+            "link": "/subsidios"
+        },
+        {
+            "id": "turismo",
+            "title": "Turismo",
+            "icon": "Plane",
+            "link": "/secretarias/turismo"
+        },
+        {
+            "id": "salud",
+            "title": "Salud",
+            "icon": "Heart",
+            "link": "/secretarias/salud"
+        },
+        {
+            "id": "biblioteca",
+            "title": "Biblioteca",
+            "icon": "FileText",
+            "link": "/institucional/biblioteca"
+        }
+    ],
+    "secretariats": [
+        {
+            "id": "turismo",
+            "title": "Secretaría de Turismo",
+            "slug": "turismo",
+            "mission": "Promover el descanso y recreación de nuestros afiliados con las mejores opciones.",
+            "image_url": "https://placehold.co/1200x400/008751/white?text=Turismo",
+            "contact": {
+                "phone": "0221-123-4567",
+                "email": "turismo@aeri.org.ar",
+                "location": "Calle 45 N° 535, La Plata"
+            },
+            "benefits": [
+                {
+                    "id": 1,
+                    "title": "Hoteles Propios",
+                    "description": "Alojamiento en Mar del Plata con pensión completa."
+                },
+                {
+                    "id": 2,
+                    "title": "Convenios",
+                    "description": "Descuentos en cadenas hoteleras en todo el país."
+                },
+                {
+                    "id": 3,
+                    "title": "Luna de Miel",
+                    "description": "Subsidio especial para recién casados."
+                }
+            ]
+        },
+        {
+            "id": "gremial",
+            "title": "Secretaría Gremial",
+            "slug": "gremial",
+            "mission": "Defender los derechos laborales de todos los trabajadores.",
+            "image_url": "https://placehold.co/1200x400/002855/white?text=Gremial",
+            "contact": {
+                "phone": "0221-123-4568",
+                "email": "gremial@aeri.org.ar",
+                "location": "Calle 45 N° 535, La Plata"
+            },
+            "benefits": [
+                {
+                    "id": 4,
+                    "title": "Asesoramiento Legal",
+                    "description": "Consultas gratuitas con nuestros abogados."
+                },
+                {
+                    "id": 5,
+                    "title": "Subsidios",
+                    "description": "Ayuda económica por nacimiento, casamiento, etc."
+                }
+            ]
+        }
+    ],
+    "authorities": [
+        {
+            "id": 1,
+            "name": "Juan Pérez",
+            "role": "Secretario General",
+            "image": "https://placehold.co/150x150"
+        },
+        {
+            "id": 2,
+            "name": "María Gómez",
+            "role": "Secretaria Adjunta",
+            "image": "https://placehold.co/150x150"
+        },
+        {
+            "id": 3,
+            "name": "Carlos López",
+            "role": "Secretario de Finanzas",
+            "image": "https://placehold.co/150x150"
+        }
+    ]
+}
