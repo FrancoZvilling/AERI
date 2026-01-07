@@ -37,7 +37,7 @@ const Home = () => {
         <div className="bg-gray-50 pb-20">
             {/* Hero Section */}
             <HeroSection
-                title="Un gremio presente, un futuro seguro"
+                title="Un gremio presente, un compromiso humano"
                 subtitle="Asociación Empleados de Rentas e Inmobiliaria. Trabajando juntos por más y mejores beneficios."
                 backgroundImage={heroBackground}
             />

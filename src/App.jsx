@@ -12,6 +12,7 @@ import CulturePage from './pages/CulturePage';
 import PressPage from './pages/PressPage';
 import ActsPage from './pages/ActsPage';
 import WomenFamilyPage from './pages/WomenFamilyPage';
+import DashboardPage from './pages/DashboardPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 
 const App = () => {
@@ -82,8 +83,9 @@ const App = () => {
             }
           />
 
-          {/* Fallback / Login */}
-          <Route path="/login" element={<div className="p-20 text-center text-primary font-bold text-2xl">Próximamente: Panel Mi AERI</div>} />
+          {/* Dashboard / Login */}
+          <Route path="/mi-aeri" element={<DashboardPage />} />
+          <Route path="/login" element={<DashboardPage />} /> {/* Temp Redirect for demo */}
           <Route path="*" element={<div className="p-20 text-center text-gray-500">Página no encontrada (404)</div>} />
 
         </Routes>
