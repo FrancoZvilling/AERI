@@ -7,12 +7,49 @@ import {
 } from 'lucide-react';
 import { userData, virtualCardData, activeVouchers, quickStats } from '../data/userMock';
 
+import InstallModal from '../components/ui/InstallModal';
+
 const DashboardPage = () => {
     const [isFlipped, setIsFlipped] = useState(false);
     const [activeTab, setActiveTab] = useState('resumen');
 
+    // PWA Install State
+    const [deferredPrompt, setDeferredPrompt] = useState(null);
+    const [showInstallModal, setShowInstallModal] = useState(false);
+
+    React.useEffect(() => {
+        const handler = (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            // NOTE: In production you might want to NOT prevent default immediately if you want the browser's mini-infobar to show.
+            // But we want to control the experience.
+            e.preventDefault();
+            setDeferredPrompt(e);
+        };
+        window.addEventListener('beforeinstallprompt', handler);
+        return () => window.removeEventListener('beforeinstallprompt', handler);
+    }, []);
+
+    const handleInstallClick = async () => {
+        // If no deferredPrompt (already installed, or iOS/Safari, or not fired yet)
+        if (!deferredPrompt) {
+            setShowInstallModal(true);
+            return;
+        }
+
+        // Show the native prompt
+        deferredPrompt.prompt();
+
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`User response to the install prompt: ${outcome}`);
+        setDeferredPrompt(null);
+    };
+
     return (
         <div className="bg-gray-50 min-h-screen pb-20">
+            <InstallModal
+                isOpen={showInstallModal}
+                onClose={() => setShowInstallModal(false)}
+            />
             {/* Short Hero / Header */}
             <div className="bg-primary pt-24 pb-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
                 <div className="absolute right-0 top-0 opacity-10">
@@ -37,6 +74,7 @@ const DashboardPage = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={handleInstallClick}
                         className="mt-6 md:mt-0 flex items-center bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-3 rounded-full hover:bg-white/20 transition-all shadow-lg"
                     >
                         <Download className="w-5 h-5 mr-2" />
