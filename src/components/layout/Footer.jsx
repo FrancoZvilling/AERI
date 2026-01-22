@@ -37,7 +37,8 @@ const Footer = () => {
                         </Link>
                         <p className="text-gray-300 leading-relaxed text-sm">
                             Asociación Empleados de Rentas e Inmobiliaria.
-                            Comprometidos con el bienestar y el futuro de nuestros afiliados desde hace más de 50 años.
+                            <br />
+                            Más de 60 años acompañando y representando a las y los trabajadores.
                         </p>
                         <div className="flex space-x-4">
                             <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110">

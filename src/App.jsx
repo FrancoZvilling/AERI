@@ -13,6 +13,8 @@ import PressPage from './pages/PressPage';
 import ActsPage from './pages/ActsPage';
 import WomenFamilyPage from './pages/WomenFamilyPage';
 import DashboardPage from './pages/DashboardPage';
+import NewsPage from './pages/NewsPage';
+import NewsDetailPage from './pages/NewsDetailPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 
 const App = () => {
@@ -41,6 +43,10 @@ const App = () => {
 
           {/* Secretarías Genéricas */}
           <Route path="/secretarias/:slug" element={<SecretariatPage />} />
+
+          {/* Noticias */}
+          <Route path="/noticias" element={<NewsPage />} />
+          <Route path="/noticias/post/:id" element={<NewsDetailPage />} />
 
           {/* Institucional Specific Routes */}
           <Route

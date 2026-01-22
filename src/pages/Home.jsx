@@ -1,8 +1,10 @@
 import React from 'react';
 import HeroSection from '../components/ui/HeroSection';
+import NewsCard from '../components/ui/NewsCard';
+import { useNoticias } from '../hooks/useNoticias';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Banknote, Plane, Heart, FileText, ArrowRight, Calendar, MapPin, Phone, Mail, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Youtube } from 'lucide-react';
 import mockData from '../data/mockData.json';
 
 const iconMap = {
@@ -13,7 +15,8 @@ const iconMap = {
 };
 
 const Home = () => {
-    const { news, quickAccess } = mockData;
+    const { quickAccess } = mockData;
+    const { noticias, loading, error } = useNoticias(3); // Fetch 3 latest news
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -37,8 +40,8 @@ const Home = () => {
         <div className="bg-gray-50 pb-20">
             {/* Hero Section */}
             <HeroSection
-                title="Un gremio presente, un compromiso humano"
-                subtitle="Asociación Empleados de Rentas e Inmobiliaria. Trabajando juntos por más y mejores beneficios."
+                title="Acompañar, defender y representar a las y los trabajadores."
+                subtitle="Organización sindical al servicio de las y los trabajadores. Trabajando juntos por más y mejores beneficios."
                 backgroundImage={heroBackground}
             />
 
@@ -68,7 +71,7 @@ const Home = () => {
                     })}
                 </motion.div>
 
-                {/* News Section */}
+                {/* News Section (Real Data from Strapi) */}
                 <section className="mb-12">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-3xl font-bold text-primary border-l-4 border-secondary pl-4">
@@ -79,43 +82,30 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {news.map((item) => (
-                            <motion.article
-                                key={item.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col h-full"
-                            >
-                                <div className="h-48 overflow-hidden relative">
-                                    <img
-                                        src={item.image_url}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                                    />
-                                    <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                        {item.category}
+                    {loading ? (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {[1, 2, 3].map(i => (
+                                <div key={i} className="bg-white rounded-2xl h-96 animate-pulse shadow-md">
+                                    <div className="h-48 bg-gray-200"></div>
+                                    <div className="p-6 space-y-4">
+                                        <div className="h-4 bg-gray-200 rounded w-1/3"></div>
+                                        <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+                                        <div className="h-4 bg-gray-200 rounded w-full"></div>
                                     </div>
                                 </div>
-                                <div className="p-6 flex flex-col flex-grow">
-                                    <div className="flex items-center text-gray-500 text-sm mb-3">
-                                        <Calendar className="w-4 h-4 mr-2" />
-                                        {new Date(item.date).toLocaleDateString()}
-                                    </div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight hover:text-secondary transition-colors cursor-pointer">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-gray-600 mb-4 flex-grow line-clamp-3">
-                                        {item.summary}
-                                    </p>
-                                    <button className="text-secondary font-semibold hover:text-green-700 transition-colors self-start mt-auto">
-                                        Leer más
-                                    </button>
-                                </div>
-                            </motion.article>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    ) : error ? (
+                        <div className="text-center p-10 bg-red-50 rounded-xl border border-red-100 text-red-600">
+                            <p>No se pudieron cargar las noticias en este momento.</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {noticias.map((item) => (
+                                <NewsCard key={item.id} noticia={item} />
+                            ))}
+                        </div>
+                    )}
 
                     <div className="mt-8 text-center md:hidden">
                         <Link to="/noticias" className="inline-flex items-center text-secondary font-semibold hover:text-green-700 transition-colors">

@@ -60,7 +60,7 @@ const PressPage = () => {
                             Nuestra Misión
                         </h2>
                         <p className="text-gray-600 text-lg leading-relaxed">
-                            Somos los encargados de <strong>difundir todas las acciones</strong> de nuestra organización sindical. Nuestro compromiso es dar a conocer los objetivos de gestión e informar sobre cada avance, asegurando que la información llegue clara y directa tanto a nuestros afiliados como a toda la comunidad.
+                            <strong>Difundir el trabajo</strong> de nuestra organización sindical, <strong>informar cada avance</strong> y sostener una <strong>comunicación clara y directa</strong> con nuestras afiliadas y afiliados y con la comunidad
                         </p>
                     </div>
                     <div className="flex-shrink-0 bg-indigo-50 p-6 rounded-full">
@@ -125,19 +125,19 @@ const PressPage = () => {
                 {/* Strategy Details Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
 
-                    {/* Capitalizar Imagen */}
+                    {/* Nuestra identidad */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-indigo-500">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Capitalizar la Imagen de AERI</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">Nuestra identidad</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            Trabajamos para posicionar a AERI como el <strong>sindicato específico y referente</strong> dentro de la Agencia de Recaudación de la Provincia de Buenos Aires y del Ministerio de Economía. Nuestra identidad visual refleja nuestra fuerza y presencia.
+                            Fortalecemos la identidad de AERI como sindicato de las y los trabajadores de ARBA y del Ministerio de Economía, con una comunicación que expresa presencia gremial y trabajo colectivo.
                         </p>
                     </div>
 
-                    {/* Visibilidad y Respaldo */}
+                    {/* Comunicar para fortalecer */}
                     <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-cyan-500">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Visibilidad = Respaldo</h3>
+                        <h3 className="text-xl font-bold text-gray-900 mb-4">Comunicar para fortalecer</h3>
                         <p className="text-gray-600 leading-relaxed">
-                            La difusión es imprescindible no solo para informar servicios, sino para <strong>buscar el respaldo</strong> de los afiliados y el público en general en cada una de nuestras gestiones y reclamos. Lo que no se comunica, no existe; por eso lo hacemos visible.
+                            La difusión clara y permanente de nuestras acciones es parte del trabajo gremial. Informar es una forma de acompañar, sostener reclamos y fortalecer el vínculo con nuestras afiliadas y afiliados.
                         </p>
                     </div>
 
