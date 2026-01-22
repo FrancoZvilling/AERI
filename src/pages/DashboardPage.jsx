@@ -55,15 +55,18 @@ const DashboardPage = () => {
                 <div className="absolute right-0 top-0 opacity-10">
                     <User className="w-96 h-96 text-white transform translate-x-1/3 -translate-y-1/4" />
                 </div>
-                <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-end md:items-center">
+                {/* Changed items-end to items-center for mobile centering */}
+                <div className="max-w-7xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-center md:items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
+                        className="text-center md:text-left" // Added text-center for mobile
                     >
                         <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
                             Hola, {userData.name}
                         </h1>
-                        <p className="text-blue-100 flex items-center">
+                        {/* Added justify-center for mobile */}
+                        <p className="text-blue-100 flex items-center justify-center md:justify-start">
                             <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
                             Afiliado Activo • N° {userData.affiliateNumber}
                         </p>

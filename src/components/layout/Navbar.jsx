@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, User } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Calendar } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -122,7 +122,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-primary shadow-inner"
+                        className="md:hidden bg-primary shadow-inner max-h-[calc(100vh-5rem)] overflow-y-auto"
                     >
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             <Link
@@ -153,10 +153,11 @@ const Navbar = () => {
 
                             <Link
                                 to="/turnos"
-                                className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-900"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-red-600 text-white hover:bg-red-700 mt-4 flex items-center space-x-2"
                                 onClick={toggleMenu}
                             >
-                                Turnos
+                                <Calendar className="w-4 h-4" />
+                                <span>Turnos</span>
                             </Link>
 
                             <Link
