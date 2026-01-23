@@ -96,7 +96,7 @@ const Navbar = () => {
                     <div className="hidden md:block">
                         <Link
                             to="/login"
-                            className="bg-secondary hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
+                            className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
                         >
                             <User className="w-4 h-4" />
                             <span>Mi AERI</span>
@@ -162,7 +162,7 @@ const Navbar = () => {
 
                             <Link
                                 to="/login"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-secondary text-white hover:bg-green-700 mt-4 flex items-center space-x-2"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2"
                                 onClick={toggleMenu}
                             >
                                 <User className="w-4 h-4" />

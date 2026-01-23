@@ -77,7 +77,7 @@ const FloatingContact = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full bg-secondary hover:bg-green-700 text-white font-bold py-2 rounded-lg transition-colors flex items-center justify-center text-sm"
+                                    className="w-full bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] font-bold py-2 rounded-lg transition-colors flex items-center justify-center text-sm"
                                 >
                                     <Send className="w-4 h-4 mr-2" />
                                     Enviar Mensaje
@@ -126,8 +126,8 @@ const FloatingContact = () => {
                 {/* Pulse Effect when closed */}
                 {!isOpen && (
                     <span className="absolute top-0 right-0 -mt-1 -mr-1 flex h-4 w-4">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-4 w-4 bg-secondary"></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39c3ef] opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-4 w-4 bg-[#39c3ef]"></span>
                     </span>
                 )}
             </motion.button>

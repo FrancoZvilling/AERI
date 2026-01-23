@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Users, MapPin, Newspaper, ChevronRight, Star } from 'lucide-react';
 
 const UnionPage = () => {
-    
+
     const seccionales = [
         {
             name: "Seccional ARBA Casa Central",
@@ -55,9 +55,9 @@ const UnionPage = () => {
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20">
-                
+
                 {/* Intro Card */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="bg-white rounded-2xl shadow-xl p-8 mb-16 border-l-8 border-primary"
@@ -124,18 +124,18 @@ const UnionPage = () => {
 
                 {/* News Carousel Section */}
                 <section className="mb-12">
-                     <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center justify-between mb-8">
                         <h2 className="text-3xl font-bold text-gray-900 flex items-center">
-                            <Newspaper className="w-8 h-8 mr-3 text-secondary" />
+                            <Newspaper className="w-8 h-8 mr-3 text-[#39c3ef]" />
                             Novedades Gremiales
                         </h2>
                         {/* Carousel Controls (Visual only for now or simple manual implementation if time permits, for now grid is safer for placeholders) */}
-                     </div>
+                    </div>
 
-                     {/* Placeholder Grid acting as static representation of carousel content */}
-                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* Placeholder Grid acting as static representation of carousel content */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {newsPlaceholders.map((item, idx) => (
-                            <motion.div 
+                            <motion.div
                                 key={idx}
                                 whileHover={{ y: -5 }}
                                 className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 group"
@@ -152,13 +152,13 @@ const UnionPage = () => {
                                         <div className="w-full h-4 bg-gray-100 rounded"></div>
                                         <div className="w-5/6 h-4 bg-gray-100 rounded"></div>
                                     </div>
-                                    <div className="mt-6 flex items-center text-secondary font-medium text-sm group-hover:underline">
+                                    <div className="mt-6 flex items-center text-[#39c3ef] font-medium text-sm group-hover:underline group-hover:text-[#023e73]">
                                         Leer más <ChevronRight className="w-4 h-4 ml-1" />
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
-                     </div>
+                    </div>
                 </section>
 
             </div>

@@ -112,7 +112,7 @@ const TourismPage = () => {
                                 </div>
 
                                 <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
-                                    <div className="flex items-center text-sm text-secondary font-semibold">
+                                    <div className="flex items-center text-sm text-[#39c3ef] font-semibold">
                                         <CheckCircle2 className="w-4 h-4 mr-1" />
                                         Beneficio Verificado
                                     </div>
@@ -127,9 +127,9 @@ const TourismPage = () => {
 
                 {/* Contact Section */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-3 bg-white rounded-2xl shadow-xl p-8 border-l-8 border-secondary">
+                    <div className="lg:col-span-3 bg-white rounded-2xl shadow-xl p-8 border-l-8 border-[#39c3ef]">
                         <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
-                            <User className="w-6 h-6 mr-3 text-secondary" />
+                            <User className="w-6 h-6 mr-3 text-[#39c3ef]" />
                             Contacto Turismo
                         </h2>
 
@@ -142,11 +142,11 @@ const TourismPage = () => {
                                 <div>
                                     <h3 className="font-bold text-lg text-primary">Pedro Bazan</h3>
                                     <p className="text-sm text-gray-500 mb-2">Secretario de Turismo</p>
-                                    <a href="tel:02214248142" className="block text-gray-700 hover:text-secondary mb-1">
+                                    <a href="tel:02214248142" className="block text-gray-700 hover:text-[#39c3ef] mb-1">
                                         <Phone className="w-4 h-4 inline mr-2" />
                                         0221 4248142 (int 840)
                                     </a>
-                                    <a href="tel:+5492215083285" className="block text-gray-700 hover:text-secondary">
+                                    <a href="tel:+5492215083285" className="block text-gray-700 hover:text-[#39c3ef]">
                                         <Phone className="w-4 h-4 inline mr-2" />
                                         +54 9 221 5083285
                                     </a>
@@ -161,7 +161,7 @@ const TourismPage = () => {
                                 <div>
                                     <h3 className="font-bold text-lg text-primary">José Sendón</h3>
                                     <p className="text-sm text-gray-500 mb-2">Asesor de Turismo</p>
-                                    <a href="tel:+5492215609342" className="block text-gray-700 hover:text-secondary">
+                                    <a href="tel:+5492215609342" className="block text-gray-700 hover:text-[#39c3ef]">
                                         <Phone className="w-4 h-4 inline mr-2" />
                                         +54 9 221 5609342
                                     </a>
@@ -176,7 +176,7 @@ const TourismPage = () => {
                                 <div>
                                     <h3 className="font-bold text-lg text-primary">Correo Electrónico</h3>
                                     <p className="text-sm text-gray-500 mb-2">Consultas y reservas</p>
-                                    <a href="mailto:turismoydeportes@aeri.org.ar" className="block text-secondary font-medium hover:text-green-700 break-words">
+                                    <a href="mailto:turismoydeportes@aeri.org.ar" className="block text-[#39c3ef] font-medium hover:text-[#023e73] break-words">
                                         turismoydeportes@aeri.org.ar
                                     </a>
                                 </div>

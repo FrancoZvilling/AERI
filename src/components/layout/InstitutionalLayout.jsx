@@ -107,8 +107,8 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
     const SortIcon = ({ columnKey }) => {
         if (sortConfig.key !== columnKey) return <span className="w-4 h-4 inline-block ml-1 opacity-0 group-hover:opacity-30">↕</span>;
         return sortConfig.direction === 'asc'
-            ? <ArrowUp className="w-4 h-4 inline-block ml-1 text-secondary" />
-            : <ArrowDown className="w-4 h-4 inline-block ml-1 text-secondary" />;
+            ? <ArrowUp className="w-4 h-4 inline-block ml-1 text-[#39c3ef]" />
+            : <ArrowDown className="w-4 h-4 inline-block ml-1 text-[#39c3ef]" />;
     };
 
     return (
@@ -144,7 +144,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                                     </div>
                                     <div className="p-6">
                                         <h3 className="text-xl font-bold text-gray-900 mb-1">{auth.name}</h3>
-                                        <p className="text-secondary font-medium">{auth.role}</p>
+                                        <p className="text-[#39c3ef] font-medium">{auth.role}</p>
                                     </div>
                                 </motion.div>
                             ))}
@@ -158,7 +158,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                         <div>
                             <h2 className="text-3xl font-bold text-primary flex items-center gap-3 mb-2">
                                 <div className="p-2 bg-blue-50 rounded-lg">
-                                    <FolderOpen className="w-8 h-8 text-secondary" />
+                                    <FolderOpen className="w-8 h-8 text-[#39c3ef]" />
                                 </div>
                                 Biblioteca Digital
                             </h2>
@@ -171,7 +171,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                                 placeholder="Buscar documentos..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-12 pr-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all shadow-sm"
+                                className="w-full pl-12 pr-4 py-3 border border-gray-200 bg-gray-50 rounded-xl focus:ring-2 focus:ring-[#39c3ef] focus:border-transparent outline-none transition-all shadow-sm"
                             />
                             <Search className="w-5 h-5 text-gray-400 absolute left-4 top-3.5" />
                         </div>
@@ -183,8 +183,8 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                             <button
                                 onClick={() => setSelectedCategory(null)}
                                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${selectedCategory === null
-                                        ? 'bg-secondary text-white shadow-md'
-                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                                    ? 'bg-[#39c3ef] text-white shadow-md'
+                                    : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                     }`}
                             >
                                 Todos
@@ -194,8 +194,8 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
                                     className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${selectedCategory === cat
-                                            ? 'bg-secondary text-white shadow-md'
-                                            : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                                        ? 'bg-[#39c3ef] text-white shadow-md'
+                                        : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
                                         }`}
                                 >
                                     {cat}
@@ -207,19 +207,19 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                     {/* Table Header */}
                     <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50/80 rounded-t-xl border-b border-gray-200 text-sm font-bold text-gray-600 uppercase tracking-wider select-none">
                         <div
-                            className="col-span-6 cursor-pointer hover:text-secondary group flex items-center"
+                            className="col-span-6 cursor-pointer hover:text-[#39c3ef] group flex items-center"
                             onClick={() => requestSort('title')}
                         >
                             Nombre del Documento <SortIcon columnKey="title" />
                         </div>
                         <div
-                            className="col-span-3 cursor-pointer hover:text-secondary group flex items-center"
+                            className="col-span-3 cursor-pointer hover:text-[#39c3ef] group flex items-center"
                             onClick={() => requestSort('category')}
                         >
                             Categoría <SortIcon columnKey="category" />
                         </div>
                         <div
-                            className="col-span-2 cursor-pointer hover:text-secondary group flex items-center"
+                            className="col-span-2 cursor-pointer hover:text-[#39c3ef] group flex items-center"
                             onClick={() => requestSort('date')}
                         >
                             Fecha <SortIcon columnKey="date" />
@@ -231,7 +231,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                     <div className="space-y-2 md:space-y-0 text-left">
                         {loading ? (
                             <div className="p-20 text-center flex flex-col items-center justify-center space-y-4">
-                                <Loader2 className="w-10 h-10 text-secondary animate-spin" />
+                                <Loader2 className="w-10 h-10 text-[#39c3ef] animate-spin" />
                                 <p className="text-gray-500 font-medium">Cargando biblioteca...</p>
                             </div>
                         ) : error ? (
@@ -280,7 +280,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                                             href={doc.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-secondary transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center w-10 h-10 border border-gray-200 hover:border-transparent"
+                                            className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-[#39c3ef] transition-all shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center w-10 h-10 border border-gray-200 hover:border-transparent"
                                             title="Descargar PDF"
                                         >
                                             <Download className="w-5 h-5" />

@@ -93,7 +93,7 @@ const HealthPage = () => {
                                             className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors text-left"
                                         >
                                             <div className="flex items-center space-x-4">
-                                                <div className={`p-3 rounded-full ${isOpen ? 'bg-secondary text-white' : 'bg-gray-100 text-gray-500'} transition-colors`}>
+                                                <div className={`p-3 rounded-full ${isOpen ? 'bg-[#39c3ef] text-white' : 'bg-gray-100 text-gray-500'} transition-colors`}>
                                                     <Icon className="w-6 h-6" />
                                                 </div>
                                                 <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
@@ -127,12 +127,12 @@ const HealthPage = () => {
                                                         {/* AERI + Requirements */}
                                                         <div className="space-y-6">
                                                             {service.aeri.length > 0 && (
-                                                                <div className="bg-green-50/50 p-6 rounded-xl border border-green-100">
-                                                                    <h4 className="font-bold text-secondary mb-3 uppercase tracking-wider text-sm border-b border-green-200 pb-2">Cobertura AERI</h4>
+                                                                <div className="bg-[#39c3ef]/10 p-6 rounded-xl border border-[#39c3ef]/20">
+                                                                    <h4 className="font-bold text-[#39c3ef] mb-3 uppercase tracking-wider text-sm border-b border-[#39c3ef]/30 pb-2">Cobertura AERI</h4>
                                                                     <ul className="space-y-2">
                                                                         {service.aeri.map((item, idx) => (
                                                                             <li key={idx} className="flex items-start text-gray-700 text-sm">
-                                                                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-1.5 mr-2 flex-shrink-0" />
+                                                                                <div className="w-1.5 h-1.5 bg-[#39c3ef] rounded-full mt-1.5 mr-2 flex-shrink-0" />
                                                                                 {item}
                                                                             </li>
                                                                         ))}
@@ -177,7 +177,7 @@ const HealthPage = () => {
                                     placeholder="Buscar por ciudad o nombre de farmacia..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-lg"
+                                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-[#39c3ef] focus:border-transparent outline-none text-lg"
                                 />
                                 <Search className="w-6 h-6 text-gray-400 absolute left-4 top-4" />
                             </div>
@@ -194,14 +194,14 @@ const HealthPage = () => {
                                                 <span className="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded uppercase">
                                                     {pharmacy.city}
                                                 </span>
-                                                <div className="p-2 bg-green-50 rounded-full text-secondary">
+                                                <div className="p-2 bg-[#39c3ef]/10 rounded-full text-[#39c3ef]">
                                                     <MapPin className="w-4 h-4" />
                                                 </div>
                                             </div>
                                             <h3 className="text-lg font-bold text-gray-800 mb-2">{pharmacy.name}</h3>
                                             <p className="text-gray-500 text-sm mb-1">{pharmacy.address}</p>
                                             {pharmacy.phone && (
-                                                <p className="text-secondary font-medium text-sm flex items-center mt-2">
+                                                <p className="text-[#39c3ef] font-medium text-sm flex items-center mt-2">
                                                     <Phone className="w-3 h-3 mr-1" />
                                                     {pharmacy.phone}
                                                 </p>
@@ -234,7 +234,7 @@ const HealthPage = () => {
                                     placeholder="Buscar óptica..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-secondary focus:border-transparent outline-none text-lg"
+                                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-gray-200 shadow-sm focus:ring-2 focus:ring-[#39c3ef] focus:border-transparent outline-none text-lg"
                                 />
                                 <Search className="w-6 h-6 text-gray-400 absolute left-4 top-4" />
                             </div>
@@ -242,7 +242,7 @@ const HealthPage = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {filteredOptics.map((optic, idx) => (
                                     <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start space-x-4">
-                                        <div className="p-3 bg-indigo-50 rounded-full text-indigo-600">
+                                        <div className="p-3 bg-[#1e6df9]/10 rounded-full text-[#1e6df9]">
                                             <Glasses className="w-6 h-6" />
                                         </div>
                                         <div>
@@ -335,7 +335,7 @@ const HealthPage = () => {
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {safetyData.legislation.map((law, idx) => (
-                                    <a key={idx} href="#" className="block p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow text-gray-700 text-sm border-l-4 border-gray-400">
+                                    <a key={idx} href="#" className="block p-4 bg-[#0d0d0d] rounded-lg shadow-sm hover:shadow-md hover:bg-black transition-all text-white text-sm border-l-4 border-[#39c3ef]">
                                         {law}
                                     </a>
                                 ))}

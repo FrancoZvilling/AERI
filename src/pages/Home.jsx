@@ -59,9 +59,9 @@ const Home = () => {
                         return (
                             <motion.div variants={itemVariants} key={item.id}>
                                 <Link to={item.link} className="block group">
-                                    <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-b-4 border-secondary h-full flex flex-col items-center justify-center text-center">
-                                        <div className="bg-secondary/10 p-4 rounded-full mb-4 group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                                            <Icon className="w-8 h-8 text-secondary group-hover:text-white" />
+                                    <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 border-b-4 border-[#39c3ef] h-full flex flex-col items-center justify-center text-center">
+                                        <div className="bg-[#39c3ef]/10 p-4 rounded-full mb-4 group-hover:bg-[#39c3ef] group-hover:text-white transition-colors duration-300">
+                                            <Icon className="w-8 h-8 text-[#39c3ef] group-hover:text-white" />
                                         </div>
                                         <h3 className="text-xl font-bold text-gray-800">{item.title}</h3>
                                     </div>
@@ -74,10 +74,10 @@ const Home = () => {
                 {/* News Section (Real Data from Strapi) */}
                 <section className="mb-12">
                     <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-3xl font-bold text-primary border-l-4 border-secondary pl-4">
+                        <h2 className="text-3xl font-bold text-primary border-l-4 border-[#00a0e1] pl-4">
                             Novedades Gremiales
                         </h2>
-                        <Link to="/noticias" className="hidden md:flex items-center text-secondary font-semibold hover:text-green-700 transition-colors">
+                        <Link to="/noticias" className="hidden md:flex items-center text-[#39c3ef] font-semibold hover:text-[#023e73] transition-colors">
                             Ver todas <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                     </div>
@@ -108,7 +108,7 @@ const Home = () => {
                     )}
 
                     <div className="mt-8 text-center md:hidden">
-                        <Link to="/noticias" className="inline-flex items-center text-secondary font-semibold hover:text-green-700 transition-colors">
+                        <Link to="/noticias" className="inline-flex items-center text-[#39c3ef] font-semibold hover:text-[#023e73] transition-colors">
                             Ver todas <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                     </div>
@@ -116,7 +116,7 @@ const Home = () => {
 
                 {/* Contact & Location Section */}
                 <section className="mb-16">
-                    <h2 className="text-3xl font-bold text-primary border-l-4 border-secondary pl-4 mb-8">
+                    <h2 className="text-3xl font-bold text-primary border-l-4 border-[#00a0e1] pl-4 mb-8">
                         Cómo llegar a nuestras oficinas
                     </h2>
 
@@ -142,8 +142,8 @@ const Home = () => {
                             <div className="space-y-8">
                                 {/* Address */}
                                 <div className="flex items-start">
-                                    <div className="bg-primary/10 p-3 rounded-full mr-4 flex-shrink-0">
-                                        <MapPin className="w-6 h-6 text-primary" />
+                                    <div className="bg-[#39c3ef]/20 p-3 rounded-full mr-4 flex-shrink-0">
+                                        <MapPin className="w-6 h-6 text-[#023e73]" />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-lg mb-1">Dirección</h3>
@@ -157,16 +157,16 @@ const Home = () => {
 
                                 {/* Phone */}
                                 <div className="flex items-start">
-                                    <div className="bg-green-100 p-3 rounded-full mr-4 flex-shrink-0">
-                                        <Phone className="w-6 h-6 text-green-700" />
+                                    <div className="bg-[#39c3ef]/20 p-3 rounded-full mr-4 flex-shrink-0">
+                                        <Phone className="w-6 h-6 text-[#023e73]" />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-lg mb-1">Teléfonos</h3>
                                         <div className="space-y-1">
-                                            <a href="tel:02214248142" className="block text-gray-600 hover:text-secondary transition-colors">
+                                            <a href="tel:02214248142" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
                                                 Fijo: <span className="font-semibold">0221 4248142</span>
                                             </a>
-                                            <a href="https://wa.me/5492215083285" target="_blank" rel="noopener noreferrer" className="block text-gray-600 hover:text-green-600 transition-colors">
+                                            <a href="https://wa.me/5492215083285" target="_blank" rel="noopener noreferrer" className="block text-gray-600 hover:text-[#00a0e1] transition-colors">
                                                 WhatsApp: <span className="font-semibold">+54 9 221 5083285</span>
                                             </a>
                                         </div>
@@ -175,12 +175,12 @@ const Home = () => {
 
                                 {/* Email */}
                                 <div className="flex items-start">
-                                    <div className="bg-blue-100 p-3 rounded-full mr-4 flex-shrink-0">
-                                        <Mail className="w-6 h-6 text-blue-700" />
+                                    <div className="bg-[#39c3ef]/20 p-3 rounded-full mr-4 flex-shrink-0">
+                                        <Mail className="w-6 h-6 text-[#023e73]" />
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-lg mb-1">Correo Electrónico</h3>
-                                        <a href="mailto:consultas@aeri.org.ar" className="text-gray-600 hover:text-secondary font-medium transition-colors">
+                                        <a href="mailto:consultas@aeri.org.ar" className="text-gray-600 hover:text-[#1e6df9] font-medium transition-colors">
                                             consultas@aeri.org.ar
                                         </a>
                                     </div>
@@ -207,8 +207,8 @@ const Home = () => {
                     </div>
                 </section>
 
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

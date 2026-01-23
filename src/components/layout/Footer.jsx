@@ -24,7 +24,7 @@ const Footer = () => {
     return (
         <footer className="bg-primary text-white pt-16 pb-8 relative overflow-hidden">
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#39c3ef]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -41,7 +41,7 @@ const Footer = () => {
                             Más de 60 años acompañando y representando a las y los trabajadores.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-secondary hover:text-white transition-all duration-300 transform hover:scale-110">
+                            <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-[#39c3ef] hover:text-white transition-all duration-300 transform hover:scale-110">
                                 <Instagram className="w-5 h-5" />
                             </a>
                             <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110">
@@ -58,27 +58,27 @@ const Footer = () => {
                         <h3 className="text-lg font-bold mb-6 border-b border-white/20 pb-2 w-fit">Accesos Rápidos</h3>
                         <ul className="space-y-3">
                             <li>
-                                <Link to="/subsidios" className="text-gray-300 hover:text-secondary hover:translate-x-2 transition-all block text-sm">
+                                <Link to="/subsidios" className="text-gray-300 hover:text-[#39c3ef] hover:translate-x-2 transition-all block text-sm">
                                     Subsidios y Beneficios
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/secretarias/turismo" className="text-gray-300 hover:text-secondary hover:translate-x-2 transition-all block text-sm">
+                                <Link to="/secretarias/turismo" className="text-gray-300 hover:text-[#39c3ef] hover:translate-x-2 transition-all block text-sm">
                                     Turismo
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/secretarias/salud" className="text-gray-300 hover:text-secondary hover:translate-x-2 transition-all block text-sm">
+                                <Link to="/secretarias/salud" className="text-gray-300 hover:text-[#39c3ef] hover:translate-x-2 transition-all block text-sm">
                                     Salud y Farmacias
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/institucional/comision-directiva" className="text-gray-300 hover:text-secondary hover:translate-x-2 transition-all block text-sm">
+                                <Link to="/institucional/comision-directiva" className="text-gray-300 hover:text-[#39c3ef] hover:translate-x-2 transition-all block text-sm">
                                     Institucional
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/login" className="text-gray-300 hover:text-secondary hover:translate-x-2 transition-all block text-sm">
+                                <Link to="/login" className="text-gray-300 hover:text-[#39c3ef] hover:translate-x-2 transition-all block text-sm">
                                     Mi AERI
                                 </Link>
                             </li>
@@ -90,17 +90,17 @@ const Footer = () => {
                         <h3 className="text-lg font-bold mb-6 border-b border-white/20 pb-2 w-fit">Contacto</h3>
                         <ul className="space-y-4">
                             <li className="flex items-start">
-                                <MapPin className="w-5 h-5 text-secondary mr-3 flex-shrink-0 mt-0.5" />
+                                <MapPin className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0 mt-0.5" />
                                 <span className="text-gray-300 text-sm">Calle 45 N° 535, La Plata<br />Buenos Aires, Argentina</span>
                             </li>
                             <li className="flex items-center">
-                                <Phone className="w-5 h-5 text-secondary mr-3 flex-shrink-0" />
+                                <Phone className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0" />
                                 <a href="tel:02214248142" className="text-gray-300 hover:text-white transition-colors text-sm">
                                     0221 424-8142
                                 </a>
                             </li>
                             <li className="flex items-center">
-                                <Mail className="w-5 h-5 text-secondary mr-3 flex-shrink-0" />
+                                <Mail className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0" />
                                 <a href="mailto:consultas@aeri.org.ar" className="text-gray-300 hover:text-white transition-colors text-sm">
                                     consultas@aeri.org.ar
                                 </a>
@@ -121,7 +121,7 @@ const Footer = () => {
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-gray-400 text-sm">Sábados y Dom.</span>
-                                <span className="text-secondary text-sm">Cerrado</span>
+                                <span className="text-[#39c3ef] text-sm">Cerrado</span>
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ const Footer = () => {
                             href="https://wa.me/5493541315119"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="ml-2 font-semibold text-secondary hover:text-green-400 transition-colors flex items-center gap-1 group"
+                            className="ml-2 font-semibold text-[#39c3ef] hover:text-[#39c3ef]/80 transition-colors flex items-center gap-1 group"
                         >
                             Franco Zvilling
                             <span className="opacity-0 group-hover:opacity-100 transition-opacity">🚀</span>

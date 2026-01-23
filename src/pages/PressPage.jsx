@@ -19,22 +19,22 @@ const PressPage = () => {
             title: "Gestión Web",
             desc: "Administración y actualización constante del sitio oficial.",
             icon: Monitor,
-            color: "text-blue-500",
-            bg: "bg-blue-50"
+            color: "text-[#1e6df9]",
+            bg: "bg-[#1e6df9]/10"
         },
         {
             title: "Redes Sociales",
             desc: "Manejo estratégico de Facebook, Instagram y YouTube.",
             icon: Share2,
-            color: "text-purple-500",
-            bg: "bg-purple-50"
+            color: "text-[#00a0e1]",
+            bg: "bg-[#00a0e1]/10"
         },
         {
             title: "Material de Difusión",
             desc: "Diseño y elaboración de cartelería, afiches y piezas digitales.",
             icon: PenTool,
-            color: "text-pink-500",
-            bg: "bg-pink-50"
+            color: "text-[#39c3ef]",
+            bg: "bg-[#39c3ef]/10"
         }
     ];
 
@@ -52,37 +52,37 @@ const PressPage = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white rounded-2xl shadow-xl p-8 mb-16 border-t-8 border-indigo-500 flex flex-col md:flex-row items-center gap-8"
+                    className="bg-white rounded-2xl shadow-xl p-8 mb-16 border-t-8 border-[#1e6df9] flex flex-col md:flex-row items-center gap-8"
                 >
                     <div className="flex-grow">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                            <Cast className="w-6 h-6 mr-3 text-indigo-600" />
+                        <h2 className="text-2xl font-bold text-[#0d0d0d] mb-4 flex items-center">
+                            <Cast className="w-6 h-6 mr-3 text-[#1e6df9]" />
                             Nuestra Misión
                         </h2>
                         <p className="text-gray-600 text-lg leading-relaxed">
                             <strong>Difundir el trabajo</strong> de nuestra organización sindical, <strong>informar cada avance</strong> y sostener una <strong>comunicación clara y directa</strong> con nuestras afiliadas y afiliados y con la comunidad
                         </p>
                     </div>
-                    <div className="flex-shrink-0 bg-indigo-50 p-6 rounded-full">
-                        <Wifi className="w-12 h-12 text-indigo-600 animate-pulse" />
+                    <div className="flex-shrink-0 bg-[#9bdaf2]/20 p-6 rounded-full">
+                        <Wifi className="w-12 h-12 text-[#1e6df9] animate-pulse" />
                     </div>
                 </motion.div>
 
                 {/* News Buttons Section */}
                 <section className="mb-24">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Centro de Noticias</h2>
+                    <h2 className="text-3xl font-bold text-center text-[#0d0d0d] mb-12">Centro de Noticias</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
                         {/* Noticias Sindicales */}
                         <motion.div
                             whileHover={{ scale: 1.02, rotate: -1 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-xl border-4 border-transparent hover:border-indigo-400 transition-all"
+                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-xl border-4 border-transparent hover:border-[#39c3ef] transition-all"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-indigo-900/80 to-transparent z-10 flex flex-col justify-end p-8">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#1e6df9]/80 to-transparent z-10 flex flex-col justify-end p-8">
                                 <Megaphone className="w-12 h-12 text-white mb-4 group-hover:scale-110 transition-transform duration-300" />
                                 <h3 className="text-3xl font-bold text-white mb-2">Noticias Sindicales</h3>
-                                <p className="text-indigo-200 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all transform translate-y-4 md:group-hover:translate-y-0 duration-300">
+                                <p className="text-[#9bdaf2] mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all transform translate-y-4 md:group-hover:translate-y-0 duration-300">
                                     Novedades gremiales, acuerdos y lucha sindical.
                                 </p>
                                 <span className="inline-flex items-center text-sm font-bold text-white uppercase tracking-wider">
@@ -100,12 +100,12 @@ const PressPage = () => {
                         <motion.div
                             whileHover={{ scale: 1.02, rotate: 1 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-xl border-4 border-transparent hover:border-cyan-400 transition-all"
+                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-xl border-4 border-transparent hover:border-[#3dd1f2] transition-all"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-cyan-900/80 to-transparent z-10 flex flex-col justify-end p-8">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#00a0e1]/80 to-transparent z-10 flex flex-col justify-end p-8">
                                 <Globe className="w-12 h-12 text-white mb-4 group-hover:scale-110 transition-transform duration-300" />
                                 <h3 className="text-3xl font-bold text-white mb-2">Noticias Generales</h3>
-                                <p className="text-cyan-200 mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all transform translate-y-4 md:group-hover:translate-y-0 duration-300">
+                                <p className="text-[#9bdaf2] mb-4 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all transform translate-y-4 md:group-hover:translate-y-0 duration-300">
                                     Información de interés general y actualidad.
                                 </p>
                                 <span className="inline-flex items-center text-sm font-bold text-white uppercase tracking-wider">
@@ -126,16 +126,16 @@ const PressPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
 
                     {/* Nuestra identidad */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-indigo-500">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Nuestra identidad</h3>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-[#1e6df9]">
+                        <h3 className="text-xl font-bold text-[#0d0d0d] mb-4">Nuestra identidad</h3>
                         <p className="text-gray-600 leading-relaxed">
                             Fortalecemos la identidad de AERI como sindicato de las y los trabajadores de ARBA y del Ministerio de Economía, con una comunicación que expresa presencia gremial y trabajo colectivo.
                         </p>
                     </div>
 
                     {/* Comunicar para fortalecer */}
-                    <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-cyan-500">
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Comunicar para fortalecer</h3>
+                    <div className="bg-white p-8 rounded-2xl shadow-lg border-l-4 border-[#00a0e1]">
+                        <h3 className="text-xl font-bold text-[#0d0d0d] mb-4">Comunicar para fortalecer</h3>
                         <p className="text-gray-600 leading-relaxed">
                             La difusión clara y permanente de nuestras acciones es parte del trabajo gremial. Informar es una forma de acompañar, sostener reclamos y fortalecer el vínculo con nuestras afiliadas y afiliados.
                         </p>
@@ -146,7 +146,7 @@ const PressPage = () => {
                 {/* Responsibilities Section */}
                 <section className="bg-gray-100 rounded-3xl p-10 md:p-16">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">Nuestras Responsabilidades</h2>
+                        <h2 className="text-3xl font-bold text-[#0d0d0d] mb-4">Nuestras Responsabilidades</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto">Coordinamos y administramos integralmente la imagen institucional en todos los canales.</p>
                     </div>
 
@@ -160,7 +160,7 @@ const PressPage = () => {
                                 <div className={`w-16 h-16 mx-auto ${item.bg} ${item.color} rounded-full flex items-center justify-center mb-6`}>
                                     <item.icon className="w-8 h-8" />
                                 </div>
-                                <h4 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h4>
+                                <h4 className="text-lg font-bold text-[#0d0d0d] mb-3">{item.title}</h4>
                                 <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}

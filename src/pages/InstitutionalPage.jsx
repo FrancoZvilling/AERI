@@ -131,7 +131,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
     const getRoleBadgeStyle = (role) => {
         const lowerRole = role.toLowerCase();
         if (lowerRole.includes('presidente')) return 'bg-primary text-white shadow-sm';
-        if (lowerRole.includes('secretario')) return 'bg-secondary text-white shadow-sm';
+        if (lowerRole.includes('secretario')) return 'bg-[#1e6df9] text-white shadow-sm';
         return 'bg-blue-50 text-blue-700 border border-blue-100';
     };
 
@@ -151,10 +151,10 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
-                        className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16 border-t-8 border-secondary relative overflow-hidden"
+                        className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-16 border-t-8 border-[#39c3ef] relative overflow-hidden"
                     >
                         <div className="absolute top-0 right-0 p-4 opacity-5">
-                            <Users className="w-64 h-64 text-secondary" />
+                            <Users className="w-64 h-64 text-[#39c3ef]" />
                         </div>
                         <div className="relative z-10 text-center">
                             <h2 className="text-3xl font-bold text-gray-900 mb-4">{electoralIntro.title}</h2>
@@ -193,7 +193,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
 
                     {/* Regional Boards Grid */}
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-secondary pl-4">Comisiones Seccionales</h2>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-[#39c3ef] pl-4">Comisiones Seccionales</h2>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {seccionalBoards.map((board, idx) => (
                                 <motion.div
@@ -267,8 +267,8 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                             ))}
                             <ul className="mt-8 space-y-3">
                                 {introContent.highlights.map((h, i) => (
-                                    <li key={i} className="flex items-center font-bold text-secondary">
-                                        <div className="w-2 h-2 bg-secondary rounded-full mr-3" />
+                                    <li key={i} className="flex items-center font-bold text-[#39c3ef]">
+                                        <div className="w-2 h-2 bg-[#39c3ef] rounded-full mr-3" />
                                         {h}
                                     </li>
                                 ))}
@@ -315,7 +315,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                         <h3 className="text-lg font-bold text-gray-900 leading-tight mb-2 h-12 flex items-center justify-center">
                                             {auth.name}
                                         </h3>
-                                        <div className="inline-block px-3 py-1 bg-blue-50 text-primary text-xs font-bold uppercase tracking-wide rounded-full">
+                                        <div className="inline-block px-3 py-1 bg-[#1e6df9] text-white text-xs font-bold uppercase tracking-wide rounded-full">
                                             {auth.role}
                                         </div>
                                     </div>
@@ -359,7 +359,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                         {group.members.map((member, mIdx) => (
                                                             <div key={mIdx} className="flex items-start p-3 bg-white rounded-lg border border-gray-100 shadow-sm">
-                                                                <User className="w-5 h-5 text-secondary mt-1 mr-3 flex-shrink-0" />
+                                                                <User className="w-5 h-5 text-[#39c3ef] mt-1 mr-3 flex-shrink-0" />
                                                                 <div>
                                                                     <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-0.5">{member.role}</div>
                                                                     <div className="font-medium text-gray-800">{member.name}</div>
