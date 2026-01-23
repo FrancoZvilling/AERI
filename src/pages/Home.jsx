@@ -4,7 +4,7 @@ import NewsCard from '../components/ui/NewsCard';
 import { useNoticias } from '../hooks/useNoticias';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
 import mockData from '../data/mockData.json';
 
 const iconMap = {
@@ -190,14 +190,14 @@ const Home = () => {
                                 <div className="pt-8 border-t border-gray-200">
                                     <h3 className="font-bold text-gray-900 text-lg mb-4">Seguinos en redes</h3>
                                     <div className="flex space-x-4">
-                                        <a href="#" className="bg-white p-3 rounded-full shadow-md text-pink-600 hover:bg-pink-50 hover:scale-110 transition-all">
+                                        <a href="https://www.instagram.com/sindicatoaeri/" target="_blank" rel="noopener noreferrer" className="bg-white p-3 rounded-full shadow-md text-pink-600 hover:bg-pink-50 hover:scale-110 transition-all">
                                             <Instagram className="w-6 h-6" />
                                         </a>
                                         <a href="#" className="bg-white p-3 rounded-full shadow-md text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all">
                                             <Facebook className="w-6 h-6" />
                                         </a>
-                                        <a href="#" className="bg-white p-3 rounded-full shadow-md text-red-600 hover:bg-red-50 hover:scale-110 transition-all">
-                                            <Youtube className="w-6 h-6" />
+                                        <a href="https://x.com/PrensaAeri" target="_blank" rel="noopener noreferrer" className="bg-white p-3 rounded-full shadow-md text-gray-900 hover:bg-gray-100 hover:scale-110 transition-all">
+                                            <Twitter className="w-6 h-6" />
                                         </a>
                                     </div>
                                 </div>

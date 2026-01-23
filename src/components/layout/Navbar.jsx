@@ -27,7 +27,7 @@ const Navbar = () => {
                 { name: 'Gremial', path: '/secretarias/gremial' },
                 { name: 'Cultura y Capacitación', path: '/secretarias/cultura' },
                 { name: 'Prensa', path: '/secretarias/prensa' },
-                { name: 'Actas', path: '/secretarias/actas' },
+                // { name: 'Actas', path: '/secretarias/actas' },
                 { name: 'Salud', path: '/secretarias/salud' },
             ],
         },

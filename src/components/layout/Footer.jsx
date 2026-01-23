@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
     Facebook,
     Instagram,
-    Youtube,
+    Twitter,
     MapPin,
     Phone,
     Mail,
@@ -41,14 +41,14 @@ const Footer = () => {
                             Más de 60 años acompañando y representando a las y los trabajadores.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-[#39c3ef] hover:text-white transition-all duration-300 transform hover:scale-110">
+                            <a href="https://www.instagram.com/sindicatoaeri/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-[#39c3ef] hover:text-white transition-all duration-300 transform hover:scale-110">
                                 <Instagram className="w-5 h-5" />
                             </a>
                             <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110">
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-red-600 hover:text-white transition-all duration-300 transform hover:scale-110">
-                                <Youtube className="w-5 h-5" />
+                            <a href="https://x.com/PrensaAeri" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-110">
+                                <Twitter className="w-5 h-5" />
                             </a>
                         </div>
                     </div>

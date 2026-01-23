@@ -39,7 +39,7 @@ const App = () => {
           <Route path="/secretarias/gremial" element={<UnionPage />} />
           <Route path="/secretarias/cultura" element={<CulturePage />} />
           <Route path="/secretarias/prensa" element={<PressPage />} />
-          <Route path="/secretarias/actas" element={<ActsPage />} />
+          {/* <Route path="/secretarias/actas" element={<ActsPage />} /> */}
 
           {/* Secretarías Genéricas */}
           <Route path="/secretarias/:slug" element={<SecretariatPage />} />
