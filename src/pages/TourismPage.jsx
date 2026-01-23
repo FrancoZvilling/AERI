@@ -66,7 +66,7 @@ const TourismPage = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-primary text-white p-8 rounded-2xl shadow-xl mb-12 text-center"
+                    className="bg-[#004080] text-white p-8 rounded-2xl shadow-xl mb-12 text-center"
                 >
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">Precios DIRECTOS de Operadores Turísticos</h2>
                     <p className="text-blue-200">Accedé a tarifas mayoristas sin intermediarios costosos.</p>
@@ -116,7 +116,7 @@ const TourismPage = () => {
                                         <CheckCircle2 className="w-4 h-4 mr-1" />
                                         Beneficio Verificado
                                     </div>
-                                    <button className="bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-900 transition-colors">
+                                    <button className="bg-[#004080] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#39c3ef] transition-colors cursor-pointer">
                                         Consultar
                                     </button>
                                 </div>

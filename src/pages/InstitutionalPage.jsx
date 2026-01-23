@@ -75,7 +75,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                     {/* Content Card */}
                                     <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
                                         {/* Header with Year */}
-                                        <div className="bg-primary px-6 py-4 flex items-center justify-between">
+                                        <div className="bg-[#004080] px-6 py-4 flex items-center justify-between">
                                             <div className="flex items-center text-white">
                                                 <Icon className="w-6 h-6 mr-3 opacity-90" />
                                                 <span className="font-bold text-lg">{item.year}</span>

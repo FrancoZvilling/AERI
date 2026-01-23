@@ -54,19 +54,19 @@ const HealthPage = () => {
                 <div className="bg-white rounded-xl shadow-lg p-2 flex flex-col md:flex-row mb-8">
                     <button
                         onClick={() => { setActiveTab('services'); setSearchTerm(''); }}
-                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'services' ? 'bg-primary text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
+                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'services' ? 'bg-[#004080] text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
                     >
                         Prestaciones Médicas
                     </button>
                     <button
                         onClick={() => { setActiveTab('pharmacies'); setSearchTerm(''); }}
-                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'pharmacies' ? 'bg-primary text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
+                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'pharmacies' ? 'bg-[#004080] text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
                     >
                         Farmacias
                     </button>
                     <button
                         onClick={() => { setActiveTab('optics'); setSearchTerm(''); }}
-                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'optics' ? 'bg-primary text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
+                        className={`flex-1 py-4 px-6 rounded-lg font-bold text-lg transition-all ${activeTab === 'optics' ? 'bg-[#004080] text-white shadow-md' : 'text-gray-500 hover:bg-gray-50'}`}
                     >
                         Ópticas
                     </button>
@@ -335,7 +335,7 @@ const HealthPage = () => {
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {safetyData.legislation.map((law, idx) => (
-                                    <a key={idx} href="#" className="block p-4 bg-[#0d0d0d] rounded-lg shadow-sm hover:shadow-md hover:bg-black transition-all text-white text-sm border-l-4 border-[#39c3ef]">
+                                    <a key={idx} href="#" className="block p-4 bg-[#3dd1f2] rounded-lg shadow-sm hover:shadow-md hover:bg-[#3bc1de] transition-all text-gray-900 font-medium text-sm border-l-4 border-[#0d0d0d]">
                                         {law}
                                     </a>
                                 ))}

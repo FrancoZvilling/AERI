@@ -34,7 +34,7 @@ const Home = () => {
     };
 
     // Custom SVG background to control text size precisely
-    const heroBackground = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23002855'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='bold' font-size='200' fill='white' opacity='0.1' text-anchor='middle' dominant-baseline='middle'%3EAERI%3C/text%3E%3C/svg%3E`;
+    const heroBackground = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23004080'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='bold' font-size='200' fill='white' opacity='0.1' text-anchor='middle' dominant-baseline='middle'%3EAERI%3C/text%3E%3C/svg%3E`;
 
     return (
         <div className="bg-gray-50 pb-20">
