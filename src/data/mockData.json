@@ -28,6 +28,35 @@
             "image_url": "https://placehold.co/600x400/002855/white?text=ARBA"
         }
     ],
+    "sitesOfInterest": [
+        {
+            "id": "mt",
+            "title": "Ministerio de Trabajo PBA",
+            "category": "SITIOS DE INTERÉS",
+            "summary": "Organismo encargado de fiscalizar y promover el cumplimiento de las normas laborales en la Provincia.",
+            "link": "https://www.gba.gob.ar/trabajo",
+            "image_url": "https://placehold.co/600x400/004080/ffffff?text=Ministerio+de+Trabajo",
+            "isExternal": true
+        },
+        {
+            "id": "rp",
+            "title": "Registro de la Propiedad",
+            "category": "SITIOS DE INTERÉS",
+            "summary": "Dirección Provincial del Registro de la Propiedad de la Provincia de Buenos Aires.",
+            "link": "https://www.rpba.gov.ar/",
+            "image_url": "https://placehold.co/600x400/004080/ffffff?text=Registro+de+la+Propiedad",
+            "isExternal": true
+        },
+        {
+            "id": "arba",
+            "title": "ARBA",
+            "category": "SITIOS DE INTERÉS",
+            "summary": "Agencia de Recaudación de la Provincia de Buenos Aires. Trámites y servicios online.",
+            "link": "https://web.arba.gov.ar/",
+            "image_url": "https://placehold.co/600x400/004080/ffffff?text=ARBA",
+            "isExternal": true
+        }
+    ],
     "quickAccess": [
         {
             "id": "subsidios",

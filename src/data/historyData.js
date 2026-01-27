@@ -3,7 +3,7 @@ import { Calendar, Users, Building, ShieldAlert, Award, FileText } from 'lucide-
 
 export const historyIntro = {
     title: "Nuestra Historia",
-    subtitle: "Más de 60 años de lucha y conquistas",
+    subtitle: "Con la misma identidad, hacia nuevas conquistas",
     description: "AERI tiene su historia y fundamentos de su existencia, además de avatares que la fortalecieron a lo largo de los años. Desde nuestros orígenes en 1961 hasta la actualidad, cada paso ha sido en defensa de los trabajadores."
 };
 

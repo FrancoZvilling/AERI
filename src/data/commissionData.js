@@ -20,10 +20,10 @@ export const introContent = {
 
 // Autoridades principales para el Carrusel (Fotos placeholders por ahora)
 export const mainAuthorities = [
-    { name: "SEQUEIRA, ROBERTO AGUSTÍN", role: "SECRETARIO GENERAL", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" },
+    { name: "MATTEOZZI, JORGE AMILCAR", role: "PROSECRETARIO GREMIAL", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" },
     { name: "DE RITO, PABLO SEBASTIÁN", role: "SECRETARIO ADJUNTO", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop" },
     { name: "MARTIN, CLAUDIO GERMÁN", role: "SECRETARIO GREMIAL", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" },
-    { name: "MATTEOZZI, JORGE AMILCAR", role: "PROSECRETARIO GREMIAL", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" },
+    { name: "SEQUEIRA, ROBERTO AGUSTÍN", role: "SECRETARIO GENERAL", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" },
     { name: "COSSU, MAURICIO ADRIÁN", role: "SECRETARIO DE ORGANIZACIÓN", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop" },
     { name: "GIMÉNEZ, MARCOS LUIS", role: "SECRETARIO DE SERVICIOS SOCIALES", image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=400&auto=format&fit=crop" },
     { name: "ARCIDIACONO, JOSE IGNACIO", role: "PROSECRETARIO DE SERVICIOS SOCIALES", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" }, // Placeholder female for variety if needed, but names are male. Resetting to generic or male implies. Keeping diverse placeholders for generic feeling if specific photos aren't available.
@@ -40,10 +40,10 @@ export const staffGroups = [
     {
         title: "COMISIÓN DIRECTIVA",
         members: [
-            { role: "SECRETARIO GENERAL", name: "SEQUEIRA, ROBERTO AGUSTÍN" },
+            { role: "PROSECRETARIO GREMIAL", name: "MATTEOZZI, JORGE AMILCAR" },
             { role: "SECRETARIO ADJUNTO", name: "DE RITO, PABLO SEBASTIÁN" },
             { role: "SECRETARIO GREMIAL", name: "MARTIN, CLAUDIO GERMÁN" },
-            { role: "PROSECRETARIO GREMIAL", name: "MATTEOZZI, JORGE AMILCAR" },
+            { role: "SECRETARIO GENERAL", name: "SEQUEIRA, ROBERTO AGUSTÍN" },
             { role: "SECRETARIO DE ORGANIZACIÓN", name: "COSSU, MAURICIO ADRIÁN" },
             { role: "SECRETARIO DE SERVICIOS SOCIALES", name: "GIMÉNEZ, MARCOS LUIS" },
             { role: "PROSECRETARIO DE SERVICIOS SOCIALES", name: "ARCIDIACONO, JOSE IGNACIO" },

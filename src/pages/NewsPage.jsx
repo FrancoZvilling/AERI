@@ -268,7 +268,7 @@ const NewsPage = () => {
                                     <button
                                         onClick={handleLoadMore}
                                         disabled={loadingMore}
-                                        className="inline-flex items-center bg-secondary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-green-700 hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                                        className="inline-flex items-center bg-[#023e73] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#002855] hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
                                         {loadingMore ? (
                                             <>

@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [activeDropdown, setActiveDropdown] = useState(null);
+    const [activeDropdown, setActiveDropdown] = useState(null); // Desktop
+    const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -135,19 +136,39 @@ const Navbar = () => {
 
                             {menuItems.map((item) => (
                                 <div key={item.title} className="space-y-1">
-                                    <div className="px-3 py-2 text-gray-300 font-semibold uppercase text-xs tracking-wider">
-                                        {item.title}
-                                    </div>
-                                    {item.links.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            to={link.path}
-                                            className="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-900 pl-6"
-                                            onClick={toggleMenu}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
+                                    <button
+                                        onClick={() => setActiveMobileDropdown(activeMobileDropdown === item.title ? null : item.title)}
+                                        className="w-full flex justify-between items-center px-3 py-2 text-white font-medium text-base hover:bg-blue-900 rounded-md transition-colors focus:outline-none"
+                                    >
+                                        <span>{item.title}</span>
+                                        <ChevronDown
+                                            className={`w-4 h-4 transition-transform duration-200 ${activeMobileDropdown === item.title ? 'rotate-180' : ''
+                                                }`}
+                                        />
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {activeMobileDropdown === item.title && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="overflow-hidden bg-blue-900/30 rounded-md"
+                                            >
+                                                {item.links.map((link) => (
+                                                    <Link
+                                                        key={link.name}
+                                                        to={link.path}
+                                                        className="block px-3 py-2 pl-6 text-sm text-gray-200 hover:text-white hover:bg-blue-900/50 transition-colors"
+                                                        onClick={toggleMenu}
+                                                    >
+                                                        {link.name}
+                                                    </Link>
+                                                ))}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             ))}
 

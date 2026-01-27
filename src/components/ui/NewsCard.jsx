@@ -5,17 +5,28 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const NewsCard = ({ noticia }) => {
-    // Strapi response structure handling:
-    // v4 default: { id, attributes: { ... } }
-    // v5/flattened: { id, titulo, ... }
+    // 1. Resolve attributes (Strapi v4 vs v5 vs Flat object)
     const attributes = noticia?.attributes || noticia;
-
-    // Safety check if attributes is still undefined
     if (!attributes) return null;
 
-    const { titulo, fecha, categoria, contenido, foto_backup_url } = attributes;
+    // 2. Normalize properties
+    // Strapi: titulo, categoria, fecha, contenido, foto_backup_url
+    // MockData: title, category, date, summary, image_url
+    const title = attributes.titulo || attributes.title;
+    const category = attributes.categoria || attributes.category;
+    const date = attributes.fecha || attributes.date;
+    const summary = attributes.contenido || attributes.summary;
+    const imageSrc = attributes.foto_backup_url || attributes.image_url;
+    const isExternal = attributes.isExternal;
 
-    // Helper to strip HTML tags and truncate text
+    // 3. Helpers
+    const formatDate = (dateString) => {
+        if (!dateString) return null;
+        return new Date(dateString).toLocaleDateString('es-ES', {
+            day: '2-digit', month: '2-digit', year: 'numeric'
+        });
+    };
+
     const stripHtml = (html) => {
         if (!html) return "";
         const tmp = document.createElement("DIV");
@@ -24,34 +35,32 @@ const NewsCard = ({ noticia }) => {
         return text.length > 100 ? text.substring(0, 100) + "..." : text;
     };
 
-    // Helper to format date
-    const formatDate = (dateString) => {
-        if (!dateString) return "";
-        const date = new Date(dateString);
-        return date.toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
-    };
+    // 4. Link & Wrapper Logic
+    const linkProps = isExternal
+        ? { href: attributes.link, target: "_blank", rel: "noopener noreferrer" }
+        : { to: `/noticias/${attributes.slug || '#'}` };
 
-    // Placeholder image if foto_backup_url is missing
-    const imageUrl = foto_backup_url || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop";
+    // We use a simple div as wrapper for the card structure, 
+    // and handle the link via the "Read More" button or wrapping the whole card if preferred.
+    // The previous design wrapped the whole card. Let's stick to that.
+    const Wrapper = isExternal ? 'a' : Link;
 
     return (
-        <motion.article
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col h-full"
+        <Wrapper
+            {...linkProps}
+            className="group block h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
         >
-            <div className="h-48 overflow-hidden relative bg-gray-100">
-                {foto_backup_url ? (
+            {/* Image Section */}
+            <div className="h-48 overflow-hidden relative bg-gray-100 flex-shrink-0">
+                {imageSrc ? (
                     <img
-                        src={imageUrl}
-                        alt={titulo}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                        onError={(e) => { e.target.src = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop"; }} // Fallback on error
+                        src={imageSrc}
+                        alt={title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop";
+                        }}
                     />
                 ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-400">
@@ -59,32 +68,35 @@ const NewsCard = ({ noticia }) => {
                     </div>
                 )}
 
-                {categoria && (
-                    <div className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                        {categoria}
+                {category && (
+                    <div className="absolute top-4 left-4 bg-[#023e73] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md z-10">
+                        {category}
                     </div>
                 )}
             </div>
 
+            {/* Content Section */}
             <div className="p-6 flex flex-col flex-grow">
-                <div className="flex items-center text-gray-500 text-sm mb-3">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {formatDate(fecha)}
-                </div>
+                {date && (
+                    <div className="flex items-center text-gray-500 text-xs font-medium mb-3">
+                        <Calendar className="w-4 h-4 mr-2 text-[#39c3ef]" />
+                        {formatDate(date)}
+                    </div>
+                )}
 
-                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight hover:text-secondary transition-colors cursor-pointer line-clamp-2">
-                    {titulo}
+                <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2 group-hover:text-[#39c3ef] transition-colors">
+                    {title}
                 </h3>
 
-                <p className="text-gray-600 mb-4 flex-grow text-sm leading-relaxed">
-                    {stripHtml(contenido)}
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
+                    {stripHtml(summary)}
                 </p>
 
-                <Link to={`/noticias/post/${noticia.id}`} className="text-secondary font-bold hover:text-green-700 transition-colors self-start mt-auto flex items-center">
-                    Leer más <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                <div className="mt-auto flex items-center text-[#39c3ef] font-semibold text-sm group-hover:translate-x-1 transition-transform">
+                    {isExternal ? 'Ir al sitio' : 'Leer más'} <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
             </div>
-        </motion.article>
+        </Wrapper>
     );
 };
 

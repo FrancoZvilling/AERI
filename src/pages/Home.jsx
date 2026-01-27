@@ -1,7 +1,6 @@
 import React from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import NewsCard from '../components/ui/NewsCard';
-import { useNoticias } from '../hooks/useNoticias';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
@@ -16,7 +15,6 @@ const iconMap = {
 
 const Home = () => {
     const { quickAccess } = mockData;
-    const { noticias, loading, error } = useNoticias(3); // Fetch 3 latest news
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -71,48 +69,32 @@ const Home = () => {
                     })}
                 </motion.div>
 
-                {/* News Section (Real Data from Strapi) */}
+                {/* News Section (Sites of Interest) */}
                 <section className="mb-12">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-3xl font-bold text-primary border-l-4 border-[#00a0e1] pl-4">
                             Novedades Gremiales
                         </h2>
-                        <Link to="/noticias" className="hidden md:flex items-center text-[#39c3ef] font-semibold hover:text-[#023e73] transition-colors">
+                        <Link to="/noticias" className="hidden md:flex items-center text-[#023e73] font-semibold hover:text-primary transition-colors">
                             Ver todas <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                     </div>
 
-                    {loading ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="bg-white rounded-2xl h-96 animate-pulse shadow-md">
-                                    <div className="h-48 bg-gray-200"></div>
-                                    <div className="p-6 space-y-4">
-                                        <div className="h-4 bg-gray-200 rounded w-1/3"></div>
-                                        <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-                                        <div className="h-4 bg-gray-200 rounded w-full"></div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : error ? (
-                        <div className="text-center p-10 bg-red-50 rounded-xl border border-red-100 text-red-600">
-                            <p>No se pudieron cargar las noticias en este momento.</p>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {noticias.map((item) => (
-                                <NewsCard key={item.id} noticia={item} />
-                            ))}
-                        </div>
-                    )}
-
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {mockData.sitesOfInterest.map((item) => (
+                            <div key={item.id} className="h-96">
+                                <NewsCard noticia={item} />
+                            </div>
+                        ))}
+                    </div>
                     <div className="mt-8 text-center md:hidden">
-                        <Link to="/noticias" className="inline-flex items-center text-[#39c3ef] font-semibold hover:text-[#023e73] transition-colors">
+                        <Link to="/noticias" className="inline-flex items-center text-[#39c3ef] font-semibold hover:text-primary transition-colors">
                             Ver todas <ArrowRight className="w-4 h-4 ml-1" />
                         </Link>
                     </div>
                 </section>
+
+
 
                 {/* Contact & Location Section */}
                 <section className="mb-16">
