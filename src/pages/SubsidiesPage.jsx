@@ -106,7 +106,7 @@ const SubsidiesPage = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.2 }}
-                            className="bg-primary text-white p-8 rounded-2xl shadow-xl flex flex-col justify-center text-center md:text-left"
+                            className="bg-[#004080] text-white p-8 rounded-2xl shadow-xl flex flex-col justify-center text-center md:text-left"
                         >
                             <h3 className="text-2xl font-bold mb-2">{cat.title}</h3>
                             <p className="text-blue-100 text-lg">{cat.text}</p>
@@ -192,7 +192,7 @@ const SubsidiesPage = () => {
                         <div className="flex flex-col items-center text-center">
                             <h3 className="text-xl font-bold text-gray-900 mb-6 uppercase tracking-wider">Asistencia Médica AERI ASSISTE</h3>
                             <div className="w-full max-w-sm">
-                                <a href="tel:08003338425" className="flex items-center justify-center w-full py-8 px-6 bg-secondary/10 hover:bg-secondary/20 text-secondary rounded-xl transition-colors group">
+                                <a href="tel:08003338425" className="flex items-center justify-center w-full py-8 px-6 bg-[#004080]/10 hover:bg-[#004080]/20 text-[#004080] rounded-xl transition-colors group">
                                     <Stethoscope className="w-8 h-8 mr-3 group-hover:scale-110 transition-transform" />
                                     <span className="text-2xl font-bold">0800-333-8425</span>
                                 </a>
