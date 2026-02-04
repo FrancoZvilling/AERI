@@ -8,8 +8,12 @@ import {
     Target,
     Palette,
     GraduationCap,
-    ArrowRight
+    ArrowRight,
+    User,
+    Phone,
+    Mail
 } from 'lucide-react';
+import coverImg from '../assets/cover-cultura.jpeg';
 
 const CulturePage = () => {
 
@@ -25,7 +29,7 @@ const CulturePage = () => {
             <HeroSection
                 title="Secretaría de Cultura y Capacitación"
                 subtitle="Formación continua y desarrollo cultural para fortalecer nuestros derechos."
-                backgroundImage="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop"
+                backgroundImage={coverImg}
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20">
@@ -53,51 +57,31 @@ const CulturePage = () => {
 
                 {/* Interactive Buttons Section (Area Selection) */}
                 <section className="mb-24">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Explorá nuestras Áreas</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Cultura y Capacitación</h2>
+                    <div className="max-w-4xl mx-auto">
 
-                        {/* Botón Cultura */}
+                        {/* Botón Único Cultura y Capacitación */}
                         <motion.div
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
-                            className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
+                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-indigo-700 opacity-90 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-center items-center text-white p-6 text-center">
-                                <Palette className="w-16 h-16 mb-4 text-purple-200 group-hover:scale-110 transition-transform duration-300" />
-                                <h3 className="text-3xl font-bold mb-2">Cultura</h3>
-                                <p className="text-purple-100 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">
-                                    Expresión, arte e identidad
+                            <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-orange-700 opacity-90 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-center items-center text-white p-6 text-center">
+                                <div className="flex gap-4 mb-4">
+                                    <Palette className="w-12 h-12 text-yellow-200 group-hover:scale-110 transition-transform duration-300" />
+                                    <GraduationCap className="w-12 h-12 text-yellow-200 group-hover:scale-110 transition-transform duration-300" />
+                                </div>
+                                <h3 className="text-4xl font-bold mb-2">Cultura y Capacitación</h3>
+                                <p className="text-yellow-100 text-lg max-w-2xl mt-2">
+                                    Un espacio integrado para el desarrollo cultural y la formación profesional de nuestros afiliados.
                                 </p>
-                                <span className="mt-6 inline-flex items-center text-sm font-semibold bg-white/20 px-4 py-2 rounded-full">
+                                <span className="mt-8 inline-flex items-center text-sm font-semibold bg-white/20 px-6 py-2 rounded-full">
                                     Próximamente <ArrowRight className="w-4 h-4 ml-2" />
                                 </span>
                             </div>
                             <img
-                                src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800&auto=format&fit=crop"
-                                alt="Cultura"
-                                className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
-                            />
-                        </motion.div>
-
-                        {/* Botón Capacitación */}
-                        <motion.div
-                            whileHover={{ scale: 1.03 }}
-                            whileTap={{ scale: 0.98 }}
-                            className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-cyan-600 opacity-90 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-center items-center text-white p-6 text-center">
-                                <GraduationCap className="w-16 h-16 mb-4 text-blue-200 group-hover:scale-110 transition-transform duration-300" />
-                                <h3 className="text-3xl font-bold mb-2">Capacitación</h3>
-                                <p className="text-blue-100 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 duration-300">
-                                    Formación y herramientas profesionales
-                                </p>
-                                <span className="mt-6 inline-flex items-center text-sm font-semibold bg-white/20 px-4 py-2 rounded-full">
-                                    Próximamente <ArrowRight className="w-4 h-4 ml-2" />
-                                </span>
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop"
-                                alt="Capacitación"
+                                src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop"
+                                alt="Cultura y Capacitación"
                                 className="absolute inset-0 w-full h-full object-cover mix-blend-overlay"
                             />
                         </motion.div>
@@ -152,6 +136,52 @@ const CulturePage = () => {
                         </p>
                     </div>
                 </section>
+
+                {/* Contact Section */}
+                <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="lg:col-span-3 bg-white rounded-2xl shadow-xl p-8 border-l-8 border-yellow-500">
+                        <h2 className="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                            <Users className="w-6 h-6 mr-3 text-yellow-600" />
+                            Contacto Cultura y Capacitación
+                        </h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div className="flex items-start space-x-4">
+                                <div className="bg-yellow-50 p-3 rounded-full">
+                                    <User className="w-6 h-6 text-yellow-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-gray-900">Ezequiel Héctor Imanoni</h3>
+                                    <p className="text-sm text-gray-500 mb-2">Secretario de Cultura y Capacitación</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start space-x-4">
+                                <div className="bg-yellow-50 p-3 rounded-full">
+                                    <Phone className="w-6 h-6 text-yellow-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-gray-900">Teléfono</h3>
+                                    <a href="tel:02214270973" className="block text-gray-700 hover:text-yellow-600 mb-1 transition-colors">
+                                        0221 4270973 (int. 858)
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start space-x-4">
+                                <div className="bg-yellow-50 p-3 rounded-full">
+                                    <Mail className="w-6 h-6 text-yellow-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-lg text-gray-900">Correo Electrónico</h3>
+                                    <a href="mailto:culturaycapacitacion@aeri.org.ar" className="block text-gray-700 hover:text-yellow-600 break-words transition-colors">
+                                        culturaycapacitacion@aeri.org.ar
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
