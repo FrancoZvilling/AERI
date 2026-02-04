@@ -41,6 +41,7 @@ const Home = () => {
                 title="Acompañar, defender y representar a las y los trabajadores."
                 subtitle="Organización sindical al servicio de las y los trabajadores. Trabajando juntos por más y mejores beneficios."
                 backgroundImage={heroBackground}
+                className="pb-16 md:pb-0"
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20">

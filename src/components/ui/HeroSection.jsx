@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const HeroSection = ({ title, subtitle, backgroundImage, children }) => {
+const HeroSection = ({ title, subtitle, backgroundImage, children, className = "" }) => {
     return (
         <div className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center overflow-hidden">
             {/* Background Image */}
@@ -14,7 +14,7 @@ const HeroSection = ({ title, subtitle, backgroundImage, children }) => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <div className={`relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white ${className}`}>
                 <motion.h1
                     className="text-4xl md:text-6xl font-bold tracking-tight mb-4"
                     initial={{ opacity: 0, y: 20 }}
