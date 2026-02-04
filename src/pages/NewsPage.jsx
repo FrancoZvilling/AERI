@@ -127,7 +127,11 @@ const NewsPage = () => {
     const hasActiveFilters = searchTerm || category || dateFrom || dateTo;
 
     return (
-        <div className="bg-gray-50 min-h-screen pb-20">
+        <div
+            className="min-h-screen pb-20 bg-fixed bg-cover bg-center font-sans"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1689421755150-9c3b8dc3a45b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
+            <div className="fixed inset-0 bg-white/40 pointer-events-none z-0" />
             <HeroSection
                 title="Novedades Gremiales"
                 subtitle="Todas las noticias y actualizaciones de AERI en un solo lugar."
@@ -135,7 +139,7 @@ const NewsPage = () => {
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20">
-                <div className="bg-white rounded-3xl p-8 shadow-xl min-h-[400px]">
+                <div className="bg-[#F5F5F4] rounded-3xl p-8 shadow-xl min-h-[400px] border border-[#004080]">
 
                     {/* Search & Filter Bar */}
                     <div className="mb-10 space-y-4">
@@ -232,59 +236,178 @@ const NewsPage = () => {
                         )}
                     </div>
 
-                    {/* Results Grid */}
-                    {loading && !loadingMore ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="bg-gray-100 rounded-2xl h-96 animate-pulse">
-                                    <div className="h-48 bg-gray-200 rounded-t-2xl"></div>
-                                    <div className="p-6 space-y-4">
-                                        <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-                                        <div className="h-6 bg-gray-300 rounded w-3/4"></div>
-                                    </div>
+                    {/* Content Logic: Carousels OR Search Grid */}
+                    {!hasActiveFilters ? (
+                        <div className="space-y-12">
+                            {categories.length > 0 ? (
+                                categories.map(cat => (
+                                    <NewsCategorySection key={cat} category={cat} />
+                                ))
+                            ) : (
+                                // Fallback loading state for categories
+                                <div className="space-y-8">
+                                    {[1, 2].map(i => (
+                                        <div key={i} className="animate-pulse">
+                                            <div className="h-8 bg-gray-200 rounded w-1/4 mb-4"></div>
+                                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                                <div className="h-64 bg-gray-200 rounded-xl"></div>
+                                                <div className="h-64 bg-gray-200 rounded-xl"></div>
+                                                <div className="h-64 bg-gray-200 rounded-xl"></div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                    ) : error ? (
-                        <div className="text-center py-20">
-                            <h3 className="text-xl text-red-600 font-bold mb-2">Error al cargar noticias</h3>
-                            <p className="text-gray-500">{error.message}</p>
-                        </div>
-                    ) : noticias.length === 0 ? (
-                        <div className="text-center py-20 flex flex-col items-center">
-                            <Search className="w-16 h-16 text-gray-300 mb-4" />
-                            <h3 className="text-xl text-gray-400 font-bold">No se encontraron noticias con estos criterios.</h3>
+                            )}
                         </div>
                     ) : (
+                        // Classic Search Results Grid
                         <>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                {noticias.map((item) => (
-                                    <NewsCard key={item.id} noticia={item} />
-                                ))}
-                            </div>
-
-                            {hasMore && (
-                                <div className="mt-12 text-center">
-                                    <button
-                                        onClick={handleLoadMore}
-                                        disabled={loadingMore}
-                                        className="inline-flex items-center bg-[#023e73] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#002855] hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
-                                    >
-                                        {loadingMore ? (
-                                            <>
-                                                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                                                Cargando...
-                                            </>
-                                        ) : (
-                                            'Cargar más noticias'
-                                        )}
-                                    </button>
+                            {loading && !loadingMore ? (
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                    {[1, 2, 3].map(i => (
+                                        <div key={i} className="bg-gray-100 rounded-2xl h-96 animate-pulse">
+                                            <div className="h-48 bg-gray-200 rounded-t-2xl"></div>
+                                            <div className="p-6 space-y-4">
+                                                <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+                                                <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+                                            </div>
+                                        </div>
+                                    ))}
                                 </div>
+                            ) : error ? (
+                                <div className="text-center py-20">
+                                    <h3 className="text-xl text-red-600 font-bold mb-2">Error al cargar noticias</h3>
+                                    <p className="text-gray-500">{error.message}</p>
+                                </div>
+                            ) : noticias.length === 0 ? (
+                                <div className="text-center py-20 flex flex-col items-center">
+                                    <Search className="w-16 h-16 text-gray-300 mb-4" />
+                                    <h3 className="text-xl text-gray-400 font-bold">No se encontraron noticias con estos criterios.</h3>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        {noticias.map((item) => (
+                                            <NewsCard key={item.id} noticia={item} />
+                                        ))}
+                                    </div>
+                                    {hasMore && (
+                                        <div className="mt-12 text-center">
+                                            <button
+                                                onClick={handleLoadMore}
+                                                disabled={loadingMore}
+                                                className="inline-flex items-center bg-[#023e73] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#002855] hover:shadow-xl transition-all disabled:opacity-70 disabled:cursor-not-allowed"
+                                            >
+                                                {loadingMore ? (
+                                                    <>
+                                                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                                        Cargando...
+                                                    </>
+                                                ) : (
+                                                    'Cargar más noticias'
+                                                )}
+                                            </button>
+                                        </div>
+                                    )}
+                                </>
                             )}
                         </>
                     )}
 
                 </div>
+            </div>
+        </div>
+    );
+};
+
+// --- Helper Components for Carousel ---
+
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+const NewsCategorySection = ({ category }) => {
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCatNews = async () => {
+            try {
+                // Fetch latest 6 items for this category
+                const response = await fetch(`http://localhost:1337/api/noticias?filters[categoria][$eq]=${encodeURIComponent(category)}&sort=fecha:desc&pagination[pageSize]=6&populate=*`);
+                if (response.ok) {
+                    const json = await response.json();
+                    setItems(json.data || []);
+                }
+            } catch (err) {
+                console.error(`Error fetching news for ${category}:`, err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchCatNews();
+    }, [category]);
+
+    if (loading) return null; // Or a skeleton
+    if (items.length === 0) return null;
+
+    return (
+        <section className="relative">
+            <div className="mb-8 pl-1">
+                <div className="inline-flex items-center bg-[#004080] text-white px-8 py-3 rounded-r-full shadow-xl border-l-8 border-[#39c3ef]">
+                    <h2 className="text-2xl font-bold tracking-wide drop-shadow-md">{category}</h2>
+                </div>
+            </div>
+
+            <NewsCarousel items={items} />
+        </section>
+    );
+};
+
+const NewsCarousel = ({ items }) => {
+    const scrollContainerRef = React.useRef(null);
+
+    const scroll = (direction) => {
+        if (scrollContainerRef.current) {
+            const { current } = scrollContainerRef;
+            const scrollAmount = direction === 'left' ? -current.offsetWidth / 2 : current.offsetWidth / 2;
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
+
+    return (
+        <div className="group/carousel relative">
+            {/* Navigation Arrows */}
+            <button
+                onClick={() => scroll('left')}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white/90 text-[#004080] p-3 rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-opacity disabled:opacity-0 hover:bg-[#39c3ef] hover:text-white cursor-pointer hidden md:block"
+            >
+                <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+                onClick={() => scroll('right')}
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white/90 text-[#004080] p-3 rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-[#39c3ef] hover:text-white cursor-pointer hidden md:block"
+            >
+                <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Mobile Scroll Indicator */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden pointer-events-none animate-pulse">
+                <div className="bg-white/80 p-2 rounded-l-full shadow-md text-[#004080]">
+                    <ChevronRight className="w-5 h-5" />
+                </div>
+            </div>
+
+            {/* Scroll Container */}
+            <div
+                ref={scrollContainerRef}
+                className="flex overflow-x-auto gap-6 snap-x snap-mandatory pt-2 pb-8 px-2 scrollbar-hide -mx-2"
+            >
+                {items.map((item) => (
+                    <div key={item.id} className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center h-auto">
+                        <div className="h-full">
+                            <NewsCard noticia={item} />
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

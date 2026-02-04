@@ -21,7 +21,7 @@ const TourismPage = () => {
 
     return (
         <div
-            className="pb-20 min-h-screen font-sans bg-fixed bg-cover bg-center"
+            className="pb-20 min-h-screen font-sans bg-fixed bg-cover bg-center overflow-x-hidden"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1274&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
         >
             <div className="fixed inset-0 bg-white/40 pointer-events-none z-0" /> {/* Overlay para suavizar */}
@@ -35,7 +35,7 @@ const TourismPage = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
 
                 {/* 2. Filters Section */}
-                <div className="w-fit mx-auto bg-white rounded-full shadow-lg p-3 mb-12 flex items-center space-x-2 border border-gray-100 overflow-x-auto scrollbar-hide">
+                <div className="w-fit max-w-full mx-auto bg-white rounded-full shadow-lg p-3 mb-3 flex items-center space-x-2 border border-gray-100 overflow-x-auto scrollbar-hide">
                     <div className="bg-blue-50 p-2 rounded-full hidden sm:block">
                         <Filter className="w-5 h-5 text-[#004080]" />
                     </div>
@@ -51,6 +51,9 @@ const TourismPage = () => {
                             {cat}
                         </button>
                     ))}
+                </div>
+                <div className="block md:hidden text-center text-xs text-[#004080] font-semibold tracking-widest mb-10 animate-pulse bg-white/80 py-1 px-3 rounded-full w-fit mx-auto shadow-sm">
+                    DESLIZÁ &gt;&gt;&gt;
                 </div>
 
                 {/* 3. Cards Sections (Carousels) */}
@@ -78,7 +81,7 @@ const TourismPage = () => {
                 )}
 
                 {/* 4. Contact Footer (Simplified) */}
-                <div className="bg-[#023e73] text-white rounded-3xl p-10 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#023e73] text-white rounded-3xl p-6 md:p-10 shadow-2xl relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#39c3ef] rounded-full mix-blend-multiply filter blur-3xl opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
 
                     <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -156,7 +159,7 @@ const TourismPage = () => {
                             </div>
 
                             {/* Modal Content - Right Side */}
-                            <div className="w-full md:w-3/5 p-8 overflow-y-auto">
+                            <div className="w-full md:w-3/5 p-5 md:p-8 overflow-y-auto">
                                 <div className="hidden md:block mb-6">
                                     <div className="flex items-center space-x-2 mb-2">
                                         <span className="bg-[#39c3ef] text-white text-xs font-bold px-2 py-1 rounded uppercase">{selectedCard.tipo}</span>
@@ -280,13 +283,20 @@ const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
                     <ChevronRight className="w-6 h-6" />
                 </button>
 
+                {/* Mobile Scroll Indicator */}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10 md:hidden pointer-events-none animate-pulse">
+                    <div className="bg-white/80 p-2 rounded-l-full shadow-md text-[#004080]">
+                        <ChevronRight className="w-5 h-5" />
+                    </div>
+                </div>
+
                 {/* Scroll Container */}
                 <div
                     ref={scrollContainerRef}
                     className="flex overflow-x-auto gap-6 snap-x snap-mandatory pt-2 pb-8 px-2 scrollbar-hide -mx-2"
                 >
                     {items.map((item) => (
-                        <div key={item.id} className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center">
+                        <div key={item.id} className="min-w-[80vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center">
                             <TourismCard item={item} onSelect={() => onSelectCard(item)} formatPrice={formatPrice} />
                         </div>
                     ))}
@@ -297,12 +307,15 @@ const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
 };
 
 const TourismCard = ({ item, onSelect, formatPrice }) => {
+    // Disable animation on mobile to ensure visibility
+    const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={isMobile ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "200px" }}
             className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 flex flex-col h-full ring-1 ring-black/5"
         >
             {/* Image Cover */}

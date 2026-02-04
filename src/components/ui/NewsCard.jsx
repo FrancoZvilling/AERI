@@ -48,7 +48,7 @@ const NewsCard = ({ noticia }) => {
     return (
         <Wrapper
             {...linkProps}
-            className="group block h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+            className="group block h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#004080]"
         >
             {/* Image Section */}
             <div className="h-48 overflow-hidden relative bg-gray-100 flex-shrink-0">
