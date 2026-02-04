@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter } from 'lucide-react';
+import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 import { tourismData, tourismCategories } from '../data/tourismData';
 
 const TourismPage = () => {
@@ -20,7 +20,11 @@ const TourismPage = () => {
     };
 
     return (
-        <div className="bg-gray-50 pb-20 min-h-screen font-sans">
+        <div
+            className="pb-20 min-h-screen font-sans bg-fixed bg-cover bg-center"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1274&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')" }}
+        >
+            <div className="fixed inset-0 bg-white/40 pointer-events-none z-0" /> {/* Overlay para suavizar */}
             {/* 1. Hero Section (Preserved) */}
             <HeroSection
                 title="Turismo AERI"
@@ -28,18 +32,20 @@ const TourismPage = () => {
                 backgroundImage="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop"
             />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
 
                 {/* 2. Filters Section */}
-                <div className="bg-white rounded-2xl shadow-lg p-4 mb-10 overflow-x-auto flex items-center space-x-2 scrollbar-hide border border-gray-100">
-                    <Filter className="w-5 h-5 text-[#004080] mr-2 flex-shrink-0" />
+                <div className="w-fit mx-auto bg-white rounded-full shadow-lg p-3 mb-12 flex items-center space-x-2 border border-gray-100 overflow-x-auto scrollbar-hide">
+                    <div className="bg-blue-50 p-2 rounded-full hidden sm:block">
+                        <Filter className="w-5 h-5 text-[#004080]" />
+                    </div>
                     {tourismCategories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setSelectedCategory(cat)}
-                            className={`px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 cursor-pointer ${selectedCategory === cat
+                            className={`px-6 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all duration-300 cursor-pointer ${selectedCategory === cat
                                 ? 'bg-[#004080] text-white shadow-md transform scale-105'
-                                : 'bg-gray-100 text-gray-600 hover:bg-[#39c3ef] hover:text-white'
+                                : 'bg-transparent text-gray-600 hover:bg-gray-100 hover:text-[#004080]'
                                 }`}
                         >
                             {cat}
@@ -47,99 +53,23 @@ const TourismPage = () => {
                     ))}
                 </div>
 
-                {/* 3. Cards Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
-                >
-                    <AnimatePresence mode='popLayout'>
-                        {filteredData.map((item) => (
-                            <motion.div
-                                layout
-                                key={item.id}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 flex flex-col h-full"
-                            >
-                                {/* Image Cover */}
-                                <div className="relative h-60 overflow-hidden bg-gray-200">
-                                    <img
-                                        src={`/images/turismo/${item.imagen}`} // Assumes images are in public/images/turismo or external
-                                        alt={item.nombre}
-                                        onError={(e) => {
-                                            e.target.onerror = null;
-                                            // Fallback image based on type
-                                            e.target.src = item.tipo === 'Camping'
-                                                ? "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1000&auto=format&fit=crop"
-                                                : "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop";
-                                        }}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                {/* 3. Cards Sections (Carousels) */}
+                <div className="space-y-12 mb-20">
+                    {(selectedCategory === "Todos" ? tourismCategories.filter(c => c !== "Todos") : [selectedCategory]).map((category) => {
+                        const items = tourismData.filter(item => item.categoria === category);
+                        if (items.length === 0) return null;
 
-                                    {/* Badges - Stacked Top Left */}
-                                    <div className="absolute top-4 left-4 flex flex-col items-start space-y-2 max-w-[90%]">
-                                        <span className="bg-[#39c3ef] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center w-fit">
-                                            <MapPin className="w-3 h-3 mr-1" /> {item.ubicacion}
-                                        </span>
-                                        <span className="bg-[#1e6df9] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center w-fit">
-                                            {item.tipo === 'Hotel' && <Hotel className="w-3 h-3 mr-1" />}
-                                            {item.tipo === 'Camping' && <Tent className="w-3 h-3 mr-1" />}
-                                            {item.tipo}
-                                        </span>
-                                    </div>
-
-                                    {/* Destacado Badge if exists */}
-                                    {item.destacado && (
-                                        <div className="absolute bottom-4 left-4 right-4">
-                                            <div className="bg-yellow-400 text-[#0d0d0d] text-xs font-extrabold px-3 py-1 rounded-lg shadow-lg text-center flex items-center justify-center">
-                                                <Star className="w-3 h-3 mr-1" /> {item.destacado}
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Content */}
-                                <div className="p-6 flex flex-col flex-grow">
-                                    <h3 className="text-xl font-bold text-[#004080] mb-2 leading-tight">{item.nombre}</h3>
-                                    <div className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-4">{item.categoria}</div>
-
-                                    {/* Pricing / Summary High Level */}
-                                    <div className="mt-auto">
-                                        <div className="mb-4">
-                                            {item.tarifas && item.tarifas.standard ? (
-                                                <div>
-                                                    <span className="text-gray-500 text-sm">Desde</span>
-                                                    <div className="text-2xl font-bold text-[#00a0e1]">
-                                                        {formatPrice(Object.values(item.tarifas.standard)[1] || Object.values(item.tarifas.standard)[0])}
-                                                    </div>
-                                                </div>
-                                            ) : item.tarifas && typeof Object.values(item.tarifas)[0] === 'number' ? (
-                                                <div>
-                                                    <span className="text-gray-500 text-sm">Desde</span>
-                                                    <div className="text-2xl font-bold text-[#00a0e1]">
-                                                        {formatPrice(Object.values(item.tarifas).sort((a, b) => a - b)[0])}
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <span className="text-[#1e6df9] font-bold text-lg">Consultar Tarifas</span>
-                                            )}
-                                        </div>
-
-                                        <button
-                                            onClick={() => setSelectedCard(item)}
-                                            className="w-full bg-[#004080] text-white py-3 rounded-xl font-bold hover:bg-[#1e6df9] transition-colors shadow-md flex items-center justify-center group-hover:translate-y-[-2px] cursor-pointer"
-                                        >
-                                            Ver Detalles <CheckCircle2 className="w-4 h-4 ml-2" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </AnimatePresence>
-                </motion.div>
+                        return (
+                            <CategoryCarousel
+                                key={category}
+                                title={category}
+                                items={items}
+                                onSelectCard={setSelectedCard}
+                                formatPrice={formatPrice}
+                            />
+                        );
+                    })}
+                </div>
 
                 {filteredData.length === 0 && (
                     <div className="text-center py-20 text-gray-500">
@@ -313,6 +243,141 @@ const TourismPage = () => {
                 )}
             </AnimatePresence>
         </div>
+    );
+};
+
+const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
+    const scrollContainerRef = React.useRef(null);
+
+    const scroll = (direction) => {
+        if (scrollContainerRef.current) {
+            const { current } = scrollContainerRef;
+            const scrollAmount = direction === 'left' ? -current.offsetWidth / 2 : current.offsetWidth / 2;
+            current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
+
+    return (
+        <section className="relative">
+            <div className="mb-8 pl-1">
+                <div className="inline-flex items-center bg-[#004080] text-white px-8 py-3 rounded-r-full shadow-xl border-l-8 border-[#39c3ef]">
+                    <h2 className="text-2xl font-bold tracking-wide drop-shadow-md">{title}</h2>
+                </div>
+            </div>
+
+            <div className="group/carousel relative">
+                {/* Navigation Arrows */}
+                <button
+                    onClick={() => scroll('left')}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 bg-white/90 text-[#004080] p-3 rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-opacity disabled:opacity-0 hover:bg-[#39c3ef] hover:text-white cursor-pointer hidden md:block"
+                >
+                    <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                    onClick={() => scroll('right')}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 bg-white/90 text-[#004080] p-3 rounded-full shadow-lg opacity-0 group-hover/carousel:opacity-100 transition-opacity hover:bg-[#39c3ef] hover:text-white cursor-pointer hidden md:block"
+                >
+                    <ChevronRight className="w-6 h-6" />
+                </button>
+
+                {/* Scroll Container */}
+                <div
+                    ref={scrollContainerRef}
+                    className="flex overflow-x-auto gap-6 snap-x snap-mandatory pt-2 pb-8 px-2 scrollbar-hide -mx-2"
+                >
+                    {items.map((item) => (
+                        <div key={item.id} className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center">
+                            <TourismCard item={item} onSelect={() => onSelectCard(item)} formatPrice={formatPrice} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const TourismCard = ({ item, onSelect, formatPrice }) => {
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 flex flex-col h-full ring-1 ring-black/5"
+        >
+            {/* Image Cover */}
+            <div className="relative h-60 overflow-hidden bg-gray-200">
+                <img
+                    src={`/images/turismo/${item.imagen}`}
+                    alt={item.nombre}
+                    onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = item.tipo === 'Camping'
+                            ? "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=1000&auto=format&fit=crop"
+                            : "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop";
+                    }}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+
+                {/* Badges - Stacked Top Left */}
+                <div className="absolute top-4 left-4 flex flex-col items-start space-y-2 max-w-[90%]">
+                    <span className="bg-[#39c3ef] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center w-fit">
+                        <MapPin className="w-3 h-3 mr-1" /> {item.ubicacion}
+                    </span>
+                    <span className="bg-[#1e6df9] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center w-fit">
+                        {item.tipo === 'Hotel' && <Hotel className="w-3 h-3 mr-1" />}
+                        {item.tipo === 'Camping' && <Tent className="w-3 h-3 mr-1" />}
+                        {item.tipo}
+                    </span>
+                </div>
+
+                {/* Destacado Badge if exists */}
+                {item.destacado && (
+                    <div className="absolute bottom-4 left-4 right-4">
+                        <div className="bg-yellow-400 text-[#0d0d0d] text-xs font-extrabold px-3 py-1 rounded-lg shadow-lg text-center flex items-center justify-center">
+                            <Star className="w-3 h-3 mr-1" /> {item.destacado}
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Content */}
+            <div className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-[#004080] mb-2 leading-tight line-clamp-2 min-h-[3.5rem]">{item.nombre}</h3>
+                <div className="text-xs font-medium text-gray-400 uppercase tracking-widest mb-4">{item.categoria}</div>
+
+                {/* Pricing / Summary High Level */}
+                <div className="mt-auto">
+                    <div className="mb-4">
+                        {item.tarifas && item.tarifas.standard ? (
+                            <div>
+                                <span className="text-gray-500 text-sm">Desde</span>
+                                <div className="text-2xl font-bold text-[#00a0e1]">
+                                    {formatPrice(Object.values(item.tarifas.standard)[1] || Object.values(item.tarifas.standard)[0])}
+                                </div>
+                            </div>
+                        ) : item.tarifas && typeof Object.values(item.tarifas)[0] === 'number' ? (
+                            <div>
+                                <span className="text-gray-500 text-sm">Desde</span>
+                                <div className="text-2xl font-bold text-[#00a0e1]">
+                                    {formatPrice(Object.values(item.tarifas).sort((a, b) => a - b)[0])}
+                                </div>
+                            </div>
+                        ) : (
+                            <span className="text-[#1e6df9] font-bold text-lg">Consultar Tarifas</span>
+                        )}
+                    </div>
+
+                    <button
+                        onClick={onSelect}
+                        className="w-full bg-[#004080] text-white py-3 rounded-xl font-bold hover:bg-[#1e6df9] transition-colors shadow-md flex items-center justify-center group-hover:translate-y-[-2px] cursor-pointer"
+                    >
+                        Ver Detalles <CheckCircle2 className="w-4 h-4 ml-2" />
+                    </button>
+                </div>
+            </div>
+        </motion.div>
     );
 };
 
