@@ -8,6 +8,7 @@ import { extractStrapiImage } from '../../utils/strapi';
 const NewsCard = ({ noticia }) => {
     // 1. Resolve attributes (Strapi v4 vs v5 vs Flat object)
     const attributes = noticia?.attributes || noticia;
+    console.log("NOTICIA ATTRIBUTES:", attributes); // DEBUG: Ver qué campos llegan realmente
     if (!attributes) return null;
 
     // 2. Normalize properties
