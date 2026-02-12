@@ -90,7 +90,7 @@ const NewsDetailPage = () => {
                 <article className="bg-white rounded-3xl overflow-hidden shadow-xl border border-gray-100">
                     {/* Hero Image */}
                     <div className="relative h-64 md:h-96 w-full bg-gray-200">
-                        {foto_backup_url ? (
+                        {imageUrl ? (
                             <img
                                 src={imageUrl}
                                 alt={titulo}
