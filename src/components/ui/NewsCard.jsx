@@ -18,7 +18,8 @@ const NewsCard = ({ noticia }) => {
     const date = attributes.fecha || attributes.date;
     const summary = attributes.contenido || attributes.summary;
     // Intentar obtener la imagen de varios campos posibles
-    const imageSrc = extractStrapiImage(attributes.imagen) ||
+    const imageSrc = extractStrapiImage(attributes.imagen_portada) ||
+        extractStrapiImage(attributes.imagen) ||
         extractStrapiImage(attributes.foto) ||
         extractStrapiImage(attributes.cover) ||
         extractStrapiImage(attributes.foto_backup_url) ||
@@ -42,9 +43,12 @@ const NewsCard = ({ noticia }) => {
     };
 
     // 4. Link & Wrapper Logic
+    // Fallback to ID if slug is missing to prevent broken links
+    const targetLink = attributes.slug ? `/noticias/${attributes.slug}` : `/noticias/${attributes.id}`;
+
     const linkProps = isExternal
         ? { href: attributes.link, target: "_blank", rel: "noopener noreferrer" }
-        : { to: `/noticias/${attributes.slug || '#'}` };
+        : { to: targetLink };
 
     // We use a simple div as wrapper for the card structure, 
     // and handle the link via the "Read More" button or wrapping the whole card if preferred.
