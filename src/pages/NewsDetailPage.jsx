@@ -67,6 +67,7 @@ const NewsDetailPage = () => {
     // Adapt to flat or nested structure
     const attributes = noticia.attributes || noticia;
     const { titulo, fecha, categoria, contenido } = attributes;
+    console.log("Contenido raw:", JSON.stringify(contenido)); // DEBUG: Check hidden characters
 
     const imageUrl = extractStrapiImage(attributes.imagen_portada) ||
         extractStrapiImage(attributes.imagen) ||
