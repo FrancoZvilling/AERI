@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HeroSection from '../ui/HeroSection';
+import { getStrapiMedia } from '../../utils/strapi';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, FileText, Download, Filter, FolderOpen, Loader2, ArrowUp, ArrowDown } from 'lucide-react';
 
@@ -42,7 +43,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                         date: attrs.fecha_publicacion || attrs.fecha || attrs.publishedAt || new Date().toISOString(),
                         category: catData?.nombre || 'General',
                         // Prepend URL only if it's a relative path
-                        url: fileData?.url ? (fileData.url.startsWith('http') ? fileData.url : `${import.meta.env.VITE_API_URL}${fileData.url}`) : '#'
+                        url: getStrapiMedia(fileData?.url) || '#'
                     };
                 });
 
