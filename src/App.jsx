@@ -46,7 +46,7 @@ const App = () => {
 
           {/* Noticias */}
           <Route path="/noticias" element={<NewsPage />} />
-          <Route path="/noticias/post/:id" element={<NewsDetailPage />} />
+          <Route path="/noticias/:id" element={<NewsDetailPage />} />
 
           {/* Institucional Specific Routes */}
           <Route

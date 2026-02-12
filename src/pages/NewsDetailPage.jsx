@@ -13,10 +13,12 @@ const NewsDetailPage = () => {
     useEffect(() => {
         const fetchNoticia = async () => {
             try {
-                // Strategy Change: Use 'find' endpoint with filter instead of 'findOne'
-                // This avoids potential 404s if 'findOne' permissions aren't set or if ID routing behaves differently.
-                // Strapi v4: /api/noticias?filters[id][$eq]=:id
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?filters[id][$eq]=${id}&populate=*`);
+                // Determine if we are searching by ID or Slug
+                const isId = !isNaN(id);
+                const filterField = isId ? 'id' : 'slug';
+
+                // Strapi v4: /api/noticias?filters[field][$eq]=value
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?filters[${filterField}][$eq]=${id}&populate=*`);
 
                 if (!response.ok) {
                     throw new Error('No se pudo cargar la noticia');
