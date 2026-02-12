@@ -68,7 +68,8 @@ const NewsDetailPage = () => {
     const attributes = noticia.attributes || noticia;
     const { titulo, fecha, categoria, contenido } = attributes;
 
-    const imageUrl = extractStrapiImage(attributes.imagen) ||
+    const imageUrl = extractStrapiImage(attributes.imagen_portada) ||
+        extractStrapiImage(attributes.imagen) ||
         extractStrapiImage(attributes.foto) ||
         extractStrapiImage(attributes.cover) ||
         extractStrapiImage(attributes.foto_backup_url) ||
