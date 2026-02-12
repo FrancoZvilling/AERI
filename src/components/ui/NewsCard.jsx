@@ -3,7 +3,7 @@ import React from 'react';
 import { Calendar, ArrowRight, ImageOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { getStrapiMedia } from '../../utils/strapi';
+import { extractStrapiImage } from '../../utils/strapi';
 
 const NewsCard = ({ noticia }) => {
     // 1. Resolve attributes (Strapi v4 vs v5 vs Flat object)
@@ -17,7 +17,12 @@ const NewsCard = ({ noticia }) => {
     const category = attributes.categoria || attributes.category;
     const date = attributes.fecha || attributes.date;
     const summary = attributes.contenido || attributes.summary;
-    const imageSrc = getStrapiMedia(attributes.foto_backup_url || attributes.image_url);
+    // Intentar obtener la imagen de varios campos posibles
+    const imageSrc = extractStrapiImage(attributes.imagen) ||
+        extractStrapiImage(attributes.foto) ||
+        extractStrapiImage(attributes.cover) ||
+        extractStrapiImage(attributes.foto_backup_url) ||
+        extractStrapiImage(attributes.image_url);
     const isExternal = attributes.isExternal;
 
     // 3. Helpers

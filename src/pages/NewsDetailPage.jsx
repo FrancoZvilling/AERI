@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, ArrowLeft, ImageOff, Share2 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { getStrapiMedia } from '../utils/strapi';
+import { extractStrapiImage } from '../utils/strapi';
 
 const NewsDetailPage = () => {
     const { id } = useParams();
@@ -64,9 +64,13 @@ const NewsDetailPage = () => {
 
     // Adapt to flat or nested structure
     const attributes = noticia.attributes || noticia;
-    const { titulo, fecha, categoria, contenido, foto_backup_url } = attributes;
+    const { titulo, fecha, categoria, contenido } = attributes;
 
-    const imageUrl = getStrapiMedia(foto_backup_url) || "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&auto=format&fit=crop";
+    const imageUrl = extractStrapiImage(attributes.imagen) ||
+        extractStrapiImage(attributes.foto) ||
+        extractStrapiImage(attributes.cover) ||
+        extractStrapiImage(attributes.foto_backup_url) ||
+        "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&auto=format&fit=crop";
 
     return (
         <motion.div
