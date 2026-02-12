@@ -402,7 +402,7 @@ const NewsCarousel = ({ items }) => {
                 className="flex overflow-x-auto gap-6 snap-x snap-mandatory pt-2 pb-8 px-2 scrollbar-hide -mx-2"
             >
                 {items.map((item) => (
-                    <div key={item.id} className="w-[85vw] md:w-[45vw] lg:w-[calc(33.333%-16px)] shrink-0 snap-center h-auto">
+                    <div key={item.id} className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center h-auto">
                         <div className="h-full">
                             <NewsCard noticia={item} />
                         </div>

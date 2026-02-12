@@ -141,7 +141,7 @@ const NewsDetailPage = () => {
                             {/<[a-z][\s\S]*>/i.test(contenido) ? (
                                 <div dangerouslySetInnerHTML={{ __html: contenido }} />
                             ) : (
-                                <p className="whitespace-pre-line">{contenido}</p>
+                                <p style={{ whiteSpace: 'pre-line' }}>{contenido}</p>
                             )}
                         </div>
                     </div>

@@ -58,7 +58,7 @@ const NewsCard = ({ noticia }) => {
     return (
         <Wrapper
             {...linkProps}
-            className="group block h-full w-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#004080]"
+            className="group block h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#004080]"
         >
             {/* Image Section */}
             <div className="h-48 overflow-hidden relative bg-gray-100 flex-shrink-0">
@@ -94,11 +94,11 @@ const NewsCard = ({ noticia }) => {
                     </div>
                 )}
 
-                <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2 group-hover:text-[#39c3ef] transition-colors break-words">
+                <h3 className="text-xl font-bold text-primary mb-3 line-clamp-2 group-hover:text-[#39c3ef] transition-colors">
                     {title}
                 </h3>
 
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow break-words">
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
                     {stripHtml(summary)}
                 </p>
 
