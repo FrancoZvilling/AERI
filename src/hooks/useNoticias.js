@@ -9,7 +9,7 @@ export const useNoticias = (limit = 0) => {
         const fetchNoticias = async () => {
             try {
                 // Fetch to Strapi Local, sorting by date descending
-                const response = await fetch(`http://localhost:1337/api/noticias?sort=fecha:desc`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc`);
 
                 if (!response.ok) {
                     throw new Error('Error al conectar con el servidor de noticias');

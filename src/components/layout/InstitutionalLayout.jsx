@@ -20,7 +20,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
         const fetchDocuments = async () => {
             try {
                 setLoading(true);
-                const response = await fetch('http://localhost:1337/api/documentos?populate=*');
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/documentos?populate=*`);
                 if (!response.ok) throw new Error('Error al cargar documentos');
 
                 const json = await response.json();
@@ -42,7 +42,7 @@ const InstitutionalLayout = ({ title, subtitle, authorities = [], showDocs = fal
                         date: attrs.fecha_publicacion || attrs.fecha || attrs.publishedAt || new Date().toISOString(),
                         category: catData?.nombre || 'General',
                         // Prepend URL only if it's a relative path
-                        url: fileData?.url ? (fileData.url.startsWith('http') ? fileData.url : `http://localhost:1337${fileData.url}`) : '#'
+                        url: fileData?.url ? (fileData.url.startsWith('http') ? fileData.url : `${import.meta.env.VITE_API_URL}${fileData.url}`) : '#'
                     };
                 });
 

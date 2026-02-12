@@ -28,7 +28,7 @@ const NewsPage = () => {
         const fetchCategories = async () => {
             try {
                 // Determine if we need to access attributes or flat data
-                const response = await fetch('http://localhost:1337/api/noticias?fields[0]=categoria&pagination[pageSize]=1000');
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?fields[0]=categoria&pagination[pageSize]=1000`);
                 if (response.ok) {
                     const json = await response.json();
                     const data = json.data || [];
@@ -53,7 +53,7 @@ const NewsPage = () => {
 
             // Construct Strapi Query
             const { search, cat, dFrom, dTo } = currentFilters;
-            const baseUrl = `http://localhost:1337/api/noticias`;
+            const baseUrl = `${import.meta.env.VITE_API_URL}/api/noticias`;
             const params = new URLSearchParams();
 
             // Basics
@@ -332,7 +332,7 @@ const NewsCategorySection = ({ category }) => {
         const fetchCatNews = async () => {
             try {
                 // Fetch latest 6 items for this category
-                const response = await fetch(`http://localhost:1337/api/noticias?filters[categoria][$eq]=${encodeURIComponent(category)}&sort=fecha:desc&pagination[pageSize]=6&populate=*`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?filters[categoria][$eq]=${encodeURIComponent(category)}&sort=fecha:desc&pagination[pageSize]=6&populate=*`);
                 if (response.ok) {
                     const json = await response.json();
                     setItems(json.data || []);
