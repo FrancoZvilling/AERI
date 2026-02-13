@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import HeroSection from '../components/ui/HeroSection';
 import { motion } from 'framer-motion';
 import {
@@ -16,6 +16,7 @@ import {
 import coverImg from '../assets/cover-cultura.jpeg';
 
 const CulturePage = () => {
+    const navigate = useNavigate();
 
     const specifics = [
         "Satisfacer las necesidades presentes y futuras incentivando la construcción del conocimiento.",
@@ -64,6 +65,7 @@ const CulturePage = () => {
                         <motion.div
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
+                            onClick={() => navigate('/cultura/capacitacion')}
                             className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-orange-700 opacity-90 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-center items-center text-white p-6 text-center">
@@ -75,8 +77,8 @@ const CulturePage = () => {
                                 <p className="text-yellow-100 text-lg max-w-2xl mt-2">
                                     Un espacio integrado para el desarrollo cultural y la formación profesional de nuestros afiliados.
                                 </p>
-                                <span className="mt-8 inline-flex items-center text-sm font-semibold bg-white/20 px-6 py-2 rounded-full">
-                                    Próximamente <ArrowRight className="w-4 h-4 ml-2" />
+                                <span className="mt-8 inline-flex items-center text-sm font-semibold bg-white text-yellow-700 px-6 py-2 rounded-full hover:bg-yellow-50 transition-colors">
+                                    Ver Propuestas y Modalidades <ArrowRight className="w-4 h-4 ml-2" />
                                 </span>
                             </div>
                             <img

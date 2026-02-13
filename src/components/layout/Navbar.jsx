@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Calendar } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Calendar, Newspaper } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -88,8 +88,8 @@ const Navbar = () => {
                             </div>
                         ))}
 
-                        <Link to="/turnos" className="hover:text-gray-300 transition-colors px-3 py-2 rounded-md text-sm font-medium">
-                            Turnos
+                        <Link to="/noticias" className="hover:text-gray-300 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                            Noticias
                         </Link>
                     </div>
 
@@ -173,12 +173,12 @@ const Navbar = () => {
                             ))}
 
                             <Link
-                                to="/turnos"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-red-600 text-white hover:bg-red-700 mt-4 flex items-center space-x-2"
+                                to="/noticias"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-900 mt-4 flex items-center space-x-2"
                                 onClick={toggleMenu}
                             >
-                                <Calendar className="w-4 h-4" />
-                                <span>Turnos</span>
+                                <Newspaper className="w-4 h-4" />
+                                <span>Noticias</span>
                             </Link>
 
                             <Link

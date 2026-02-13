@@ -9,6 +9,7 @@ import InstitutionalPage from './pages/InstitutionalPage';
 import HealthPage from './pages/HealthPage';
 import UnionPage from './pages/UnionPage';
 import CulturePage from './pages/CulturePage';
+import CultureDetailsPage from './pages/CultureDetailsPage';
 import PressPage from './pages/PressPage';
 import ActsPage from './pages/ActsPage';
 import WomenFamilyPage from './pages/WomenFamilyPage';
@@ -24,7 +25,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/turnos" element={<div className="min-h-screen flex items-center justify-center text-xl text-gray-500 bg-gray-50">Sistema de Turnos: Próximamente</div>} />
+
 
           {/* Nueva página dedicada a Subsidios */}
           <Route path="/subsidios" element={<SubsidiesPage />} />
@@ -38,6 +39,7 @@ const App = () => {
           <Route path="/secretarias/mujer-y-familia" element={<WomenFamilyPage />} />
           <Route path="/secretarias/gremial" element={<UnionPage />} />
           <Route path="/secretarias/cultura" element={<CulturePage />} />
+          <Route path="/cultura/capacitacion" element={<CultureDetailsPage />} />
           <Route path="/secretarias/prensa" element={<PressPage />} />
           {/* <Route path="/secretarias/actas" element={<ActsPage />} /> */}
 
