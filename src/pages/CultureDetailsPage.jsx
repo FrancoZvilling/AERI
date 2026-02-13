@@ -18,7 +18,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import IdeaWall from '../components/culture/IdeaWall';
-import flyerTecnicatura from '../assets/TECNICATURA 2026.png';
+import flyerTecnicatura from '../assets/tecnicatura2026.jpg';
 
 const CultureDetailsPage = () => {
     const [isFlyerOpen, setIsFlyerOpen] = useState(false);
