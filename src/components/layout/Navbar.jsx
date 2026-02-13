@@ -174,7 +174,7 @@ const Navbar = () => {
 
                             <Link
                                 to="/noticias"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white hover:bg-blue-900 mt-4 flex items-center space-x-2"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-red-600 text-white hover:bg-red-700 mt-4 flex items-center space-x-2"
                                 onClick={toggleMenu}
                             >
                                 <Newspaper className="w-4 h-4" />

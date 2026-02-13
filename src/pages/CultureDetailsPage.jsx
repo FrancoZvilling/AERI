@@ -37,13 +37,13 @@ const CultureDetailsPage = () => {
             <HeroSection
                 title="Cultura y Capacitación"
                 subtitle="Un espacio integrado para el desarrollo cultural y la formación profesional de nuestros afiliados."
-                backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop"
+                backgroundColor="#004080"
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20 space-y-24">
 
                 {/* Back Button */}
-                <div className="absolute -top-16 left-4 z-30">
+                <div className="absolute -top-16 left-4 z-30 hidden md:block">
                     <Link to="/secretarias/cultura" className="inline-flex items-center text-white/90 hover:text-white transition-colors font-medium">
                         <ArrowLeft className="w-5 h-5 mr-2" /> Volver
                     </Link>

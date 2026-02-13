@@ -66,9 +66,9 @@ const CulturePage = () => {
                             whileHover={{ scale: 1.03 }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => navigate('/cultura/capacitacion')}
-                            className="group relative h-72 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
+                            className="group relative h-auto sm:h-72 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-yellow-600 to-orange-700 opacity-90 group-hover:opacity-100 transition-opacity z-10 flex flex-col justify-center items-center text-white p-6 text-center">
+                            <div className="relative z-10 w-full h-full min-h-[18rem] flex flex-col justify-center items-center text-white p-6 text-center bg-gradient-to-br from-yellow-600 to-orange-700 opacity-90 group-hover:opacity-100 transition-opacity">
                                 <div className="flex gap-4 mb-4">
                                     <Palette className="w-12 h-12 text-yellow-200 group-hover:scale-110 transition-transform duration-300" />
                                     <GraduationCap className="w-12 h-12 text-yellow-200 group-hover:scale-110 transition-transform duration-300" />

@@ -1,13 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const HeroSection = ({ title, subtitle, backgroundImage, children, className = "" }) => {
+const HeroSection = ({ title, subtitle, backgroundImage, backgroundColor, children, className = "" }) => {
     return (
         <div className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center overflow-hidden">
-            {/* Background Image */}
+            {/* Background Image or Color */}
             <div
                 className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url("${backgroundImage}")` }}
+                style={{
+                    backgroundImage: backgroundImage ? `url("${backgroundImage}")` : 'none',
+                    backgroundColor: backgroundColor || 'transparent'
+                }}
             >
                 {/* Dark Overlay - Simplified for SVG clarity */}
                 <div className="absolute inset-0 bg-black/30" />
