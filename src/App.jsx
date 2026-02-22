@@ -17,6 +17,7 @@ import DashboardPage from './pages/DashboardPage';
 import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import ScrollToTop from './components/utils/ScrollToTop';
+import AfiliacionesPage from './pages/AfiliacionesPage';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/afiliaciones" element={<AfiliacionesPage />} />
 
 
           {/* Nueva página dedicada a Subsidios */}

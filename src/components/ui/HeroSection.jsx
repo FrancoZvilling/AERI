@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const HeroSection = ({ title, subtitle, backgroundImage, backgroundColor, children, className = "" }) => {
+const HeroSection = ({ title, subtitle, backgroundImage, backgroundColor, overlayOpacity = "bg-black/40", children, className = "" }) => {
     return (
         <div className="relative h-[60vh] min-h-[400px] w-full flex items-center justify-center overflow-hidden">
             {/* Background Image or Color */}
@@ -12,8 +12,8 @@ const HeroSection = ({ title, subtitle, backgroundImage, backgroundColor, childr
                     backgroundColor: backgroundColor || 'transparent'
                 }}
             >
-                {/* Dark Overlay - Simplified for SVG clarity */}
-                <div className="absolute inset-0 bg-black/30" />
+                {/* Dark Overlay */}
+                <div className={`absolute inset-0 ${overlayOpacity}`} />
             </div>
 
             {/* Content */}

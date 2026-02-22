@@ -3,15 +3,17 @@ import HeroSection from '../components/ui/HeroSection';
 import NewsCard from '../components/ui/NewsCard';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter, UserPlus } from 'lucide-react';
 import mockData from '../data/mockData.json';
 import aeriEdificio from '../assets/aeri-edificio.jpeg';
+import heroCover from '../assets/hero-cover.jpeg';
 
 const iconMap = {
     Banknote: Banknote,
     Plane: Plane,
     Heart: Heart,
     FileText: FileText,
+    UserPlus: UserPlus,
 };
 
 const Home = () => {
@@ -32,16 +34,14 @@ const Home = () => {
         visible: { y: 0, opacity: 1 }
     };
 
-    // Custom SVG background to control text size precisely
-    const heroBackground = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23004080'/%3E%3Ctext x='50%25' y='50%25' font-family='sans-serif' font-weight='bold' font-size='200' fill='white' opacity='0.1' text-anchor='middle' dominant-baseline='middle'%3EAERI%3C/text%3E%3C/svg%3E`;
-
     return (
         <div className="bg-gray-50 pb-20">
             {/* Hero Section */}
             <HeroSection
                 title="Acompañar, defender y representar a las y los trabajadores."
                 subtitle="Organización sindical al servicio de las y los trabajadores. Trabajando juntos por más y mejores beneficios."
-                backgroundImage={heroBackground}
+                backgroundImage={heroCover}
+                overlayOpacity="bg-black/40"
                 className="pb-16 md:pb-0"
             />
 
@@ -83,11 +83,14 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {mockData.sitesOfInterest.map((item) => (
-                            <div key={item.id} className="h-96">
-                                <NewsCard noticia={item} />
-                            </div>
-                        ))}
+                        {mockData.news
+                            .sort((a, b) => new Date(b.date) - new Date(a.date))
+                            .slice(0, 3)
+                            .map((item) => (
+                                <div key={item.id} className="h-96">
+                                    <NewsCard noticia={item} />
+                                </div>
+                            ))}
                     </div>
                     <div className="mt-8 text-center md:hidden">
                         <Link to="/noticias" className="inline-flex items-center text-[#39c3ef] font-semibold hover:text-primary transition-colors">

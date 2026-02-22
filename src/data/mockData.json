@@ -59,10 +59,10 @@
     ],
     "quickAccess": [
         {
-            "id": "subsidios",
-            "title": "Subsidios",
-            "icon": "Banknote",
-            "link": "/subsidios"
+            "id": "afiliaciones",
+            "title": "Afiliaciones",
+            "icon": "UserPlus",
+            "link": "/afiliaciones"
         },
         {
             "id": "turismo",
@@ -77,10 +77,10 @@
             "link": "/secretarias/salud"
         },
         {
-            "id": "biblioteca",
-            "title": "Biblioteca",
-            "icon": "FileText",
-            "link": "/institucional/biblioteca"
+            "id": "subsidios",
+            "title": "Subsidios",
+            "icon": "Banknote",
+            "link": "/subsidios"
         }
     ],
     "secretariats": [
