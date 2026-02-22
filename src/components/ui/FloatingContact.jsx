@@ -84,17 +84,15 @@ const FloatingContact = () => {
                                 </button>
                             </form>
 
-                            {/* Divider & WhatsApp */}
+                            {/* Divider & Phone Call */}
                             <div className="mt-4 pt-4 border-t border-gray-100">
-                                <p className="text-center text-xs text-gray-400 mb-3">O contactanos directamente</p>
+                                <p className="text-center text-xs text-gray-400 mb-3">O comuníquese telefónicamente</p>
                                 <a
-                                    href="https://wa.me/5492215083285"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-2 rounded-lg transition-colors flex items-center justify-center text-sm shadow-sm"
+                                    href="tel:02214894470"
+                                    className="w-full bg-[#1e6df9] hover:bg-[#002855] text-white font-bold py-2 rounded-lg transition-colors flex items-center justify-center text-sm shadow-sm"
                                 >
-                                    <MessageCircle className="w-4 h-4 mr-2" />
-                                    WhatsApp
+                                    <Phone className="w-4 h-4 mr-2" />
+                                    Llamar ahora
                                 </a>
                             </div>
                         </div>

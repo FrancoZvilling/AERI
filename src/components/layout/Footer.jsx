@@ -35,8 +35,8 @@ const Footer = () => {
                         <Link to="/" className="inline-block">
                             <img src="/logo.png" alt="AERI Logo" className="h-16 w-auto bg-white/10 p-2 rounded-lg backdrop-blur-sm" />
                         </Link>
-                        <p className="text-gray-300 leading-relaxed text-sm">
-                            Asociación Empleados de Rentas e Inmobiliaria.
+                        <p className="text-gray-400 text-sm leading-relaxed pr-4">
+                            Asociación de Empleados de la Dirección de Rentas e Inmobiliaria.
                             <br />
                             Más de 60 años acompañando y representando a las y los trabajadores.
                         </p>
@@ -93,16 +93,21 @@ const Footer = () => {
                                 <MapPin className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0 mt-0.5" />
                                 <span className="text-gray-300 text-sm">Calle 45 N° 535, La Plata<br />Buenos Aires, Argentina</span>
                             </li>
-                            <li className="flex items-center">
-                                <Phone className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0" />
-                                <a href="tel:02214248142" className="text-gray-300 hover:text-white transition-colors text-sm">
-                                    0221 424-8142
-                                </a>
+                            <li className="flex items-start">
+                                <Phone className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0 mt-0.5" />
+                                <div className="flex flex-col">
+                                    <a href="tel:02214894470" className="text-gray-300 hover:text-white transition-colors text-sm mb-1">
+                                        0221 489-4470
+                                    </a>
+                                    <a href="tel:02214270973" className="text-gray-300 hover:text-white transition-colors text-sm">
+                                        0221 427-0973
+                                    </a>
+                                </div>
                             </li>
                             <li className="flex items-center">
                                 <Mail className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0" />
-                                <a href="mailto:consultas@aeri.org.ar" className="text-gray-300 hover:text-white transition-colors text-sm">
-                                    consultas@aeri.org.ar
+                                <a href="mailto:info@aeri.org.ar" className="text-gray-300 hover:text-white transition-colors text-sm">
+                                    info@aeri.org.ar
                                 </a>
                             </li>
                         </ul>
@@ -117,7 +122,7 @@ const Footer = () => {
                         <div className="bg-white/5 rounded-lg p-4 border border-white/10">
                             <div className="flex justify-between mb-2">
                                 <span className="text-gray-400 text-sm">Lunes - Viernes</span>
-                                <span className="font-semibold text-sm">8:00 - 16:00</span>
+                                <span className="font-semibold text-sm">8:30 - 15:00</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-gray-400 text-sm">Sábados y Dom.</span>
@@ -130,7 +135,7 @@ const Footer = () => {
                 {/* Divider */}
                 <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-gray-400 text-sm text-center md:text-left">
-                        AERI © Copyright 2025 Todos los Derechos Reservados.
+                        AERI © Copyright 2026 Todos los Derechos Reservados.
                     </p>
 
                     <div className="flex items-center text-sm text-gray-500">

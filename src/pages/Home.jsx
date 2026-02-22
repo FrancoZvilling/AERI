@@ -188,11 +188,11 @@ const Home = () => {
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-base mb-1">Teléfonos</h3>
                                         <div className="space-y-1 text-sm">
-                                            <a href="tel:02214248142" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
-                                                Fijo: <span className="font-semibold">0221 4248142</span>
+                                            <a href="tel:02214894470" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
+                                                Línea 1: <span className="font-semibold">0221 489-4470</span>
                                             </a>
-                                            <a href="https://wa.me/5492215083285" target="_blank" rel="noopener noreferrer" className="block text-gray-600 hover:text-[#00a0e1] transition-colors">
-                                                WhatsApp: <span className="font-semibold">+54 9 221 5083285</span>
+                                            <a href="tel:02214270973" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
+                                                Línea 2: <span className="font-semibold">0221 427-0973</span>
                                             </a>
                                         </div>
                                     </div>
@@ -205,8 +205,8 @@ const Home = () => {
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-gray-900 text-base mb-1">Correo</h3>
-                                        <a href="mailto:consultas@aeri.org.ar" className="text-gray-600 hover:text-[#1e6df9] font-medium text-sm transition-colors">
-                                            consultas@aeri.org.ar
+                                        <a href="mailto:info@aeri.org.ar" className="text-gray-600 hover:text-[#1e6df9] font-medium text-sm transition-colors">
+                                            info@aeri.org.ar
                                         </a>
                                     </div>
                                 </div>

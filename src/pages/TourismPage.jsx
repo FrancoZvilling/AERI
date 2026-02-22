@@ -100,13 +100,11 @@ const TourismPage = () => {
                         </div>
                         <div className="flex justify-center md:justify-end">
                             <a
-                                href="https://wa.me/5492215083285"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-[#25D366] text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-[#128C7E] transition-all transform hover:scale-105 flex items-center"
+                                href="tel:02214248142"
+                                className="bg-[#39c3ef] text-[#002855] px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-white transition-all transform hover:scale-105 flex items-center"
                             >
-                                <Phone className="w-5 h-5 mr-2" />
-                                Contactar por WhatsApp
+                                <Phone className="w-5 h-5 mr-3" />
+                                Llamar al 0221 4248142
                             </a>
                         </div>
                     </div>

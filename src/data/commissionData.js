@@ -1,4 +1,16 @@
-import { User } from 'lucide-react';
+import pb from '../assets/comision/pablo-de-rito-320x320.jpg';
+import cm from '../assets/comision/martin-450-320x320.jpg';
+import rs from '../assets/comision/sequeira-450-320x320.jpg';
+import mc from '../assets/comision/cossu-450-320x320.jpg';
+import mg from '../assets/comision/marcos-gimenez-320x320.jpg';
+import ja from '../assets/comision/arcidiacono-450-320x320.jpg';
+import cgs from '../assets/comision/carlos-saravia-320x320.jpg';
+import glc from '../assets/comision/gabriela-lopez-carballo-320x320.jpg';
+import cd from '../assets/comision/Cecilia-320x320.jpg';
+import ei from '../assets/comision/imanoni-450-320x320.jpg';
+import pbz from '../assets/comision/bazan-450-320x320.jpg';
+import gc from '../assets/comision/capano-450-320x320.jpg';
+import jmm from '../assets/comision/matteozzi-450-320x320.jpg';
 
 // Texto introductorio
 export const introContent = {
@@ -18,21 +30,21 @@ export const introContent = {
     ]
 };
 
-// Autoridades principales para el Carrusel (Fotos placeholders por ahora)
+// Autoridades principales para el Carrusel
 export const mainAuthorities = [
-    { name: "MATTEOZZI, JORGE AMILCAR", role: "PROSECRETARIO GREMIAL", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" },
-    { name: "DE RITO, PABLO SEBASTIÁN", role: "SECRETARIO ADJUNTO", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop" },
-    { name: "MARTIN, CLAUDIO GERMÁN", role: "SECRETARIO GREMIAL", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" },
-    { name: "SEQUEIRA, ROBERTO AGUSTÍN", role: "SECRETARIO GENERAL", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop" },
-    { name: "COSSU, MAURICIO ADRIÁN", role: "SECRETARIO DE ORGANIZACIÓN", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop" },
-    { name: "GIMÉNEZ, MARCOS LUIS", role: "SECRETARIO DE SERVICIOS SOCIALES", image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=400&auto=format&fit=crop" },
-    { name: "ARCIDIACONO, JOSE IGNACIO", role: "PROSECRETARIO DE SERVICIOS SOCIALES", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" }, // Placeholder female for variety if needed, but names are male. Resetting to generic or male implies. Keeping diverse placeholders for generic feeling if specific photos aren't available.
-    { name: "GOMEZ DE SARAVIA, CARLOS ALBERTO", role: "SECRETARIO DE FINANZAS", image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&auto=format&fit=crop" },
-    { name: "LÓPEZ CARBALLO, GABRIELA BEATRIZ", role: "SECRETARIA DE PRENSA Y PROPAGANDA", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" },
-    { name: "DELGADO, MARIA CECILIA", role: "SECRETARIA DE LA MUJER Y LA FAMILIA", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" },
-    { name: "IMANONI, EZEQUIEL HÉCTOR", role: "SECRETARIO DE CULTURA Y CAPACITACION", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=400&auto=format&fit=crop" },
-    { name: "BAZÁN, PEDRO JORGE", role: "SECRETARIA DE TURISMO Y DEPORTE", image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?q=80&w=400&auto=format&fit=crop" },
-    { name: "CAPANO, GISELA CAROLINA", role: "SECRETARIA DE ACTAS", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" }
+    { name: "MATTEOZZI, JORGE AMILCAR", role: "PROSECRETARIO GREMIAL", image: jmm },
+    { name: "DE RITO, PABLO SEBASTIÁN", role: "SECRETARIO ADJUNTO", image: pb },
+    { name: "MARTIN, CLAUDIO GERMÁN", role: "SECRETARIO GREMIAL", image: cm },
+    { name: "SEQUEIRA, ROBERTO AGUSTÍN", role: "SECRETARIO GENERAL", image: rs },
+    { name: "COSSU, MAURICIO ADRIÁN", role: "SECRETARIO DE ORGANIZACIÓN", image: mc },
+    { name: "GIMÉNEZ, MARCOS LUIS", role: "SECRETARIO DE SERVICIOS SOCIALES", image: mg },
+    { name: "ARCIDIACONO, JOSE IGNACIO", role: "PROSECRETARIO DE SERVICIOS SOCIALES", image: ja },
+    { name: "GOMEZ DE SARAVIA, CARLOS ALBERTO", role: "SECRETARIO DE FINANZAS", image: cgs },
+    { name: "LÓPEZ CARBALLO, GABRIELA BEATRIZ", role: "SECRETARIA DE PRENSA Y PROPAGANDA", image: glc },
+    { name: "DELGADO, MARIA CECILIA", role: "SECRETARIA DE LA MUJER Y LA FAMILIA", image: cd },
+    { name: "IMANONI, EZEQUIEL HÉCTOR", role: "SECRETARIO DE CULTURA Y CAPACITACION", image: ei },
+    { name: "BAZÁN, PEDRO JORGE", role: "SECRETARIA DE TURISMO Y DEPORTE", image: pbz },
+    { name: "CAPANO, GISELA CAROLINA", role: "SECRETARIA DE ACTAS", image: gc }
 ];
 
 // Listado Completo para Acordeones

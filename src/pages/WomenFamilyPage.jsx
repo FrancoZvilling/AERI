@@ -33,8 +33,7 @@ const WomenFamilyPage = () => {
 
     const pillars = [
         { title: "Compromiso", icon: Heart, desc: "Sensibilización constante." },
-        { title: "Comunicación", icon: MessageCircle, desc: "Diálogo fluido y abierto." },
-        { title: "Formación", icon: BookOpen, desc: "Capacitación continua." }
+        { title: "Comunicación", icon: MessageCircle, desc: "Diálogo fluido y abierto." }
     ];
 
     return (
@@ -130,7 +129,7 @@ const WomenFamilyPage = () => {
                 {/* Pillars Section */}
                 <section className="mb-20">
                     <h3 className="text-2xl font-bold text-gray-900 mb-10 text-center">Nuestros Pilares de Acción</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                         {pillars.map((pillar, idx) => (
                             <motion.div
                                 key={idx}

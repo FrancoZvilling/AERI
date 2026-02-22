@@ -305,11 +305,21 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                     transition={{ duration: 0.3, delay: idx * 0.1 }}
                                     className="bg-white rounded-xl shadow-lg overflow-hidden group hover:-translate-y-2 transition-transform duration-300"
                                 >
-                                    <div className="h-64 bg-gray-100 flex items-center justify-center relative group-hover:bg-gray-200 transition-colors duration-300">
-                                        <div className="text-gray-300 font-bold text-lg uppercase tracking-widest border-2 border-dashed border-gray-300 px-6 py-3 rounded-lg flex flex-col items-center gap-2">
-                                            <User className="w-8 h-8 opacity-50" />
-                                            <span>Foto</span>
-                                        </div>
+                                    <div className="h-64 bg-gray-100 relative overflow-hidden group-hover:bg-gray-200 transition-colors duration-300">
+                                        {auth.image ? (
+                                            <img
+                                                src={auth.image}
+                                                alt={auth.name}
+                                                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center">
+                                                <div className="text-gray-300 font-bold text-lg uppercase tracking-widest border-2 border-dashed border-gray-300 px-6 py-3 rounded-lg flex flex-col items-center gap-2">
+                                                    <User className="w-8 h-8 opacity-50" />
+                                                    <span>Foto</span>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                     <div className="p-5 text-center">
                                         <h3 className="text-lg font-bold text-gray-900 leading-tight mb-2 h-12 flex items-center justify-center">
