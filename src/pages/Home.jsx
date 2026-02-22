@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import NewsCard from '../components/ui/NewsCard';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter, UserPlus } from 'lucide-react';
+import { Banknote, Plane, Heart, FileText, ArrowRight, MapPin, Phone, Mail, Instagram, Facebook, Twitter, UserPlus, Loader2 } from 'lucide-react';
 import mockData from '../data/mockData.json';
 import aeriEdificio from '../assets/aeri-edificio.jpeg';
 import heroCover from '../assets/hero-cover.jpeg';
@@ -18,6 +18,29 @@ const iconMap = {
 
 const Home = () => {
     const { quickAccess } = mockData;
+
+    // State for latest news from Strapi
+    const [latestNews, setLatestNews] = useState([]);
+    const [loadingNews, setLoadingNews] = useState(true);
+
+    useEffect(() => {
+        const fetchLatestNews = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc&pagination[pageSize]=3&populate=*`);
+                if (response.ok) {
+                    const json = await response.json();
+                    setLatestNews(json.data || []);
+                }
+            } catch (error) {
+                console.error("Error fetching latest news for Home:", error);
+                setLatestNews([]); // Fallback to empty if error
+            } finally {
+                setLoadingNews(false);
+            }
+        };
+
+        fetchLatestNews();
+    }, []);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -83,14 +106,31 @@ const Home = () => {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {mockData.news
-                            .sort((a, b) => new Date(b.date) - new Date(a.date))
-                            .slice(0, 3)
-                            .map((item) => (
+                        {loadingNews ? (
+                            // Loading Skeletons
+                            [1, 2, 3].map(i => (
+                                <div key={i} className="bg-white rounded-2xl h-96 animate-pulse border border-gray-200 shadow-sm">
+                                    <div className="h-48 bg-gray-200 rounded-t-2xl"></div>
+                                    <div className="p-6 space-y-4">
+                                        <div className="h-4 bg-gray-300 rounded w-1/3"></div>
+                                        <div className="h-6 bg-gray-300 rounded w-3/4"></div>
+                                        <div className="h-6 bg-gray-300 rounded w-full"></div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : latestNews.length > 0 ? (
+                            // Render actual news from Strapi
+                            latestNews.map((item) => (
                                 <div key={item.id} className="h-96">
                                     <NewsCard noticia={item} />
                                 </div>
-                            ))}
+                            ))
+                        ) : (
+                            // Fallback if no news are returned (or error)
+                            <div className="col-span-3 text-center text-gray-500 py-10">
+                                No hay noticias recientes disponibles en este momento.
+                            </div>
+                        )}
                     </div>
                     <div className="mt-8 text-center md:hidden">
                         <Link to="/noticias" className="inline-flex items-center text-[#39c3ef] font-semibold hover:text-primary transition-colors">
