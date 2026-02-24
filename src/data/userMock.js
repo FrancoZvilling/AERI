@@ -47,7 +47,5 @@ export const activeVouchers = [
 ];
 
 export const quickStats = [
-    { label: "Ahorro Total", value: "$45.000", trend: "+12%" },
-    { label: "Consultas", value: "2", trend: "0" },
-    { label: "Puntos AERI", value: "1.250", trend: "+50" }
+    { label: "Consultas", value: "2", trend: "0" }
 ];

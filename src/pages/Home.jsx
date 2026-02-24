@@ -175,7 +175,7 @@ const Home = () => {
                                         <p className="text-gray-600 text-sm leading-relaxed">
                                             Calle 45 N° 535<br />
                                             La Plata, Buenos Aires<br />
-                                            <span className="text-xs text-gray-400 mt-1 block">Lun a Vie de 8:00 a 16:00 hs</span>
+                                            <span className="text-xs text-gray-400 mt-1 block">Lun a Vie de 8:30 a 15:00 hs</span>
                                         </p>
                                     </div>
                                 </div>

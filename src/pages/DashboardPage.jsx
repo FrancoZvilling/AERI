@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import HeroSection from '../components/ui/HeroSection';
 import {
     User, CreditCard, Download, Bell, Settings,
-    Gift, Calendar, TrendingUp, LogOut, CheckCircle, Clock
+    Gift, Calendar, TrendingUp, LogOut, CheckCircle, Clock, MessageSquare, Ticket
 } from 'lucide-react';
 import { userData, virtualCardData, activeVouchers, quickStats } from '../data/userMock';
 
 import InstallModal from '../components/ui/InstallModal';
+import SorteosPanel from '../components/dashboard/SorteosPanel';
 
 const DashboardPage = () => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -164,7 +165,7 @@ const DashboardPage = () => {
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 gap-4">
                             {quickStats.map((stat, idx) => (
                                 <div key={idx} className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
                                     <p className="text-gray-500 text-xs uppercase font-bold">{stat.label}</p>
@@ -184,9 +185,9 @@ const DashboardPage = () => {
                             <div className="flex border-b border-gray-100 overflow-x-auto">
                                 {[
                                     { id: 'resumen', icon: User, label: 'Mis Datos' },
-                                    { id: 'vouchers', icon: Gift, label: 'Mis Vouchers' },
-                                    { id: 'beneficios', icon: TrendingUp, label: 'Beneficios' },
-                                    { id: 'turnos', icon: Calendar, label: 'Mis Turnos' },
+                                    { id: 'vouchers', icon: Gift, label: 'Bonos Médicos' },
+                                    { id: 'beneficios', icon: MessageSquare, label: 'Mensajería Gremial' },
+                                    { id: 'turnos', icon: Ticket, label: 'Sorteos' },
                                 ].map((tab) => (
                                     <button
                                         key={tab.id}
@@ -262,7 +263,7 @@ const DashboardPage = () => {
                                             exit={{ opacity: 0, y: -10 }}
                                         >
                                             <div className="flex justify-between items-center mb-6">
-                                                <h3 className="text-xl font-bold text-gray-800">Mis Vouchers Activos</h3>
+                                                <h3 className="text-xl font-bold text-gray-800">Bonos Médicos Activos</h3>
                                                 <button className="text-sm text-primary font-bold hover:underline">Ver Historial</button>
                                             </div>
 
@@ -290,7 +291,7 @@ const DashboardPage = () => {
                                         </motion.div>
                                     )}
 
-                                    {(activeTab === 'beneficios' || activeTab === 'turnos') && (
+                                    {activeTab === 'beneficios' && (
                                         <motion.div
                                             key="empty"
                                             initial={{ opacity: 0 }}
@@ -298,10 +299,22 @@ const DashboardPage = () => {
                                             className="text-center py-20"
                                         >
                                             <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
-                                                {activeTab === 'beneficios' ? <TrendingUp className="w-8 h-8" /> : <Calendar className="w-8 h-8" />}
+                                                <MessageSquare className="w-8 h-8" />
                                             </div>
                                             <h3 className="text-xl font-bold text-gray-400">Próximamente</h3>
                                             <p className="text-gray-500 mt-2">Esta sección estará disponible en la próxima actualización.</p>
+                                        </motion.div>
+                                    )}
+
+                                    {activeTab === 'turnos' && (
+                                        <motion.div
+                                            key="sorteos"
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, y: -10 }}
+                                            className="h-full"
+                                        >
+                                            <SorteosPanel />
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
