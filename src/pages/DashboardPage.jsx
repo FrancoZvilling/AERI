@@ -9,6 +9,7 @@ import { userData, virtualCardData, activeVouchers, quickStats } from '../data/u
 
 import InstallModal from '../components/ui/InstallModal';
 import SorteosPanel from '../components/dashboard/SorteosPanel';
+import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
 
 const DashboardPage = () => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -164,17 +165,9 @@ const DashboardPage = () => {
                             </p>
                         </div>
 
-                        {/* Quick Stats */}
+                        {/* Status Card */}
                         <div className="grid grid-cols-1 gap-4">
-                            {quickStats.map((stat, idx) => (
-                                <div key={idx} className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                                    <p className="text-gray-500 text-xs uppercase font-bold">{stat.label}</p>
-                                    <p className="text-2xl font-bold text-gray-800 mt-1">{stat.value}</p>
-                                    <span className={`text-xs font-bold ${stat.trend.startsWith('+') ? 'text-green-500' : 'text-gray-400'}`}>
-                                        {stat.trend} este mes
-                                    </span>
-                                </div>
-                            ))}
+                            <SorteoStatusCard />
                         </div>
                     </div>
 
