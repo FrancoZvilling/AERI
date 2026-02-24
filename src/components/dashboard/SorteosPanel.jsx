@@ -108,24 +108,19 @@ const SorteosPanel = () => {
     const time = formatCountdown(countdown);
 
     const renderWinnerData = (winnerObj) => {
-        if (!winnerObj || !winnerObj.attributes) return null;
+        if (!winnerObj) return null;
 
         let nombre = null;
         let socio = "S/N";
 
-        // Handle case where we have a direct name on the attributes (fallback strategy)
-        if (winnerObj.attributes.NombreGanador) {
-            nombre = winnerObj.attributes.NombreGanador;
-        }
-
-        // Try to properly extract from relations using optional chaining
-        const ganadorRel = winnerObj.attributes.ganador?.data?.attributes;
+        // Try to safely extract from Strapi 5 relation using optional chaining
+        const ganadorRel = winnerObj.ganador;
         if (ganadorRel) {
-            if (ganadorRel.Nombre || ganadorRel.Apellido) {
-                nombre = `${ganadorRel.Nombre || ''} ${ganadorRel.Apellido || ''}`.trim();
+            if (ganadorRel.nombre || ganadorRel.apellido) {
+                nombre = `${ganadorRel.nombre || ''} ${ganadorRel.apellido || ''}`.trim();
             }
-            if (ganadorRel.NumeroSocio) {
-                socio = ganadorRel.NumeroSocio;
+            if (ganadorRel.numero_socio) {
+                socio = ganadorRel.numero_socio;
             }
         }
 
