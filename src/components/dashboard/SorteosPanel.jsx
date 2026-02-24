@@ -109,11 +109,33 @@ const SorteosPanel = () => {
 
     const renderWinnerData = (winnerObj) => {
         if (!winnerObj || !winnerObj.attributes) return null;
+
+        let nombre = null;
+        let socio = "S/N";
+
+        // Handle case where we have a direct name on the attributes (fallback strategy)
+        if (winnerObj.attributes.NombreGanador) {
+            nombre = winnerObj.attributes.NombreGanador;
+        }
+
+        // Try to properly extract from relations using optional chaining
         const ganadorRel = winnerObj.attributes.ganador?.data?.attributes;
-        const nombre = ganadorRel ? `${ganadorRel.Nombre} ${ganadorRel.Apellido}` : winnerObj.attributes.NombreGanador || "Afiliado";
-        const socio = ganadorRel ? ganadorRel.NumeroSocio : "S/N";
+        if (ganadorRel) {
+            if (ganadorRel.Nombre || ganadorRel.Apellido) {
+                nombre = `${ganadorRel.Nombre || ''} ${ganadorRel.Apellido || ''}`.trim();
+            }
+            if (ganadorRel.NumeroSocio) {
+                socio = ganadorRel.NumeroSocio;
+            }
+        }
+
+        if (!nombre) return null;
+
         return { nombre, socio };
     };
+
+    const lastWinnerData = renderWinnerData(lastWinner);
+    const nextWinnerData = renderWinnerData(nextWinner);
 
     return (
         <div className="bg-white rounded-xl h-full flex flex-col relative overflow-hidden">
@@ -174,17 +196,26 @@ const SorteosPanel = () => {
                             </div>
 
                             {/* Last Winner Card */}
-                            {lastWinner && (
+                            {lastWinnerData ? (
                                 <motion.div
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     className="bg-blue-50 border border-blue-100 rounded-xl p-6 w-full max-w-md text-center shadow-sm"
                                 >
                                     <p className="text-xs font-bold text-primary uppercase tracking-wider mb-2">Último Ganador</p>
-                                    <h4 className="text-xl font-bold text-gray-900">{renderWinnerData(lastWinner).nombre}</h4>
+                                    <h4 className="text-xl font-bold text-gray-900">{lastWinnerData.nombre}</h4>
                                     <div className="inline-flex mt-2 items-center px-3 py-1 bg-white rounded-full text-sm font-mono text-gray-600 border border-gray-200">
-                                        Socio N° {renderWinnerData(lastWinner).socio}
+                                        Socio N° {lastWinnerData.socio}
                                     </div>
+                                </motion.div>
+                            ) : (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="bg-gray-50 border border-gray-200 rounded-xl p-6 w-full max-w-md text-center shadow-sm flex flex-col items-center justify-center text-gray-500"
+                                >
+                                    <Clock className="w-6 h-6 mb-2 opacity-50" />
+                                    <p className="text-sm font-medium">Esperando el resultado del sorteo...</p>
                                 </motion.div>
                             )}
                         </motion.div>
@@ -233,7 +264,7 @@ const SorteosPanel = () => {
                     )}
 
                     {/* STATE 3: REVEAL */}
-                    {phase === 'REVEAL' && nextWinner && (
+                    {phase === 'REVEAL' && nextWinnerData && (
                         <motion.div
                             key="reveal"
                             initial={{ scale: 0.5, opacity: 0 }}
@@ -259,11 +290,11 @@ const SorteosPanel = () => {
 
                             <div className="bg-gradient-to-b from-white to-gray-50 border border-gray-200 rounded-2xl p-8 w-full max-w-md text-center shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] relative">
                                 <h4 className="text-3xl font-extrabold text-gray-900 mb-2 uppercase tracking-tight">
-                                    {renderWinnerData(nextWinner).nombre}
+                                    {nextWinnerData.nombre}
                                 </h4>
                                 <div className="inline-flex mt-4 items-center px-4 py-2 bg-gray-900 rounded-lg text-lg font-mono font-bold text-white shadow-inner">
                                     <Ticket className="w-5 h-5 mr-3 text-primary" />
-                                    N° {renderWinnerData(nextWinner).socio}
+                                    N° {nextWinnerData.socio}
                                 </div>
                             </div>
                         </motion.div>
