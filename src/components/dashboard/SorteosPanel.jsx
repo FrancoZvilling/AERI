@@ -183,33 +183,33 @@ const SorteosPanel = () => {
                             </div>
 
                             {/* Countdown Timer */}
-                            <div className="flex space-x-4 text-center mb-10">
+                            <div className="flex space-x-2 sm:space-x-3 md:space-x-4 text-center mb-10">
                                 <div className="flex flex-col">
-                                    <div className="w-20 h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
-                                        <span className="text-4xl font-mono font-bold text-white">{time.d}</span>
+                                    <div className="w-16 sm:w-18 md:w-20 h-20 sm:h-22 md:h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
+                                        <span className="text-3xl md:text-4xl font-mono font-bold text-white">{time.d}</span>
                                     </div>
-                                    <span className="text-xs text-gray-500 font-bold uppercase mt-2">DÍAS</span>
+                                    <span className="text-[10px] md:text-xs text-gray-500 font-bold uppercase mt-2">DÍAS</span>
                                 </div>
-                                <div className="text-3xl font-bold text-gray-300 mt-6">:</div>
+                                <div className="text-2xl md:text-3xl font-bold text-gray-300 mt-5 md:mt-6">:</div>
                                 <div className="flex flex-col">
-                                    <div className="w-20 h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
-                                        <span className="text-4xl font-mono font-bold text-white">{time.h}</span>
+                                    <div className="w-16 sm:w-18 md:w-20 h-20 sm:h-22 md:h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
+                                        <span className="text-3xl md:text-4xl font-mono font-bold text-white">{time.h}</span>
                                     </div>
-                                    <span className="text-xs text-gray-500 font-bold uppercase mt-2">HRS</span>
+                                    <span className="text-[10px] md:text-xs text-gray-500 font-bold uppercase mt-2">HRS</span>
                                 </div>
-                                <div className="text-3xl font-bold text-gray-300 mt-6">:</div>
+                                <div className="text-2xl md:text-3xl font-bold text-gray-300 mt-5 md:mt-6">:</div>
                                 <div className="flex flex-col">
-                                    <div className="w-20 h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
-                                        <span className="text-4xl font-mono font-bold text-white">{time.m}</span>
+                                    <div className="w-16 sm:w-18 md:w-20 h-20 sm:h-22 md:h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
+                                        <span className="text-3xl md:text-4xl font-mono font-bold text-white">{time.m}</span>
                                     </div>
-                                    <span className="text-xs text-gray-500 font-bold uppercase mt-2">MIN</span>
+                                    <span className="text-[10px] md:text-xs text-gray-500 font-bold uppercase mt-2">MIN</span>
                                 </div>
-                                <div className="text-3xl font-bold text-gray-300 mt-6">:</div>
+                                <div className="text-2xl md:text-3xl font-bold text-gray-300 mt-5 md:mt-6">:</div>
                                 <div className="flex flex-col">
-                                    <div className="w-20 h-24 bg-primary rounded-lg flex items-center justify-center shadow-lg border border-primary">
-                                        <span className="text-4xl font-mono font-bold text-white">{time.s}</span>
+                                    <div className="w-16 sm:w-18 md:w-20 h-20 sm:h-22 md:h-24 bg-primary rounded-lg flex items-center justify-center shadow-lg border border-primary">
+                                        <span className="text-3xl md:text-4xl font-mono font-bold text-white">{time.s}</span>
                                     </div>
-                                    <span className="text-xs text-primary font-bold uppercase mt-2">SEG</span>
+                                    <span className="text-[10px] md:text-xs text-primary font-bold uppercase mt-2">SEG</span>
                                 </div>
                             </div>
 
