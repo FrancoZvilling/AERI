@@ -8,9 +8,29 @@ const FAKE_NAMES = [
     "DIEGO ALVAREZ", "SOFIA MARTINEZ", "JAVIER PEREZ", "FLORENCIA RUIZ"
 ];
 
+const getSecondsUntilNextDraw = () => {
+    const now = new Date();
+
+    // ============================================
+    // MODO DEMO:
+    // Próximo sorteo en el segundo 0 del próximo minuto
+    // ============================================
+    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + 1, 0, 0);
+
+    // ============================================
+    // MODO PRODUCCIÓN:
+    // Próximo sorteo el día 1 del próximo mes a las 00:00:00 hs
+    // Para activarlo, comentá la línea 'target' de arriba y descomentá esta:
+    // ============================================
+    // const target = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+
+    const diff = target.getTime() - now.getTime();
+    return Math.max(0, Math.floor(diff / 1000));
+};
+
 const SorteosPanel = () => {
     const [phase, setPhase] = useState('WAITING'); // 'WAITING', 'SPINNING', 'REVEAL'
-    const [countdown, setCountdown] = useState(60); // 1 minute
+    const [countdown, setCountdown] = useState(getSecondsUntilNextDraw);
     const [lastWinner, setLastWinner] = useState(null);
     const [nextWinner, setNextWinner] = useState(null);
 
@@ -36,15 +56,16 @@ const SorteosPanel = () => {
     useEffect(() => {
         let timer;
         if (phase === 'WAITING') {
+            setCountdown(getSecondsUntilNextDraw());
+
             timer = setInterval(() => {
-                setCountdown(prev => {
-                    if (prev <= 1) {
-                        clearInterval(timer);
-                        setPhase('SPINNING');
-                        return 60; // reset for next time
-                    }
-                    return prev - 1;
-                });
+                const remaining = getSecondsUntilNextDraw();
+                if (remaining <= 0) {
+                    clearInterval(timer);
+                    setPhase('SPINNING');
+                } else {
+                    setCountdown(remaining);
+                }
             }, 1000);
         }
         return () => clearInterval(timer);
@@ -95,10 +116,12 @@ const SorteosPanel = () => {
     }, [phase, nextWinner]);
 
     const formatCountdown = (seconds) => {
-        const h = Math.floor(seconds / 3600);
+        const d = Math.floor(seconds / (3600 * 24));
+        const h = Math.floor((seconds % (3600 * 24)) / 3600);
         const m = Math.floor((seconds % 3600) / 60);
         const s = seconds % 60;
         return {
+            d: d.toString().padStart(2, '0'),
             h: h.toString().padStart(2, '0'),
             m: m.toString().padStart(2, '0'),
             s: s.toString().padStart(2, '0')
@@ -163,7 +186,7 @@ const SorteosPanel = () => {
                             <div className="flex space-x-4 text-center mb-10">
                                 <div className="flex flex-col">
                                     <div className="w-20 h-24 bg-gray-900 rounded-lg flex items-center justify-center shadow-inner border border-gray-800">
-                                        <span className="text-4xl font-mono font-bold text-white">00</span>
+                                        <span className="text-4xl font-mono font-bold text-white">{time.d}</span>
                                     </div>
                                     <span className="text-xs text-gray-500 font-bold uppercase mt-2">DÍAS</span>
                                 </div>
