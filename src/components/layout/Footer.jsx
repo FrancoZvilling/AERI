@@ -44,7 +44,7 @@ const Footer = () => {
                             <a href="https://www.instagram.com/sindicatoaeri/" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-[#39c3ef] hover:text-white transition-all duration-300 transform hover:scale-110">
                                 <Instagram className="w-5 h-5" />
                             </a>
-                            <a href="#" className="bg-white/10 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110">
+                            <a href="https://www.facebook.com/Sindicatoaeri?mibextid=wwXIfr&rdid=HtioyaTm1mmAy6w1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AxwLkGEJU%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-110">
                                 <Facebook className="w-5 h-5" />
                             </a>
                             <a href="https://x.com/PrensaAeri" target="_blank" rel="noopener noreferrer" className="bg-white/10 p-2 rounded-full hover:bg-black hover:text-white transition-all duration-300 transform hover:scale-110">
@@ -99,8 +99,11 @@ const Footer = () => {
                                     <a href="tel:02214894470" className="text-gray-300 hover:text-white transition-colors text-sm mb-1">
                                         0221 489-4470
                                     </a>
-                                    <a href="tel:02214270973" className="text-gray-300 hover:text-white transition-colors text-sm">
+                                    <a href="tel:02214270973" className="text-gray-300 hover:text-white transition-colors text-sm mb-1">
                                         0221 427-0973
+                                    </a>
+                                    <a href="tel:02214248142" className="text-gray-300 hover:text-white transition-colors text-sm">
+                                        0221 424-8142
                                     </a>
                                 </div>
                             </li>

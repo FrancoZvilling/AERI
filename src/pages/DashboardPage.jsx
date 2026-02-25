@@ -10,6 +10,7 @@ import { userData, virtualCardData, activeVouchers, quickStats } from '../data/u
 import InstallModal from '../components/ui/InstallModal';
 import SorteosPanel from '../components/dashboard/SorteosPanel';
 import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
+import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
 
 const DashboardPage = () => {
     const [isFlipped, setIsFlipped] = useState(false);
@@ -165,9 +166,10 @@ const DashboardPage = () => {
                             </p>
                         </div>
 
-                        {/* Status Card */}
-                        <div className="grid grid-cols-1 gap-4">
+                        {/* Status Card & Afiliados a Cargo */}
+                        <div className="flex flex-col gap-4">
                             <SorteoStatusCard />
+                            <AfiliadosCargoCard />
                         </div>
                     </div>
 

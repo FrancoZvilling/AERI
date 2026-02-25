@@ -23,13 +23,12 @@ const Navbar = () => {
         {
             title: 'Secretarías',
             links: [
-                { name: 'Mujer y Familia', path: '/secretarias/mujer-y-familia' },
-                { name: 'Turismo', path: '/secretarias/turismo' },
-                { name: 'Gremial', path: '/secretarias/gremial' },
-                { name: 'Cultura y Capacitación', path: '/secretarias/cultura' },
-                { name: 'Prensa', path: '/secretarias/prensa' },
-                // { name: 'Actas', path: '/secretarias/actas' },
-                { name: 'Salud', path: '/secretarias/salud' },
+                { name: 'Secretaría Gremial', path: '/secretarias/gremial' },
+                { name: 'Secretaría de Salud y Servicios Sociales', path: '/secretarias/salud' },
+                { name: 'Secretaría de Prensa y Comunicación', path: '/secretarias/prensa' },
+                { name: 'Secretaría de Mujeres, Géneros y Diversidades', path: '/secretarias/mujer-y-familia' },
+                { name: 'Secretaría de Cultura y Capacitación', path: '/secretarias/cultura' },
+                { name: 'Secretaría de Turismo y Deportes', path: '/secretarias/turismo' },
             ],
         },
     ];
@@ -67,17 +66,17 @@ const Navbar = () => {
                                 <AnimatePresence>
                                     {activeDropdown === item.title && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: 10 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 10 }}
-                                            transition={{ duration: 0.2 }}
-                                            className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-lg py-1 ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                            initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            transition={{ duration: 0.2, ease: "easeOut" }}
+                                            className="absolute left-0 mt-4 w-72 bg-[#004080]/95 backdrop-blur-md rounded-2xl shadow-2xl py-3 border border-white/10 overflow-hidden ring-1 ring-black ring-opacity-5"
                                         >
                                             {item.links.map((link) => (
                                                 <Link
                                                     key={link.name}
                                                     to={link.path}
-                                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-primary transition-colors"
+                                                    className="block px-5 py-3 text-sm font-medium text-blue-100 hover:text-white hover:bg-white/10 transition-all duration-300 border-l-4 border-transparent hover:border-[#39c3ef]"
                                                 >
                                                     {link.name}
                                                 </Link>
@@ -93,8 +92,8 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    {/* Mi AERI Button */}
-                    <div className="hidden md:block">
+                    {/* Mi AERI & IE Emergencias Buttons */}
+                    <div className="hidden md:flex items-center space-x-4">
                         <Link
                             to="/login"
                             className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
@@ -102,6 +101,15 @@ const Navbar = () => {
                             <User className="w-4 h-4" />
                             <span>Mi AERI</span>
                         </Link>
+
+                        <a
+                            href="https://www.grupoie.com.ar/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg"
+                        >
+                            <span>IE Emergencias</span>
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -174,7 +182,7 @@ const Navbar = () => {
 
                             <Link
                                 to="/noticias"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-red-600 text-white hover:bg-red-700 mt-4 flex items-center space-x-2"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-green-700 text-white hover:bg-green-800 mt-4 flex items-center space-x-2"
                                 onClick={toggleMenu}
                             >
                                 <Newspaper className="w-4 h-4" />
@@ -183,12 +191,22 @@ const Navbar = () => {
 
                             <Link
                                 to="/login"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2"
+                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2 shadow-sm"
                                 onClick={toggleMenu}
                             >
                                 <User className="w-4 h-4" />
                                 <span>Mi AERI</span>
                             </Link>
+
+                            <a
+                                href="https://www.grupoie.com.ar/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full text-center px-3 py-2 rounded-md text-base font-bold bg-red-600 text-white hover:bg-red-700 mt-3 transition-colors shadow-sm"
+                                onClick={toggleMenu}
+                            >
+                                IE Emergencias
+                            </a>
                         </div>
                     </motion.div>
                 )}

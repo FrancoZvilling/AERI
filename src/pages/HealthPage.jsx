@@ -34,7 +34,7 @@ const HealthPage = () => {
     return (
         <div className="bg-gray-50 pb-20">
             <HeroSection
-                title="Salud y Bienestar"
+                title="Secretaría de Salud y Servicios Sociales"
                 subtitle="Cobertura integral y beneficios exclusivos para el cuidado de tu salud."
                 backgroundImage="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2000&auto=format&fit=crop"
             >
@@ -223,7 +223,7 @@ const HealthPage = () => {
                                 <div>
                                     <h3 className="font-bold text-primary text-lg mb-1">Información Importante</h3>
                                     <p className="text-blue-800">
-                                        En el interior se trabaja por reintegro hasta un monto de <strong>$5.000</strong>, hasta 2 pares al año.
+                                        En el interior se trabaja por reintegro hasta un monto de <strong>50.000</strong> por par, hasta 2 pares al año.
                                     </p>
                                 </div>
                             </div>

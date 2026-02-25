@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter, ChevronLeft, ChevronRight, AlertTriangle, Info } from 'lucide-react';
 import { tourismData, tourismCategories } from '../data/tourismData';
 
 const TourismPage = () => {
@@ -27,7 +27,7 @@ const TourismPage = () => {
             <div className="fixed inset-0 bg-white/40 pointer-events-none z-0" /> {/* Overlay para suavizar */}
             {/* 1. Hero Section (Preserved) */}
             <HeroSection
-                title="Turismo AERI"
+                title="Secretaría de Turismo y Deportes"
                 subtitle="Viajes al alcance de todos. Beneficios exclusivos para nuestros afiliados."
                 backgroundImage="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop"
             />
@@ -139,7 +139,7 @@ const TourismPage = () => {
                             {/* Modal Image - Left Side on Desktop */}
                             <div className="w-full md:w-2/5 relative h-64 md:h-auto bg-gray-200">
                                 <img
-                                    src={`/images/turismo/${selectedCard.imagen}`}
+                                    src={selectedCard.imagen?.includes('/') ? selectedCard.imagen : `/images/turismo/${selectedCard.imagen}`}
                                     alt={selectedCard.nombre}
                                     onError={(e) => {
                                         e.target.onerror = null;
@@ -186,42 +186,71 @@ const TourismPage = () => {
                                         )}
                                     </div>
 
-                                    {/* Main Info / Tariffs */}
-                                    <div>
-                                        <h3 className="text-lg font-bold text-[#004080] border-b-2 border-[#39c3ef] pb-2 mb-4 inline-block">Información y Tarifas</h3>
+                                    {/* Seccion Info Adicional Estructurada */}
+                                    {selectedCard.entidad_prestadora && (
+                                        <div className="mb-4 text-sm font-semibold text-[#004080] bg-[#39c3ef]/20 p-3 rounded-lg flex items-center shadow-sm">
+                                            <Info className="w-5 h-5 mr-3 text-[#1e6df9]" />
+                                            Prestador: {selectedCard.entidad_prestadora}
+                                        </div>
+                                    )}
 
-                                        {selectedCard.tarifas ? (
-                                            <div className="bg-white border border-gray-200 rounded-xl overflow-hidden">
-                                                {Object.entries(selectedCard.tarifas).map(([key, value], idx) => (
-                                                    <div key={key} className={`p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center ${idx !== 0 ? 'border-t border-gray-100' : ''}`}>
-                                                        <div className="font-bold text-gray-700 capitalize mb-1 sm:mb-0">
-                                                            {key.replace(/_/g, ' ')}
-                                                        </div>
-                                                        <div className="text-right">
-                                                            {typeof value === 'object' ? (
-                                                                <div className="flex flex-col sm:flex-row sm:space-x-4">
-                                                                    {Object.entries(value).map(([subKey, subVal]) => (
-                                                                        <div key={subKey}>
-                                                                            <span className="text-xs text-gray-400 uppercase mr-1">{subKey}:</span>
-                                                                            <span className="font-bold text-[#00a0e1]">{formatPrice(subVal)}</span>
-                                                                        </div>
-                                                                    ))}
-                                                                </div>
-                                                            ) : (
-                                                                <div className="font-bold text-[#00a0e1] text-lg">{formatPrice(value)}</div>
-                                                            )}
-                                                        </div>
+                                    {selectedCard.servicios_destacados && (
+                                        <div className="mb-6">
+                                            <h3 className="text-md font-bold text-[#004080] border-b-2 border-[#39c3ef]/30 pb-2 mb-4">
+                                                Servicios e Instalaciones
+                                            </h3>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                                {selectedCard.servicios_destacados.map((item, i) => (
+                                                    <div key={i} className="flex items-start bg-gray-50 p-3 rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                                                        <CheckCircle2 className="w-4 h-4 text-[#39c3ef] mr-2 mt-0.5 flex-shrink-0" />
+                                                        <span className="text-gray-700 text-sm font-medium">{item}</span>
                                                     </div>
                                                 ))}
                                             </div>
-                                        ) : (
-                                            <p className="text-gray-600 italic">Consultar tarifas vigentes.</p>
-                                        )}
-                                    </div>
+                                        </div>
+                                    )}
 
-                                    {/* Description / Extras */}
-                                    {(selectedCard.detalles || selectedCard.servicios || selectedCard.descripcion || selectedCard.requisito) && (
-                                        <div className="space-y-3 text-sm text-gray-600 bg-blue-50/50 p-4 rounded-xl">
+                                    {selectedCard.ingreso_predio && (
+                                        <div className="mb-6">
+                                            <h3 className="text-md font-bold text-[#004080] border-b-2 border-[#39c3ef]/30 pb-2 mb-4">
+                                                Información de Ingreso
+                                            </h3>
+                                            <div className="space-y-2">
+                                                {selectedCard.ingreso_predio.map((item, i) => (
+                                                    <div key={i} className="flex items-center bg-blue-50/50 p-3 rounded-lg border border-blue-100/50">
+                                                        <div className="w-2 h-2 rounded-full bg-[#1e6df9] mr-3 flex-shrink-0"></div>
+                                                        <span className="text-gray-700 text-sm">{item}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {selectedCard.requisito_obligatorio && (
+                                        <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg mb-6 shadow-sm">
+                                            <div className="flex items-start">
+                                                <AlertTriangle className="w-5 h-5 text-red-500 mr-3 flex-shrink-0 mt-0.5" />
+                                                <div>
+                                                    <h4 className="text-red-800 font-bold text-sm mb-1 uppercase tracking-wider">Importante</h4>
+                                                    <p className="text-red-700 text-sm font-medium">{selectedCard.requisito_obligatorio}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Fallback Main Info (for cards without structured data) */}
+                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (
+                                        <div>
+                                            <h3 className="text-lg font-bold text-[#004080] border-b-2 border-[#39c3ef] pb-2 mb-4 inline-block">Información</h3>
+                                            <div className="space-y-4 text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
+                                                {selectedCard.info_adicional || selectedCard.descripcion || "Un destino excepcional pensado para el descanso y la recreación, con excelentes comodidades para disfrutar de una estadía inolvidable. Contáctenos directamente para conocer las opciones disponibles y las tarifas vigentes acordes a la temporada."}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Description / Extras Fallback */}
+                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (selectedCard.detalles || selectedCard.servicios || selectedCard.descripcion || selectedCard.requisito) && (
+                                        <div className="space-y-3 text-sm text-gray-600 bg-blue-50/50 p-4 rounded-xl mt-4">
                                             {selectedCard.detalles && <p><strong className="text-[#004080]">Detalles:</strong> {selectedCard.detalles}</p>}
                                             {selectedCard.servicios && <p><strong className="text-[#004080]">Servicios:</strong> {selectedCard.servicios}</p>}
                                             {selectedCard.descripcion && <p><strong className="text-[#004080]">Descripción:</strong> {selectedCard.descripcion}</p>}
@@ -319,7 +348,7 @@ const TourismCard = ({ item, onSelect, formatPrice }) => {
             {/* Image Cover */}
             <div className="relative h-60 overflow-hidden bg-gray-200">
                 <img
-                    src={`/images/turismo/${item.imagen}`}
+                    src={item.imagen?.includes('/') ? item.imagen : `/images/turismo/${item.imagen}`}
                     alt={item.nombre}
                     onError={(e) => {
                         e.target.onerror = null;
@@ -361,23 +390,7 @@ const TourismCard = ({ item, onSelect, formatPrice }) => {
                 {/* Pricing / Summary High Level */}
                 <div className="mt-auto">
                     <div className="mb-4">
-                        {item.tarifas && item.tarifas.standard ? (
-                            <div>
-                                <span className="text-gray-500 text-sm">Desde</span>
-                                <div className="text-2xl font-bold text-[#00a0e1]">
-                                    {formatPrice(Object.values(item.tarifas.standard)[1] || Object.values(item.tarifas.standard)[0])}
-                                </div>
-                            </div>
-                        ) : item.tarifas && typeof Object.values(item.tarifas)[0] === 'number' ? (
-                            <div>
-                                <span className="text-gray-500 text-sm">Desde</span>
-                                <div className="text-2xl font-bold text-[#00a0e1]">
-                                    {formatPrice(Object.values(item.tarifas).sort((a, b) => a - b)[0])}
-                                </div>
-                            </div>
-                        ) : (
-                            <span className="text-[#1e6df9] font-bold text-lg">Consultar Tarifas</span>
-                        )}
+                        <span className="text-[#1e6df9] font-bold text-lg">Consultar Tarifas</span>
                     </div>
 
                     <button

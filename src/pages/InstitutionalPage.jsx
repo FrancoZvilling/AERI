@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, ChevronDown, ChevronUp, User, Users } from 'lucide-react';
@@ -115,17 +115,52 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
     // --- COMMISSION PAGE SPECIFIC LOGIC ---
     const [currentSlide, setCurrentSlide] = useState(0);
     const [expandedGroup, setExpandedGroup] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024); // lg breakpoint is 1024
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        setCurrentSlide(0);
+    }, [isMobile]);
+
+    const orderedAuthorities = useMemo(() => {
+        if (!isMobile) return mainAuthorities;
+
+        // En PC: 0=ProSec, 1=Adjunto, 2=Gremial, 3=General
+        // En Móvil se quiere: General(3), Gremial(2), Adjunto(1), ProSec(0)
+        const proSecGremial = mainAuthorities[0];
+        const secAdjunto = mainAuthorities[1];
+        const secGremial = mainAuthorities[2];
+        const secGeneral = mainAuthorities[3];
+        const rest = mainAuthorities.slice(4);
+
+        return [
+            secGeneral,
+            secGremial,
+            secAdjunto,
+            proSecGremial,
+            ...rest
+        ];
+    }, [isMobile]);
+
+    const itemsPerSlide = isMobile ? 1 : 4;
+    const totalSlides = Math.ceil(orderedAuthorities.length / itemsPerSlide);
 
     // Carousel Logic
     const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % Math.ceil(mainAuthorities.length / 4));
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
     };
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + Math.ceil(mainAuthorities.length / 4)) % Math.ceil(mainAuthorities.length / 4));
+        setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
     };
 
-    const visibleAuthorities = mainAuthorities.slice(currentSlide * 4, currentSlide * 4 + 4);
+    const visibleAuthorities = orderedAuthorities.slice(currentSlide * itemsPerSlide, currentSlide * itemsPerSlide + itemsPerSlide);
 
     // Helper to get role badge styles
     const getRoleBadgeStyle = (role) => {
@@ -325,7 +360,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                         <h3 className="text-lg font-bold text-gray-900 leading-tight mb-2 h-12 flex items-center justify-center">
                                             {auth.name}
                                         </h3>
-                                        <div className="inline-block px-3 py-1 bg-[#1e6df9] text-white text-xs font-bold uppercase tracking-wide rounded-full">
+                                        <div className="inline-block px-3 py-1 bg-[#1e6df9] text-white text-xs font-bold uppercase tracking-wide rounded-full text-center">
                                             {auth.role}
                                         </div>
                                     </div>
@@ -337,7 +372,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
 
                 {/* --- SECCIÓN 2: LISTADO COMPLETO (ACORDEÓN) --- */}
                 <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Nómina Completa de Personal</h2>
+                    <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Nómina de cuerpos orgánicos</h2>
 
                     <div className="space-y-4">
                         {staffGroups.map((group, idx) => {

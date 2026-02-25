@@ -41,7 +41,7 @@ const PressPage = () => {
     return (
         <div className="bg-gray-50 pb-20">
             <HeroSection
-                title="Secretaría de Prensa y Propaganda"
+                title="Secretaría de Prensa y Comunicación"
                 subtitle="La voz de nuestra organización. Comunicando acciones, conectando afiliados."
                 backgroundImage="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&auto=format&fit=crop" // News/Media/Tech vibe
             />

@@ -52,10 +52,10 @@ export const staffGroups = [
     {
         title: "COMISIÓN DIRECTIVA",
         members: [
-            { role: "PROSECRETARIO GREMIAL", name: "MATTEOZZI, JORGE AMILCAR" },
+            { role: "SECRETARIO GENERAL", name: "SEQUEIRA, ROBERTO AGUSTÍN" },
             { role: "SECRETARIO ADJUNTO", name: "DE RITO, PABLO SEBASTIÁN" },
             { role: "SECRETARIO GREMIAL", name: "MARTIN, CLAUDIO GERMÁN" },
-            { role: "SECRETARIO GENERAL", name: "SEQUEIRA, ROBERTO AGUSTÍN" },
+            { role: "PROSECRETARIO GREMIAL", name: "MATTEOZZI, JORGE AMILCAR" },
             { role: "SECRETARIO DE ORGANIZACIÓN", name: "COSSU, MAURICIO ADRIÁN" },
             { role: "SECRETARIO DE SERVICIOS SOCIALES", name: "GIMÉNEZ, MARCOS LUIS" },
             { role: "PROSECRETARIO DE SERVICIOS SOCIALES", name: "ARCIDIACONO, JOSE IGNACIO" },

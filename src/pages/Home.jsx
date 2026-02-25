@@ -194,6 +194,9 @@ const Home = () => {
                                             <a href="tel:02214270973" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
                                                 Línea 2: <span className="font-semibold">0221 427-0973</span>
                                             </a>
+                                            <a href="tel:02214248142" className="block text-gray-600 hover:text-[#1e6df9] transition-colors">
+                                                Línea 3: <span className="font-semibold">0221 424-8142</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -217,7 +220,7 @@ const Home = () => {
                                         <a href="https://www.instagram.com/sindicatoaeri/" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-full shadow-sm text-pink-600 hover:bg-pink-50 hover:scale-110 transition-all border border-gray-100">
                                             <Instagram className="w-5 h-5" />
                                         </a>
-                                        <a href="#" className="bg-white p-2 rounded-full shadow-sm text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all border border-gray-100">
+                                        <a href="https://www.facebook.com/Sindicatoaeri?mibextid=wwXIfr&rdid=HtioyaTm1mmAy6w1&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1AxwLkGEJU%2F%3Fmibextid%3DwwXIfr#" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-full shadow-sm text-blue-600 hover:bg-blue-50 hover:scale-110 transition-all border border-gray-100">
                                             <Facebook className="w-5 h-5" />
                                         </a>
                                         <a href="https://x.com/PrensaAeri" target="_blank" rel="noopener noreferrer" className="bg-white p-2 rounded-full shadow-sm text-gray-900 hover:bg-gray-100 hover:scale-110 transition-all border border-gray-100">
@@ -241,6 +244,61 @@ const Home = () => {
                                 referrerPolicy="no-referrer-when-downgrade"
                                 className="w-full h-full bg-gray-200"
                             />
+                        </div>
+                    </div>
+                </section>
+
+                {/* --- SECCIÓN EMERGENCIAS ANIMADA --- */}
+                <section className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-20">
+                    <div className="bg-gradient-to-r from-red-600 to-red-700 rounded-3xl overflow-hidden shadow-2xl relative p-8 md:p-12 z-10 border-4 border-white border-opacity-20">
+
+                        {/* Animated Ambulance */}
+                        <motion.div
+                            initial={{ x: "-100%" }}
+                            animate={{ x: ["-20vw", "40vw", "40vw", "120vw"] }}
+                            transition={{ repeat: Infinity, duration: 8, times: [0, 0.4, 0.6, 1], ease: "easeInOut" }}
+                            className="absolute top-1/2 -translate-y-1/2 left-0 z-0 pointer-events-none select-none opacity-20"
+                        >
+                            <span className="inline-block text-8xl md:text-[12rem] drop-shadow-2xl filter blur-[1px] scale-x-[-1]">🚑</span>
+                        </motion.div>
+
+                        {/* Content */}
+                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="flex-1 space-y-6 text-center md:text-left w-full">
+                                <div className="bg-white/20 inline-block px-4 py-1 rounded-full text-white font-bold text-sm tracking-widest uppercase mb-2 animate-pulse shadow-sm">
+                                    Atención 24 Horas
+                                </div>
+
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-black text-white mb-2 tracking-tight opacity-90">
+                                        EMERGENCIAS MÉDICAS AERI
+                                    </h3>
+                                    <div className="flex flex-col sm:flex-row items-center sm:gap-4 justify-center md:justify-start">
+                                        <a href="tel:08006668256" className="text-3xl md:text-4xl font-black text-white hover:text-red-200 transition-colors drop-shadow-md">
+                                            0800-666-8256
+                                        </a>
+                                        <span className="hidden sm:block text-white/50 text-3xl font-light">|</span>
+                                        <a href="tel:08009992996" className="text-3xl md:text-4xl font-black text-white hover:text-red-200 transition-colors drop-shadow-md">
+                                            0800-999-2996
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div className="pt-6 border-t border-white/20">
+                                    <h4 className="text-lg md:text-xl font-bold text-white/90 mb-2 tracking-tight">
+                                        ASISTENCIA MÉDICA AERI ASSISTE
+                                    </h4>
+                                    <a href="tel:08003338425" className="text-2xl md:text-3xl font-black text-white hover:text-red-200 transition-colors drop-shadow-md">
+                                        0800-333-8425
+                                    </a>
+                                </div>
+                            </div>
+
+                            {/* Icon / Decorator */}
+                            <div className="hidden md:flex flex-shrink-0 bg-white p-6 rounded-full shadow-2xl relative">
+                                <div className="absolute inset-0 border-4 border-red-200 rounded-full animate-ping opacity-20"></div>
+                                <Phone className="w-12 h-12 text-red-600 animate-bounce" />
+                            </div>
                         </div>
                     </div>
                 </section>

@@ -69,7 +69,7 @@ const AfiliacionesPage = () => {
                                 <h3 className="text-3xl font-bold text-white tracking-tight">Afiliación Sindical</h3>
                             </div>
 
-                            <p className="text-blue-100 mb-8 text-lg flex-grow leading-relaxed">
+                            <p className="text-blue-100 mb-8 text-lg leading-relaxed">
                                 Defensa irrestricta de tus derechos laborales, representación paritaria y asesoramiento legal permanente. Es la base de nuestra fuerza conjunta.
                             </p>
 
@@ -77,8 +77,7 @@ const AfiliacionesPage = () => {
                                 {[
                                     "Defensa gremial y asesoría legal",
                                     "Acceso a capacitaciones y cursos",
-                                    "Beneficios en turismo y recreación",
-                                    "Subsidios por casamiento, nacimiento, etc."
+                                    "Beneficios en turismo y recreación"
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-center">
                                         <CheckCircle2 className="w-5 h-5 text-[#39c3ef] mr-3 flex-shrink-0" />
@@ -120,7 +119,7 @@ const AfiliacionesPage = () => {
                                 <h3 className="text-3xl font-bold text-[#004080] tracking-tight">Afiliación Social</h3>
                             </div>
 
-                            <p className="text-gray-600 mb-8 text-lg flex-grow leading-relaxed">
+                            <p className="text-gray-600 mb-8 text-lg leading-relaxed">
                                 Extiende los beneficios a tu salud y bienestar. Accedé a reintegros, farmacia propia, ópticas y convenios médicos de primer nivel.
                             </p>
 
@@ -129,7 +128,8 @@ const AfiliacionesPage = () => {
                                     "Cobertura y reintegros médicos",
                                     "Descuentos en farmacias adheridas",
                                     "Convenios y prácticas de alta complejidad",
-                                    "Atención en consultorios propios (Sede Central)"
+                                    "Atención en consultorios propios (Sede Central)",
+                                    "Subsidios por casamiento, nacimiento, etc."
                                 ].map((item, i) => (
                                     <li key={i} className="flex items-center">
                                         <CheckCircle2 className="w-5 h-5 text-[#00a0e1] mr-3 flex-shrink-0" />

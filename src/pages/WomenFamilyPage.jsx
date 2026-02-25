@@ -39,7 +39,7 @@ const WomenFamilyPage = () => {
     return (
         <div className="bg-gray-50 pb-20">
             <HeroSection
-                title="Secretaría de la Mujer y la Familia"
+                title="Secretaría de Mujeres, Géneros y Diversidades"
                 subtitle="Género e Igualdad. Defendiendo los derechos y oportunidades de todas las trabajadoras."
                 backgroundImage="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?q=80&w=2000&auto=format&fit=crop"
             />
