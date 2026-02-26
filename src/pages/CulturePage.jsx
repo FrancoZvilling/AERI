@@ -20,7 +20,7 @@ import NewsCard from '../components/ui/NewsCard';
 
 const CulturePage = () => {
     const navigate = useNavigate();
-    const { noticias, loading } = useNoticias(3, 'capacitacion');
+    const { noticias, loading } = useNoticias(3, 'Capacitación');
 
     const specifics = [
         "Satisfacer las necesidades presentes y futuras incentivando la construcción del conocimiento.",

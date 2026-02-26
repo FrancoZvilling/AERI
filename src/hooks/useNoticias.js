@@ -19,8 +19,7 @@ export const useNoticias = (limit = 0, category = null) => {
                 }
 
                 if (category) {
-                    // Using containsi to avoid exact case/accent mismatch on the plain string field
-                    params.append('filters[categoria][$containsi]', category);
+                    params.append('filters[categoria][nombre][$eq]', category);
                 }
 
                 const response = await fetch(`${baseUrl}?${params.toString()}`);
