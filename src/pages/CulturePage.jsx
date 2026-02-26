@@ -11,12 +11,16 @@ import {
     ArrowRight,
     User,
     Phone,
-    Mail
+    Mail,
+    Loader2
 } from 'lucide-react';
 import coverImg from '../assets/cover-cultura.jpeg';
+import { useNoticias } from '../hooks/useNoticias';
+import NewsCard from '../components/ui/NewsCard';
 
 const CulturePage = () => {
     const navigate = useNavigate();
+    const { noticias, loading } = useNoticias(3, 'Capacitacion');
 
     const specifics = [
         "Satisfacer las necesidades presentes y futuras incentivando la construcción del conocimiento.",
@@ -137,6 +141,38 @@ const CulturePage = () => {
                             Propiciamos la participación activa de destinatarios, compañeros y delegados. Creemos firmemente que esto favorece la <strong>reflexión</strong>, la identificación de problemáticas y el <strong>fortalecimiento de capacidades y competencias</strong> de todos los trabajadores.
                         </p>
                     </div>
+                </section>
+
+                {/* News Section (Capacitación) */}
+                <section className="mt-24">
+                    <div className="text-center mb-12">
+                        <span className="text-yellow-600 font-bold tracking-wider uppercase text-sm">Novedades y Actualidad</span>
+                        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mt-2">Últimas Noticias de Capacitación</h2>
+                    </div>
+
+                    {loading ? (
+                        <div className="flex justify-center items-center py-12">
+                            <Loader2 className="w-10 h-10 text-yellow-500 animate-spin" />
+                        </div>
+                    ) : noticias.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {noticias.map((noticia) => (
+                                <NewsCard key={noticia.id} noticia={noticia} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-12 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                            <p className="text-gray-500 text-lg">Muy pronto estaremos compartiendo nuevas fechas y novedades de capacitación.</p>
+                        </div>
+                    )}
+
+                    {noticias.length > 0 && (
+                        <div className="text-center mt-12">
+                            <Link to="/noticias" className="inline-flex items-center text-sm font-bold bg-[#023e73] text-white px-8 py-3 rounded-full hover:bg-[#002855] transition-all shadow-md group">
+                                Ver todas las noticias <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    )}
                 </section>
 
                 {/* Contact Section */}

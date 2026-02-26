@@ -17,7 +17,7 @@ import {
     X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import IdeaWall from '../components/culture/IdeaWall';
+import IdeaForm from '../components/culture/IdeaForm';
 import flyerTecnicatura from '../assets/tecnicatura2026.jpg';
 
 const CultureDetailsPage = () => {
@@ -217,8 +217,8 @@ const CultureDetailsPage = () => {
                     </div>
                 </section>
 
-                {/* 4. Muro de Ideas Interactivo */}
-                <IdeaWall />
+                {/* 4. Formulario de Ideas */}
+                <IdeaForm />
 
                 {/* 5. Contacto */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-10">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export const useNoticias = (limit = 0) => {
+export const useNoticias = (limit = 0, category = null) => {
     const [noticias, setNoticias] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -9,7 +9,13 @@ export const useNoticias = (limit = 0) => {
         const fetchNoticias = async () => {
             try {
                 // Fetch to Strapi Local, sorting by date descending
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc&populate=*`);
+                let url = `${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc&populate=*`;
+
+                if (category) {
+                    url += `&filters[categoria][$eq]=${encodeURIComponent(category)}`;
+                }
+
+                const response = await fetch(url);
 
                 if (!response.ok) {
                     throw new Error('Error al conectar con el servidor de noticias');
@@ -31,7 +37,7 @@ export const useNoticias = (limit = 0) => {
         };
 
         fetchNoticias();
-    }, [limit]);
+    }, [limit, category]);
 
     return { noticias, loading, error };
 };
