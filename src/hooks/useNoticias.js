@@ -12,7 +12,7 @@ export const useNoticias = (limit = 0, category = null) => {
                 let url = `${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc&populate=*`;
 
                 if (category) {
-                    url += `&filters[categoria][$eq]=${encodeURIComponent(category)}`;
+                    url += `&filters[categoria][nombre][$eq]=${encodeURIComponent(category)}`;
                 }
 
                 const response = await fetch(url);
