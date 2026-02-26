@@ -8,14 +8,22 @@ export const useNoticias = (limit = 0, category = null) => {
     useEffect(() => {
         const fetchNoticias = async () => {
             try {
-                // Fetch to Strapi Local, sorting by date descending
-                let url = `${import.meta.env.VITE_API_URL}/api/noticias?sort=fecha:desc&populate=*`;
+                const baseUrl = `${import.meta.env.VITE_API_URL}/api/noticias`;
+                const params = new URLSearchParams();
 
-                if (category) {
-                    url += `&filters[categoria][nombre][$eq]=${encodeURIComponent(category)}`;
+                params.append('sort', 'createdAt:desc');
+                params.append('populate', '*');
+
+                if (limit > 0) {
+                    params.append('pagination[limit]', limit);
                 }
 
-                const response = await fetch(url);
+                if (category) {
+                    // Using containsi to avoid exact case/accent mismatch on the plain string field
+                    params.append('filters[categoria][$containsi]', category);
+                }
+
+                const response = await fetch(`${baseUrl}?${params.toString()}`);
 
                 if (!response.ok) {
                     throw new Error('Error al conectar con el servidor de noticias');
@@ -23,9 +31,8 @@ export const useNoticias = (limit = 0, category = null) => {
 
                 const json = await response.json();
 
-                // Limit the results manually if limit is provided. 
-                // If limit is 0 or null, we return all data.
-                const data = json.data ? (limit ? json.data.slice(0, limit) : json.data) : [];
+                // Fallback slice in case the API limit param was ignored by an older Strapi setup
+                const data = json.data ? (limit > 0 ? json.data.slice(0, limit) : json.data) : [];
 
                 setNoticias(data);
                 setLoading(false);
