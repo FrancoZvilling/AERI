@@ -19,7 +19,7 @@ export const useNoticias = (limit = 0, category = null) => {
                 }
 
                 if (category) {
-                    params.append('filters[categoria][nombre][$eq]', category);
+                    params.append('filters[categoria][$eqi]', category);
                 }
 
                 const response = await fetch(`${baseUrl}?${params.toString()}`);
