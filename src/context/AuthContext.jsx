@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
     const value = {
         user,
-        jwt,
+        token: jwt,
         login,
         logout,
         isAuthenticated: !!jwt

@@ -36,8 +36,6 @@ const DashboardPage = () => {
             }
 
             try {
-                console.log('Token actual:', token);
-
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
