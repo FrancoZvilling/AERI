@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Calendar, Newspaper } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ChevronDown, User, Calendar, Newspaper, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null); // Desktop
     const [activeMobileDropdown, setActiveMobileDropdown] = useState(null); // Mobile
+
+    const { isAuthenticated, user, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -94,13 +103,32 @@ const Navbar = () => {
 
                     {/* Mi AERI & IE Emergencias Buttons */}
                     <div className="hidden md:flex items-center space-x-4">
-                        <Link
-                            to="/login"
-                            className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2"
-                        >
-                            <User className="w-4 h-4" />
-                            <span>Mi AERI</span>
-                        </Link>
+                        {isAuthenticated ? (
+                            <div className="flex items-center space-x-3">
+                                <Link
+                                    to="/mi-aeri"
+                                    className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2"
+                                >
+                                    <User className="w-4 h-4" />
+                                    <span>Mi Panel</span>
+                                </Link>
+                                <button
+                                    onClick={handleLogout}
+                                    className="text-red-400 hover:text-red-500 hover:bg-red-50/10 px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center"
+                                    title="Cerrar Sesión"
+                                >
+                                    <LogOut className="w-4 h-4" />
+                                </button>
+                            </div>
+                        ) : (
+                            <Link
+                                to="/login"
+                                className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2 shadow-sm"
+                            >
+                                <User className="w-4 h-4" />
+                                <span>Mi AERI</span>
+                            </Link>
+                        )}
 
                         <a
                             href="https://www.grupoie.com.ar/"
@@ -189,14 +217,37 @@ const Navbar = () => {
                                 <span>Noticias</span>
                             </Link>
 
-                            <Link
-                                to="/login"
-                                className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2 shadow-sm"
-                                onClick={toggleMenu}
-                            >
-                                <User className="w-4 h-4" />
-                                <span>Mi AERI</span>
-                            </Link>
+                            {isAuthenticated ? (
+                                <div className="mt-4 space-y-2">
+                                    <Link
+                                        to="/mi-aeri"
+                                        className="w-full text-left px-3 py-2 rounded-md text-base font-bold bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 flex items-center space-x-2 shadow-sm"
+                                        onClick={toggleMenu}
+                                    >
+                                        <User className="w-5 h-5" />
+                                        <span>Ir a mi Panel</span>
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            handleLogout();
+                                            toggleMenu();
+                                        }}
+                                        className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-red-200 hover:text-red-100 hover:bg-red-900/30 flex items-center space-x-2 transition-colors"
+                                    >
+                                        <LogOut className="w-4 h-4" />
+                                        <span>Cerrar Sesión</span>
+                                    </button>
+                                </div>
+                            ) : (
+                                <Link
+                                    to="/login"
+                                    className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2 shadow-sm"
+                                    onClick={toggleMenu}
+                                >
+                                    <User className="w-5 h-5" />
+                                    <span>Mi AERI</span>
+                                </Link>
+                            )}
 
                             <a
                                 href="https://www.grupoie.com.ar/"

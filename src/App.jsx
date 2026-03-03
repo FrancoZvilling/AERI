@@ -18,6 +18,14 @@ import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 import AfiliacionesPage from './pages/AfiliacionesPage';
+import AuthPage from './pages/auth/AuthPage';
+import { useAuth } from './context/AuthContext';
+import { Navigate } from 'react-router-dom';
+
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
 
 const App = () => {
   return (
@@ -94,8 +102,15 @@ const App = () => {
           />
 
           {/* Dashboard / Login */}
-          <Route path="/mi-aeri" element={<DashboardPage />} />
-          <Route path="/login" element={<DashboardPage />} /> {/* Temp Redirect for demo */}
+          <Route
+            path="/mi-aeri"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/login" element={<AuthPage />} />
           <Route path="*" element={<div className="p-20 text-center text-gray-500">Página no encontrada (404)</div>} />
 
         </Routes>
