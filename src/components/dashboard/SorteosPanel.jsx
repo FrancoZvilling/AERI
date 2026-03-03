@@ -11,18 +11,14 @@ const FAKE_NAMES = [
 const getSecondsUntilNextDraw = () => {
     const now = new Date();
 
-    // ============================================
-    // MODO DEMO:
-    // Próximo sorteo en el segundo 0 del próximo minuto
-    // ============================================
-    const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + 1, 0, 0);
+    // Objetivo principal: Día 1 del mes actual a las 20:00:00 hs
+    let target = new Date(now.getFullYear(), now.getMonth(), 1, 20, 0, 0, 0);
 
-    // ============================================
-    // MODO PRODUCCIÓN:
-    // Próximo sorteo el día 1 del próximo mes a las 00:00:00 hs
-    // Para activarlo, comentá la línea 'target' de arriba y descomentá esta:
-    // ============================================
-    // const target = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0, 0);
+    // Si la fecha actual ya superó el objetivo de este mes (ya pasaron las 20hs del día 1, o ya es día 2 en adelante)
+    if (now.getTime() >= target.getTime()) {
+        // Pasamos al mes siguiente
+        target = new Date(now.getFullYear(), now.getMonth() + 1, 1, 20, 0, 0, 0);
+    }
 
     const diff = target.getTime() - now.getTime();
     return Math.max(0, Math.floor(diff / 1000));
