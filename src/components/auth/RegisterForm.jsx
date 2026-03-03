@@ -154,9 +154,7 @@ const RegisterForm = () => {
                 login(regData.jwt, regData.user);
 
                 setSuccessState('pending');
-                setTimeout(() => {
-                    navigate('/mi-aeri');
-                }, 4000); // Dar más tiempo para leer el mensaje
+                // Removed setTimeout to make the screen persistent
             }
 
         } catch (err) {
@@ -198,7 +196,12 @@ const RegisterForm = () => {
                             <p className="mb-1">📞 (0221) 483-3051 / 483-3047</p>
                             <p>✉️ <a href="mailto:afiliaciones@aeri.org.ar" className="hover:underline">afiliaciones@aeri.org.ar</a></p>
                         </div>
-                        <p className="text-xs text-gray-400 mt-4 animate-pulse">Ingresando al portal de pre-afiliados...</p>
+                        <button
+                            onClick={() => navigate('/')}
+                            className="mt-6 w-full py-3 px-4 border border-transparent rounded-xl shadow-sm cursor-pointer text-sm font-medium text-white bg-primary hover:bg-[#002855] focus:outline-none transition-colors"
+                        >
+                            Volver al Inicio
+                        </button>
                     </>
                 )}
             </motion.div>
