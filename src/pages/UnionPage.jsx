@@ -1,9 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import HeroSection from '../components/ui/HeroSection';
 import { motion } from 'framer-motion';
-import { Users, MapPin, Newspaper, ChevronRight, Star } from 'lucide-react';
+import { Users, MapPin, Newspaper, ChevronRight, Star, Loader2, ArrowRight } from 'lucide-react';
+import { useNoticias } from '../hooks/useNoticias';
+import NewsCard from '../components/ui/NewsCard';
 
 const UnionPage = () => {
+    const { noticias, loading } = useNoticias(3, 'Gremial');
 
     const seccionales = [
         {
@@ -44,7 +48,6 @@ const UnionPage = () => {
         }
     ];
 
-    const newsPlaceholders = [1, 2, 3]; // Simulating news entries
 
     return (
         <div className="bg-gray-50 pb-20">
@@ -129,36 +132,31 @@ const UnionPage = () => {
                             <Newspaper className="w-8 h-8 mr-3 text-[#39c3ef]" />
                             Novedades Gremiales
                         </h2>
-                        {/* Carousel Controls (Visual only for now or simple manual implementation if time permits, for now grid is safer for placeholders) */}
                     </div>
 
-                    {/* Placeholder Grid acting as static representation of carousel content */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {newsPlaceholders.map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                whileHover={{ y: -5 }}
-                                className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 group"
-                            >
-                                <div className="h-48 bg-gray-200 animate-pulse relative overflow-hidden">
-                                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">
-                                        Imagen Noticia {item}
-                                    </div>
-                                </div>
-                                <div className="p-6">
-                                    <div className="w-24 h-4 bg-gray-200 rounded mb-4"></div>
-                                    <div className="w-3/4 h-6 bg-gray-300 rounded mb-3"></div>
-                                    <div className="space-y-2">
-                                        <div className="w-full h-4 bg-gray-100 rounded"></div>
-                                        <div className="w-5/6 h-4 bg-gray-100 rounded"></div>
-                                    </div>
-                                    <div className="mt-6 flex items-center text-[#39c3ef] font-medium text-sm group-hover:underline group-hover:text-[#023e73]">
-                                        Leer más <ChevronRight className="w-4 h-4 ml-1" />
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                    {loading ? (
+                        <div className="flex justify-center items-center py-12">
+                            <Loader2 className="w-10 h-10 text-primary animate-spin" />
+                        </div>
+                    ) : noticias.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {noticias.map((noticia) => (
+                                <NewsCard key={noticia.id} noticia={noticia} />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-12 bg-white rounded-3xl border border-gray-100 shadow-sm">
+                            <p className="text-gray-500 text-lg">Próximamente publicaremos nuevas novedades gremiales.</p>
+                        </div>
+                    )}
+
+                    {noticias.length > 0 && (
+                        <div className="text-center mt-12">
+                            <Link to="/noticias" className="inline-flex items-center text-sm font-bold bg-[#023e73] text-white px-8 py-3 rounded-full hover:bg-[#002855] transition-all shadow-md group">
+                                Ver todas las noticias <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+                    )}
                 </section>
 
             </div>
