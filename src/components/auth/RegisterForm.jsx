@@ -55,11 +55,27 @@ const RegisterForm = () => {
 
         setIsLoading(true);
 
+        // --- Función de Normalización (Capa de Seguridad antes de la BD) ---
+        const normalizarTexto = (texto) => {
+            if (!texto) return '';
+            return texto
+                .trim()
+                .toUpperCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        };
+
+        const datosNormalizados = {
+            dni: formData.dni.trim(), // Removemos espacios accidentales del DNI
+            numero_socio: formData.numero_socio ? formData.numero_socio.trim() : '',
+            nombre: normalizarTexto(formData.nombre),
+            apellido: normalizarTexto(formData.apellido)
+        };
+
         try {
             if (isAffiliate) {
                 // ESCENARIO A: Ya soy afiliado
-                // 1. Check if affiliate exists in Strapi
-                const checkResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${formData.dni}&filters[numero_socio][$eq]=${formData.numero_socio}`);
+                // 1. Check if affiliate exists in Strapi (Con DNI limpio y n° socio)
+                const checkResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${datosNormalizados.dni}&filters[numero_socio][$eq]=${datosNormalizados.numero_socio}`);
                 const checkData = await checkResponse.json();
 
                 if (!checkResponse.ok || !checkData.data || checkData.data.length === 0) {
@@ -71,7 +87,7 @@ const RegisterForm = () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        username: formData.dni,
+                        username: datosNormalizados.dni,
                         email: formData.email,
                         password: formData.password
                     }),
@@ -88,6 +104,7 @@ const RegisterForm = () => {
                     body: JSON.stringify({
                         data: {
                             zona: formData.zona
+                            // Nota: En escenario A no sobreescribimos Nombre/Apellido pq se supone q ya están bien en BD.
                         }
                     })
                 });
@@ -107,7 +124,7 @@ const RegisterForm = () => {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        username: formData.dni,
+                        username: datosNormalizados.dni,
                         email: formData.email,
                         password: formData.password
                     }),
@@ -116,15 +133,15 @@ const RegisterForm = () => {
                 const regData = await regResponse.json();
                 if (!regResponse.ok) throw new Error(regData.error?.message || 'Error al crear usuario web.');
 
-                // 2. Create PENDING Affiliate Record
+                // 2. Create PENDING Affiliate Record (Con Datos Normalizados)
                 const createResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         data: {
-                            dni: formData.dni,
-                            nombre: formData.nombre,
-                            apellido: formData.apellido,
+                            dni: datosNormalizados.dni,
+                            nombre: datosNormalizados.nombre,
+                            apellido: datosNormalizados.apellido,
                             zona: formData.zona,
                             estado: 'PENDIENTE'
                         }
