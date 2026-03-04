@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Loader2 } from 'lucide-react';
-import { userData } from '../../data/userMock';
+import { useAuth } from '../../context/AuthContext';
 
 const SorteoStatusCard = () => {
+    const { user } = useAuth();
     const [loading, setLoading] = useState(true);
     const [isWinner, setIsWinner] = useState(false);
 
@@ -16,10 +17,8 @@ const SorteoStatusCard = () => {
                     if (data.data && data.data.length > 0) {
                         const winner = data.data[0].ganador;
                         if (winner) {
-                            // Normalizamos los números de socio quitando puntos para compararlos correctamente
-                            const winnerSocio = String(winner.numero_socio).replace(/\./g, '');
-                            const mySocio = String(userData.affiliateNumber).replace(/\./g, '');
-                            if (winnerSocio === mySocio) {
+                            // Comparamos el DNI del ganador con el DNI del usuario logueado
+                            if (user && user.username && winner.dni && String(winner.dni) === String(user.username)) {
                                 setIsWinner(true);
                             } else {
                                 setIsWinner(false); // reseteamos por si cambia
@@ -38,11 +37,11 @@ const SorteoStatusCard = () => {
         // Hacemos un breve polling para mantenerlo sincronizado con la prop de la Demo
         const interval = setInterval(checkWinner, 60000);
         return () => clearInterval(interval);
-    }, []);
+    }, [user]);
 
     return (
-        <div className={`relative overflow-hidden rounded-xl shadow-sm border p-5 transition-colors duration-500 ${isWinner && !loading ? 'bg-gradient-to-r from-yellow-100 to-yellow-50 border-yellow-300' : 'bg-white border-gray-100'}`}>
-            <p className={`text-xs uppercase font-bold mb-3 tracking-widest ${isWinner && !loading ? 'text-yellow-700' : 'text-gray-400'}`}>Sorteo Mensual</p>
+        <div className={`relative overflow-hidden rounded-xl shadow-sm border p-5 transition-colors duration-500 ${isWinner && !loading ? 'bg-gradient-to-r from-green-100 to-green-50 border-green-300' : 'bg-white border-gray-100'}`}>
+            <p className={`text-xs uppercase font-bold mb-3 tracking-widest ${isWinner && !loading ? 'text-green-700' : 'text-gray-400'}`}>Sorteo Mensual</p>
 
             <AnimatePresence mode="wait">
                 {loading ? (
@@ -63,12 +62,12 @@ const SorteoStatusCard = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="relative z-10"
                     >
-                        <div className="flex items-center text-yellow-600 mb-2">
+                        <div className="flex items-center text-green-600 mb-2">
                             <Trophy className="w-6 h-6 mr-2 animate-bounce" />
-                            <h4 className="text-lg font-black uppercase tracking-tight">¡Eres el Ganador!</h4>
+                            <h4 className="text-lg font-black uppercase tracking-tight">¡Felicitaciones!</h4>
                         </div>
-                        <p className="text-sm text-yellow-800 font-medium leading-relaxed">
-                            Podés reclamar tu premio comunicándote desde ahora al <span className="font-bold underline whitespace-nowrap">0221 489-4470</span>.
+                        <p className="text-sm text-green-800 font-medium leading-relaxed">
+                            Sos el ganador del sorteo de este mes. Comunicate por llamada telefonica para reclamar tu premio.
                         </p>
                     </motion.div>
                 ) : (
@@ -86,7 +85,7 @@ const SorteoStatusCard = () => {
             {/* Winner Background Decoration */}
             {isWinner && !loading && (
                 <div className="absolute right-[-20px] top-[-20px] opacity-10 pointer-events-none">
-                    <Trophy className="w-32 h-32 text-yellow-600" />
+                    <Trophy className="w-32 h-32 text-green-600" />
                 </div>
             )}
         </div>
