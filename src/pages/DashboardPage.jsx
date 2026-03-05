@@ -15,6 +15,7 @@ import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
 import BonosPanel from '../components/dashboard/BonosPanel';
 import MensajesPanel from '../components/dashboard/MensajesPanel';
 import RecentNotifications from '../components/dashboard/RecentNotifications';
+import QRCode from 'react-qr-code';
 
 const DashboardPage = () => {
     const { user, token } = useAuth();
@@ -278,10 +279,13 @@ const DashboardPage = () => {
                                         }}
                                     >
                                         <div className="bg-white p-2 rounded-lg mb-4">
-                                            {/* QR Placeholder */}
-                                            <div className="w-32 h-32 bg-gray-900 flex items-center justify-center">
-                                                <span className="text-white/50 text-xs">QR CODE</span>
-                                            </div>
+                                            <QRCode
+                                                value={`AERI - Credencial de Afiliado\nNombre: ${nombre} ${apellido}\nDNI: ${user.username}\nN° Socio: ${numero_socio || 'N/A'}\nEstado: ${estado}\nZona: ${zona ? zona.replace('_', ' ') : 'N/A'}`}
+                                                size={128}
+                                                bgColor="#ffffff"
+                                                fgColor="#000000"
+                                                level="Q"
+                                            />
                                         </div>
                                         <p className="text-white/60 text-xs text-center">Escaneá este código para validar tu afiliación en comercios.</p>
                                     </div>
