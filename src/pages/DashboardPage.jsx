@@ -12,6 +12,7 @@ import InstallModal from '../components/ui/InstallModal';
 import SorteosPanel from '../components/dashboard/SorteosPanel';
 import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
 import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
+import BonosPanel from '../components/dashboard/BonosPanel';
 
 const DashboardPage = () => {
     const { user, token } = useAuth();
@@ -376,33 +377,9 @@ const DashboardPage = () => {
                                                 initial={{ opacity: 0, y: 10 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 exit={{ opacity: 0, y: -10 }}
+                                                className="h-full"
                                             >
-                                                <div className="flex justify-between items-center mb-6">
-                                                    <h3 className="text-xl font-bold text-gray-800">Bonos Médicos Activos</h3>
-                                                    <button className="text-sm text-primary font-bold hover:underline">Ver Historial</button>
-                                                </div>
-
-                                                <div className="grid grid-cols-1 gap-4">
-                                                    {activeVouchers.map((voucher) => (
-                                                        <div key={voucher.id} className="border border-gray-200 rounded-xl p-0 overflow-hidden hover:shadow-md transition-shadow flex flex-col md:flex-row">
-                                                            <div className={`w-full md:w-2 bg-primary`}></div>
-                                                            <div className="p-5 flex-grow">
-                                                                <div className="flex justify-between items-start mb-2">
-                                                                    <span className="text-xs font-bold uppercase text-primary bg-blue-50 px-2 py-1 rounded">{voucher.category}</span>
-                                                                    <span className="text-xs text-gray-400 font-mono">{voucher.expiry}</span>
-                                                                </div>
-                                                                <h4 className="font-bold text-lg text-gray-900">{voucher.title}</h4>
-                                                                <p className="text-gray-600 text-sm mb-3">{voucher.description}</p>
-                                                                <div className="bg-gray-100 rounded-lg p-3 flex justify-between items-center font-mono text-sm border border-dashed border-gray-300">
-                                                                    <span className="text-gray-500 select-all">{voucher.code}</span>
-                                                                    <span className="text-xs font-bold text-green-600 uppercase">
-                                                                        {voucher.status === 'active' ? 'Disponible' : 'Usado'}
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>
+                                                <BonosPanel affiliateData={affiliateData} />
                                             </motion.div>
                                         )}
 
