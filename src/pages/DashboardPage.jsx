@@ -14,6 +14,7 @@ import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
 import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
 import BonosPanel from '../components/dashboard/BonosPanel';
 import MensajesPanel from '../components/dashboard/MensajesPanel';
+import RecentNotifications from '../components/dashboard/RecentNotifications';
 
 const DashboardPage = () => {
     const { user, token } = useAuth();
@@ -360,17 +361,7 @@ const DashboardPage = () => {
                                                     {/* More placeholder fields can go here */}
                                                 </div>
 
-                                                <div className="mt-8 p-6 bg-blue-50 border border-blue-100 rounded-xl flex items-start">
-                                                    <Bell className="w-6 h-6 text-primary mt-1 mr-4 flex-shrink-0" />
-                                                    <div>
-                                                        <h4 className="font-bold text-primary mb-1">Notificaciones Recientes</h4>
-                                                        <ul className="space-y-2 mt-2">
-                                                            <li className="text-sm text-gray-600">• Tu último pago se acreditó correctamente.</li>
-                                                            <li className="text-sm text-gray-600">• ¡Nuevo beneficio en Turismo disponible!</li>
-                                                            <li className="text-sm text-gray-600">• Recordatorio: Retiro de kit escolar hasta el 01/03.</li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <RecentNotifications documentId={affiliateData?.documentId} />
                                             </motion.div>
                                         )}
 
