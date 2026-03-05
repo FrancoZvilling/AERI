@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, User, ChevronDown } from 'lucide-react';
-import { userData } from '../../data/userMock';
 
-const AfiliadosCargoCard = () => {
+const AfiliadosCargoCard = ({ familiares }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const dependentsCount = userData.dependents?.length || 0;
+
+    // Ensure familiares is an array, if undefined default to []
+    const safeFamiliares = familiares || [];
+    const dependentsCount = safeFamiliares.length;
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
@@ -43,27 +45,39 @@ const AfiliadosCargoCard = () => {
                         className="border-t border-gray-100"
                     >
                         <div className="p-5 pt-3 space-y-3 bg-gray-50/50">
-                            {userData.dependents?.map((dependent, index) => (
-                                <motion.div
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    key={index}
-                                    className="flex items-center p-3 rounded-lg bg-white border border-gray-100 shadow-sm"
-                                >
-                                    <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mr-3">
-                                        <User className="w-5 h-5 text-primary" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm font-bold text-gray-800">{dependent.name}</p>
-                                        <div className="flex items-center mt-0.5 space-x-2">
-                                            <span className="text-[11px] font-medium text-gray-500">DNI {dependent.dni}</span>
-                                            <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                                            <span className="text-[11px] font-medium text-gray-500">Socio N° {dependent.affiliateNumber}</span>
+                            {dependentsCount === 0 ? (
+                                <p className="text-sm text-gray-500 text-center py-2">
+                                    No tenés familiares a cargo registrados.
+                                </p>
+                            ) : (
+                                safeFamiliares.map((familiar, index) => (
+                                    <motion.div
+                                        initial={{ opacity: 0, x: -10 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        key={familiar.documentId || index}
+                                        className="flex items-center p-3 rounded-lg bg-white border border-gray-100 shadow-sm"
+                                    >
+                                        <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mr-3">
+                                            <User className="w-5 h-5 text-primary" />
                                         </div>
-                                    </div>
-                                </motion.div>
-                            ))}
+                                        <div>
+                                            <p className="text-sm font-bold text-gray-800">
+                                                {familiar.nombre} {familiar.apellido}
+                                            </p>
+                                            <div className="flex items-center mt-0.5 space-x-2">
+                                                <span className="text-[11px] font-medium text-gray-500">
+                                                    DNI {familiar.dni?.toLocaleString('es-AR') || familiar.dni}
+                                                </span>
+                                                <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                                                <span className="text-[11px] font-medium text-gray-500">
+                                                    Socio N° {familiar.numero_socio || 'N/A'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))
+                            )}
                         </div>
                     </motion.div>
                 )}

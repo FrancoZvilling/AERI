@@ -38,7 +38,7 @@ const DashboardPage = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}&populate=familiares_a_cargo`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -291,7 +291,7 @@ const DashboardPage = () => {
                             {/* Status Card & Afiliados a Cargo */}
                             <div className="flex flex-col gap-4">
                                 <SorteoStatusCard />
-                                <AfiliadosCargoCard />
+                                <AfiliadosCargoCard familiares={affiliateData?.familiares_a_cargo} />
                             </div>
                         </div>
 
