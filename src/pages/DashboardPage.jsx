@@ -38,7 +38,7 @@ const DashboardPage = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}&populate=familiares_a_cargo`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}&populate=*`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
@@ -52,7 +52,9 @@ const DashboardPage = () => {
                 }
 
                 if (data.data && data.data.length > 0) {
-                    setAffiliateData(data.data[0]);
+                    const afiliado = data.data[0];
+                    console.log('Perfil del afiliado:', afiliado);
+                    setAffiliateData(afiliado);
                 } else {
                     setError('No se encontró su expediente de afiliación. Por favor contáctese con el sindicato.');
                 }
