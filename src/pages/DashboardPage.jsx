@@ -13,6 +13,7 @@ import SorteosPanel from '../components/dashboard/SorteosPanel';
 import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
 import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
 import BonosPanel from '../components/dashboard/BonosPanel';
+import MensajesPanel from '../components/dashboard/MensajesPanel';
 
 const DashboardPage = () => {
     const { user, token } = useAuth();
@@ -385,16 +386,13 @@ const DashboardPage = () => {
 
                                         {activeTab === 'beneficios' && (
                                             <motion.div
-                                                key="empty"
-                                                initial={{ opacity: 0 }}
-                                                animate={{ opacity: 1 }}
-                                                className="text-center py-20"
+                                                key="beneficios"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                className="h-full"
                                             >
-                                                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4 text-gray-400">
-                                                    <MessageSquare className="w-8 h-8" />
-                                                </div>
-                                                <h3 className="text-xl font-bold text-gray-400">Próximamente</h3>
-                                                <p className="text-gray-500 mt-2">Esta sección estará disponible en la próxima actualización.</p>
+                                                <MensajesPanel />
                                             </motion.div>
                                         )}
 
