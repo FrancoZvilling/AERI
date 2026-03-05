@@ -5,9 +5,17 @@ import { Users, User, ChevronDown } from 'lucide-react';
 const AfiliadosCargoCard = ({ familiares }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Ensure familiares is an array, if undefined default to []
-    const safeFamiliares = familiares || [];
-    const dependentsCount = safeFamiliares.length;
+    let familiaresArray = familiares || [];
+
+    // Extraer el array de forma segura, ya sea que venga directo o anidado en 'data' o 'attributes'
+    if (familiaresArray && !Array.isArray(familiaresArray)) {
+        if (Array.isArray(familiaresArray.data)) {
+            familiaresArray = familiaresArray.data;
+        }
+    }
+
+    const listaFamiliares = Array.isArray(familiaresArray) ? familiaresArray : [];
+    const dependentsCount = listaFamiliares.length;
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
@@ -50,12 +58,12 @@ const AfiliadosCargoCard = ({ familiares }) => {
                                     No tenés familiares a cargo registrados.
                                 </p>
                             ) : (
-                                safeFamiliares.map((familiar, index) => (
+                                listaFamiliares.map((familiar, index) => (
                                     <motion.div
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: index * 0.1 }}
-                                        key={familiar.documentId || index}
+                                        key={familiar.documentId || familiar.id || index}
                                         className="flex items-center p-3 rounded-lg bg-white border border-gray-100 shadow-sm"
                                     >
                                         <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center mr-3">
