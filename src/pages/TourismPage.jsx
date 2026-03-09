@@ -287,34 +287,23 @@ const TourismPage = () => {
                                         </div>
                                     )}
 
-                                    {/* Fallback Main Info (for cards without structured data) */}
-                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (
-                                        <div>
-                                            <h3 className="text-lg font-bold text-[#004080] border-b-2 border-[#39c3ef] pb-2 mb-4 inline-block">Información</h3>
-                                            <div className="space-y-4 text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
-                                                {selectedCard.info_adicional || selectedCard.descripcion || "Un destino excepcional pensado para el descanso y la recreación, con excelentes comodidades para disfrutar de una estadía inolvidable. Contáctenos directamente para conocer las opciones disponibles y las tarifas vigentes acordes a la temporada."}
-                                            </div>
+                                    {/* Main Info */}
+                                    <div>
+                                        <h3 className="text-lg font-bold text-[#004080] border-b-2 border-[#39c3ef] pb-2 mb-4 inline-block">Información</h3>
+                                        <div className="space-y-4 text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">
+                                            {selectedCard.detalles || selectedCard.info_adicional || selectedCard.descripcion || "Un destino excepcional pensado para el descanso y la recreación, con excelentes comodidades para disfrutar de una estadía inolvidable. Contáctenos directamente para conocer las opciones disponibles y las tarifas vigentes acordes a la temporada."}
                                         </div>
-                                    )}
-
-                                    {/* Description / Extras Fallback */}
-                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (selectedCard.detalles || selectedCard.servicios || selectedCard.descripcion || selectedCard.requisito || selectedCard.contacto) && (
-                                        <div className="space-y-3 text-sm text-gray-600 bg-blue-50/50 p-4 rounded-xl mt-4">
-                                            {selectedCard.detalles && <p className="whitespace-pre-line"><strong className="text-[#004080]">Detalles:</strong><br />{selectedCard.detalles}</p>}
-                                            {selectedCard.contacto && <p className="whitespace-pre-line"><strong className="text-[#004080]">Contacto:</strong><br />{selectedCard.contacto}</p>}
-                                            {selectedCard.servicios && <p><strong className="text-[#004080]">Servicios:</strong> {selectedCard.servicios}</p>}
-                                            {selectedCard.descripcion && <p><strong className="text-[#004080]">Descripción:</strong> {selectedCard.descripcion}</p>}
-                                            {selectedCard.requisito && <p className="text-red-500 font-medium"><strong className="text-red-700">Requisito:</strong> {selectedCard.requisito}</p>}
-                                        </div>
-                                    )}
+                                    </div>
 
                                     {/* Contact Info */}
-                                    <div className="pt-4 mt-4 border-t border-gray-100">
-                                        <h4 className="font-bold text-gray-900 mb-2">Contacto Directo</h4>
-                                        <p className="text-[#023e73] font-medium bg-[#39c3ef]/10 p-3 rounded-lg flex items-center">
-                                            <Phone className="w-4 h-4 mr-2" /> {selectedCard.contacto}
-                                        </p>
-                                    </div>
+                                    {selectedCard.contacto && (
+                                        <div className="pt-4 mt-4 border-t border-gray-100">
+                                            <h4 className="font-bold text-gray-900 mb-2">Contacto Directo</h4>
+                                            <p className="text-[#023e73] font-medium bg-[#39c3ef]/10 p-3 rounded-lg flex items-center whitespace-pre-line">
+                                                <Phone className="w-4 h-4 mr-2" /> {selectedCard.contacto}
+                                            </p>
+                                        </div>
+                                    )}
 
                                 </div>
                             </div>
