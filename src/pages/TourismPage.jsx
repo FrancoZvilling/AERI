@@ -1,23 +1,55 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter, ChevronLeft, ChevronRight, AlertTriangle, Info } from 'lucide-react';
-import { tourismData, tourismCategories } from '../data/tourismData';
+import { MapPin, Phone, Mail, User, CheckCircle2, X, Calendar, Hotel, Tent, Star, Filter, ChevronLeft, ChevronRight, AlertTriangle, Info, Loader2 } from 'lucide-react';
 
 const TourismPage = () => {
+    const [destinations, setDestinations] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedCategory, setSelectedCategory] = useState("Todos");
     const [selectedCard, setSelectedCard] = useState(null);
 
+    useEffect(() => {
+        const fetchTurismos = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/turismos?populate=*`);
+                if (!response.ok) throw new Error('Error al cargar destinos');
+                const result = await response.json();
+
+                const mappedData = result.data.map(item => ({
+                    id: item.documentId || item.id,
+                    nombre: item.titulo,
+                    categoria: item.categoria,
+                    ubicacion: item.ubicacion,
+                    tipo: item.tipo_alojamiento,
+                    precio: item.tarifa,
+                    vigencia: item.vigencia,
+                    regimen: item.regimen,
+                    detalles: item.informacion,
+                    contacto: item.contacto,
+                    imagen: item.imagen?.url ? (item.imagen.url.startsWith('http') ? item.imagen.url : `${import.meta.env.VITE_API_URL}${item.imagen.url}`) : null,
+                }));
+                setDestinations(mappedData);
+            } catch (err) {
+                console.error("Error fetching turismos:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTurismos();
+    }, []);
+
+    const tourismCategories = useMemo(() => {
+        const categories = new Set(destinations.map(item => item.categoria).filter(Boolean));
+        return ["Todos", ...Array.from(categories)];
+    }, [destinations]);
+
     // Filter Logic
     const filteredData = useMemo(() => {
-        if (selectedCategory === "Todos") return tourismData;
-        return tourismData.filter(item => item.categoria === selectedCategory);
-    }, [selectedCategory]);
-
-    // Format Price helper
-    const formatPrice = (price) => {
-        return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 }).format(price);
-    };
+        if (selectedCategory === "Todos") return destinations;
+        return destinations.filter(item => item.categoria === selectedCategory);
+    }, [selectedCategory, destinations]);
 
     return (
         <div
@@ -56,26 +88,43 @@ const TourismPage = () => {
                     DESLIZÁ &gt;&gt;&gt;
                 </div>
 
-                {/* 3. Cards Sections (Carousels) */}
-                <div className="space-y-12 mb-20">
-                    {(selectedCategory === "Todos" ? tourismCategories.filter(c => c !== "Todos") : [selectedCategory]).map((category) => {
-                        const items = tourismData.filter(item => item.categoria === category);
-                        if (items.length === 0) return null;
+                {/* 3. Cards Sections (Carousels) / Empty States */}
+                {loading ? (
+                    <div className="flex flex-col items-center justify-center py-20">
+                        <Loader2 className="w-12 h-12 text-[#1e6df9] animate-spin mb-4" />
+                        <p className="text-[#004080] font-semibold text-lg animate-pulse">Cargando destinos turísticos...</p>
+                    </div>
+                ) : destinations.length === 0 ? (
+                    <div className="bg-white p-12 rounded-3xl shadow-lg border border-gray-100 text-center mb-20 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-[#39c3ef] rounded-full mix-blend-multiply filter blur-3xl opacity-10 transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div className="bg-blue-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10">
+                            <MapPin className="w-10 h-10 text-[#1e6df9]" />
+                        </div>
+                        <h3 className="text-3xl font-bold text-[#004080] mb-3 relative z-10">Preparando nuevos destinos</h3>
+                        <p className="text-gray-600 max-w-xl mx-auto text-lg relative z-10">
+                            Por el momento no hay viajes disponibles para ofrecer, pero pronto agregaremos nuevas opciones y convenios para nuestros afiliados. ¡Mantenete atento!
+                        </p>
+                    </div>
+                ) : (
+                    <div className="space-y-12 mb-20">
+                        {(selectedCategory === "Todos" ? tourismCategories.filter(c => c !== "Todos") : [selectedCategory]).map((category) => {
+                            const items = destinations.filter(item => item.categoria === category);
+                            if (items.length === 0) return null;
 
-                        return (
-                            <CategoryCarousel
-                                key={category}
-                                title={category}
-                                items={items}
-                                onSelectCard={setSelectedCard}
-                                formatPrice={formatPrice}
-                            />
-                        );
-                    })}
-                </div>
+                            return (
+                                <CategoryCarousel
+                                    key={category}
+                                    title={category}
+                                    items={items}
+                                    onSelectCard={setSelectedCard}
+                                />
+                            );
+                        })}
+                    </div>
+                )}
 
-                {filteredData.length === 0 && (
-                    <div className="text-center py-20 text-gray-500">
+                {!loading && destinations.length > 0 && filteredData.length === 0 && (
+                    <div className="text-center py-20 text-gray-500 text-lg">
                         No hay destinos disponibles en esta categoría por el momento.
                     </div>
                 )}
@@ -249,9 +298,10 @@ const TourismPage = () => {
                                     )}
 
                                     {/* Description / Extras Fallback */}
-                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (selectedCard.detalles || selectedCard.servicios || selectedCard.descripcion || selectedCard.requisito) && (
+                                    {(!selectedCard.servicios_destacados && !selectedCard.ingreso_predio) && (selectedCard.detalles || selectedCard.servicios || selectedCard.descripcion || selectedCard.requisito || selectedCard.contacto) && (
                                         <div className="space-y-3 text-sm text-gray-600 bg-blue-50/50 p-4 rounded-xl mt-4">
-                                            {selectedCard.detalles && <p><strong className="text-[#004080]">Detalles:</strong> {selectedCard.detalles}</p>}
+                                            {selectedCard.detalles && <p className="whitespace-pre-line"><strong className="text-[#004080]">Detalles:</strong><br />{selectedCard.detalles}</p>}
+                                            {selectedCard.contacto && <p className="whitespace-pre-line"><strong className="text-[#004080]">Contacto:</strong><br />{selectedCard.contacto}</p>}
                                             {selectedCard.servicios && <p><strong className="text-[#004080]">Servicios:</strong> {selectedCard.servicios}</p>}
                                             {selectedCard.descripcion && <p><strong className="text-[#004080]">Descripción:</strong> {selectedCard.descripcion}</p>}
                                             {selectedCard.requisito && <p className="text-red-500 font-medium"><strong className="text-red-700">Requisito:</strong> {selectedCard.requisito}</p>}
@@ -276,7 +326,7 @@ const TourismPage = () => {
     );
 };
 
-const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
+const CategoryCarousel = ({ title, items, onSelectCard }) => {
     const scrollContainerRef = React.useRef(null);
 
     const scroll = (direction) => {
@@ -324,7 +374,7 @@ const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
                 >
                     {items.map((item) => (
                         <div key={item.id} className="min-w-[80vw] md:min-w-[45vw] lg:min-w-[calc(33.333%-16px)] snap-center">
-                            <TourismCard item={item} onSelect={() => onSelectCard(item)} formatPrice={formatPrice} />
+                            <TourismCard item={item} onSelect={() => onSelectCard(item)} />
                         </div>
                     ))}
                 </div>
@@ -333,7 +383,7 @@ const CategoryCarousel = ({ title, items, onSelectCard, formatPrice }) => {
     );
 };
 
-const TourismCard = ({ item, onSelect, formatPrice }) => {
+const TourismCard = ({ item, onSelect }) => {
     // Disable animation on mobile to ensure visibility
     const isMobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
@@ -390,7 +440,7 @@ const TourismCard = ({ item, onSelect, formatPrice }) => {
                 {/* Pricing / Summary High Level */}
                 <div className="mt-auto">
                     <div className="mb-4">
-                        <span className="text-[#1e6df9] font-bold text-lg">Consultar Tarifas</span>
+                        <span className="text-[#1e6df9] font-bold text-lg">{item.precio || "Consultar Tarifas"}</span>
                     </div>
 
                     <button
