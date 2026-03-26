@@ -54,7 +54,8 @@ const UnionPage = () => {
             <HeroSection
                 title="Secretaría Gremial"
                 subtitle="Defendiendo los derechos de los trabajadores en cada rincón de la provincia."
-                backgroundImage="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2000&auto=format&fit=crop" // Meeting/Union concept
+                backgroundColor="#004080"
+                overlayOpacity="bg-black/10"
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 relative z-20">
