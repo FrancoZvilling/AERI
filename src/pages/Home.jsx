@@ -310,7 +310,7 @@ const Home = () => {
                             <Shield className="w-8 h-8 text-pink-600" />
                         </div>
                         <div>
-                            <h2 className="text-3xl font-bold text-[#004080]">Secretaría de la Mujer y la Familia</h2>
+                            <h2 className="text-3xl font-bold text-[#004080]">Secretaría de Mujeres, Géneros y Diversidades</h2>
                             <p className="text-gray-500 mt-1">Espacios seguros de atención, contención y acompañamiento.</p>
                         </div>
                     </div>

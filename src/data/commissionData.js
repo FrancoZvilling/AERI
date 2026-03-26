@@ -41,7 +41,7 @@ export const mainAuthorities = [
     { name: "ARCIDIACONO, JOSE IGNACIO", role: "PROSECRETARIO DE SERVICIOS SOCIALES", image: ja },
     { name: "GOMEZ DE SARAVIA, CARLOS ALBERTO", role: "SECRETARIO DE FINANZAS", image: cgs },
     { name: "LÓPEZ CARBALLO, GABRIELA BEATRIZ", role: "SECRETARIA DE PRENSA Y PROPAGANDA", image: glc },
-    { name: "DELGADO, MARIA CECILIA", role: "SECRETARIA DE LA MUJER Y LA FAMILIA", image: cd },
+    { name: "DELGADO, MARIA CECILIA", role: "SECRETARÍA DE MUJERES, GÉNEROS Y DIVERSIDADES", image: cd },
     { name: "IMANONI, EZEQUIEL HÉCTOR", role: "SECRETARIO DE CULTURA Y CAPACITACION", image: ei },
     { name: "BAZÁN, PEDRO JORGE", role: "SECRETARIA DE TURISMO Y DEPORTE", image: pbz },
     { name: "CAPANO, GISELA CAROLINA", role: "SECRETARIA DE ACTAS", image: gc }
@@ -62,7 +62,7 @@ export const staffGroups = [
             { role: "SECRETARIO DE FINANZAS", name: "GOMEZ DE SARAVIA, CARLOS ALBERTO" },
             { role: "PROSECRETARIO DE FINANZAS", name: "BRANCIFORTI DE LEONFORTE, PABLO ANTONIO" },
             { role: "SECRETARIA DE PRENSA Y PROPAGANDA", name: "LÓPEZ CARBALLO, GABRIELA BEATRIZ" },
-            { role: "SECRETARIA DE LA MUJER Y LA FAMILIA", name: "DELGADO, MARIA CECILIA" },
+            { role: "SECRETARÍA DE MUJERES, GÉNEROS Y DIVERSIDADES", name: "DELGADO, MARIA CECILIA" },
             { role: "SECRETARIO DE CULTURA Y CAPACITACION", name: "IMANONI, EZEQUIEL HÉCTOR" },
             { role: "SECRETARIA DE TURISMO Y DEPORTE", name: "BAZÁN, PEDRO JORGE" },
             { role: "SECRETARIA DE ACTAS", name: "CAPANO, GISELA CAROLINA" },
