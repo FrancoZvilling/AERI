@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { User, Lock, Loader2, AlertCircle } from 'lucide-react';
+import { User, Lock, Loader2, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ const LoginForm = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -105,13 +106,20 @@ const LoginForm = () => {
                         <Lock className="h-5 w-5 text-gray-400" />
                     </div>
                     <input
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        className="pl-10 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-3 px-4 border"
+                        className="pl-10 pr-10 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-3 px-4 border"
                         placeholder="Ingresá tu contraseña"
                     />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
+                    >
+                        {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                    </button>
                 </div>
             </div>
 

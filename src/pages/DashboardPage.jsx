@@ -126,6 +126,16 @@ const DashboardPage = () => {
 
     const { nombre, apellido, numero_socio, estado, zona } = affiliateData || {};
 
+    // vCard format is natively supported by both iOS and Android cameras
+    const qrPayload = `BEGIN:VCARD
+VERSION:3.0
+N:${apellido || ''};${nombre || ''};;;
+FN:${nombre || ''} ${apellido || ''}
+ORG:AERI Sindicato
+TITLE:Afiliado ${estado} - Socio N° ${numero_socio || 'N/A'}
+NOTE:DNI: ${user?.username || 'N/A'}\\nZona: ${zona ? zona.replace('_', ' ') : 'N/A'}
+END:VCARD`;
+
     return (
         <div className="bg-gray-50 min-h-screen pb-20">
             <InstallModal
@@ -280,7 +290,7 @@ const DashboardPage = () => {
                                     >
                                         <div className="bg-white p-2 rounded-lg mb-4">
                                             <QRCode
-                                                value={`AERI - Credencial de Afiliado\nNombre: ${nombre} ${apellido}\nDNI: ${user.username}\nN° Socio: ${numero_socio || 'N/A'}\nEstado: ${estado}\nZona: ${zona ? zona.replace('_', ' ') : 'N/A'}`}
+                                                value={qrPayload}
                                                 size={128}
                                                 bgColor="#ffffff"
                                                 fgColor="#000000"

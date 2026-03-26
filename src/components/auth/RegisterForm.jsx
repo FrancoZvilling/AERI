@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { User, Lock, Mail, CreditCard, MapPin, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { User, Lock, Mail, CreditCard, MapPin, Loader2, AlertCircle, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -25,6 +25,8 @@ const RegisterForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const [successState, setSuccessState] = useState(null); // 'linked' | 'pending' | null
+    const [showPassword, setShowPassword] = useState(false);
+    const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
     const handleChange = (e) => {
         setFormData({
@@ -360,13 +362,20 @@ const RegisterForm = () => {
                                         <Lock className="h-4 w-4 text-gray-400" />
                                     </div>
                                     <input
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         name="password"
                                         value={formData.password}
                                         onChange={handleChange}
-                                        className="pl-9 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-2.5 px-3 border"
+                                        className="pl-9 pr-10 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-2.5 px-3 border"
                                         placeholder="••••••••"
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
+                                    >
+                                        {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                    </button>
                                 </div>
                             </div>
 
@@ -377,16 +386,23 @@ const RegisterForm = () => {
                                         <Lock className="h-4 w-4 text-gray-400" />
                                     </div>
                                     <input
-                                        type="password"
+                                        type={showRepeatPassword ? "text" : "password"}
                                         name="repeatPassword"
                                         value={formData.repeatPassword}
                                         onChange={handleChange}
-                                        className={`pl-9 block w-full rounded-xl border shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-2.5 px-3 transition-colors ${formData.repeatPassword && formData.password !== formData.repeatPassword
+                                        className={`pl-9 pr-10 block w-full rounded-xl border shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-2.5 px-3 transition-colors ${formData.repeatPassword && formData.password !== formData.repeatPassword
                                             ? 'border-red-300 bg-red-50'
                                             : 'border-gray-300'
                                             }`}
                                         placeholder="••••••••"
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowRepeatPassword(!showRepeatPassword)}
+                                        className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 hover:text-gray-600 transition-colors focus:outline-none"
+                                    >
+                                        {showRepeatPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                    </button>
                                 </div>
                             </div>
                         </div>
