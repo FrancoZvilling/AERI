@@ -65,7 +65,7 @@ const Home = () => {
                 subtitle="Organización sindical al servicio de las y los trabajadores. Trabajando juntos por más y mejores beneficios."
                 backgroundImage={heroCover}
                 overlayOpacity="bg-black/40"
-                className="pb-16 md:pb-0"
+                className="pb-16 md:pb-0 -translate-y-5 md:-translate-y-9"
             />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20">

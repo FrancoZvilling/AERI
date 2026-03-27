@@ -24,8 +24,8 @@ export const medicalServices = [
         icon: Stethoscope,
         ioma: [
             'Categoría A: sin costo para el afiliado (bono a cargo de IOMA)',
-            'Categoría B: $140',
-            'Categoría C: $220'
+            'Categoría B',
+            'Categoría C'
         ],
         aeri: [], // No AERI data provided for this specific item
         requirements: []
@@ -34,7 +34,7 @@ export const medicalServices = [
         id: 'bioquimicas',
         title: 'Prácticas Bioquímicas',
         icon: FlaskConical,
-        ioma: ['Paga sólo el valor del bono único de $200'],
+        ioma: ['Paga sólo el valor del bono único'],
         aeri: [
             'Se entrega el bono sin cargo en la sede social y en el local del Ministerio de Economía.',
             'En el interior de la provincia, lo entregan los delegados.'
@@ -54,7 +54,7 @@ export const medicalServices = [
         id: 'kinesiologia',
         title: 'Kinesiología',
         icon: Activity,
-        ioma: ['Primeras 10 sesiones: $600', 'Adquirir el bono en el consultorio del profesional'],
+        ioma: ['Primeras 10 sesiones', 'Adquirir el bono en el consultorio del profesional'],
         aeri: ['Por reintegro 100%'],
         requirements: ['Orden médica', 'Bono de IOMA']
     },
@@ -71,13 +71,13 @@ export const medicalServices = [
         title: 'Audiología',
         icon: Ear,
         ioma: [
-            'Audiometría tonal en adultos: $84',
-            'Audiometría tonal en niños: $92',
-            'Logoaudiometría: $84',
-            'Pruebas supraliminares: $50',
-            'Impedanciometría y timpanometría: $97',
-            'Selección de otoamplífonos: $152',
-            'Otoemisiones acústicas: $157',
+            'Audiometría tonal en adultos',
+            'Audiometría tonal en niños',
+            'Logoaudiometría',
+            'Pruebas supraliminares',
+            'Impedanciometría y timpanometría',
+            'Selección de otoamplífonos',
+            'Otoemisiones acústicas',
             'Adquirir los bonos del profesional'
         ],
         aeri: ['Por reintegro 100%'],
@@ -88,18 +88,18 @@ export const medicalServices = [
         title: 'Odontología General',
         icon: Smile,
         ioma: [
-            'Bonos por mes calendario: $75',
+            'Bonos por mes calendario',
             'Incluye: consultas, preventiva, operatoria, endodoncia, radiología, extracciones simples, biopsias, etc.',
             'Valores extra para prácticas específicas.',
-            'Restauración: $154',
-            'Tratamiento de conducto: $124',
-            'Extracciones: $115',
-            'Consulta prótesis: $157',
-            'Bono prótesis removible parcial: $490',
-            'Bono prótesis completa: $292',
-            'ICI (extra): $250'
+            'Restauración',
+            'Tratamiento de conducto',
+            'Extracciones',
+            'Consulta prótesis',
+            'Bono prótesis removible parcial',
+            'Bono prótesis completa',
+            'ICI (extra)'
         ],
-        aeri: ['Se entrega sin cargo el bono de $75'],
+        aeri: ['Se entrega sin cargo el bono correspondiente'],
         requirements: ['Interior: reintegro del bono y factura de ICI']
     },
     {
@@ -115,7 +115,7 @@ export const medicalServices = [
         title: 'Lentes aéreos y de contacto',
         icon: Glasses,
         ioma: ['Cobertura según valores preestablecidos por IOMA (según dioptrías)'],
-        aeri: ['Se reconoce hasta $1300'],
+        aeri: ['Se reconoce un porcentaje del valor'],
         requirements: ['Interior: orden médica y factura de pago']
     },
     {

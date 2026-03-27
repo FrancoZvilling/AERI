@@ -223,7 +223,7 @@ const HealthPage = () => {
                                 <div>
                                     <h3 className="font-bold text-primary text-lg mb-1">Información Importante</h3>
                                     <p className="text-blue-800">
-                                        En el interior se trabaja por reintegro hasta un monto de <strong>50.000</strong> por par, hasta 2 pares al año.
+                                        En el interior se trabaja por reintegro hasta un monto establecido por par, hasta 2 pares al año.
                                     </p>
                                 </div>
                             </div>
