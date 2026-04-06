@@ -228,8 +228,8 @@ const SorteosPanel = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     className="bg-gray-50 border border-gray-200 rounded-xl p-6 w-full max-w-md text-center shadow-sm flex flex-col items-center justify-center text-gray-500"
                                 >
-                                    <Clock className="w-6 h-6 mb-2 opacity-50" />
-                                    <p className="text-sm font-medium">Esperando el resultado del sorteo...</p>
+                                    <Trophy className="w-6 h-6 mb-2 opacity-30" />
+                                    <p className="text-sm font-medium">Todavía no hay ganadores registrados</p>
                                 </motion.div>
                             )}
                         </motion.div>
