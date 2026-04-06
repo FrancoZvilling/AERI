@@ -32,9 +32,9 @@ export const introContent = {
 
 // Autoridades principales para el Carrusel
 export const mainAuthorities = [
+    { name: "MARTIN, CLAUDIO GERMÁN", role: "SECRETARIO GREMIAL", image: cm },
     { name: "MATTEOZZI, JORGE AMILCAR", role: "PROSECRETARIO GREMIAL", image: jmm },
     { name: "DE RITO, PABLO SEBASTIÁN", role: "SECRETARIO ADJUNTO", image: pb },
-    { name: "MARTIN, CLAUDIO GERMÁN", role: "SECRETARIO GREMIAL", image: cm },
     { name: "SEQUEIRA, ROBERTO AGUSTÍN", role: "SECRETARIO GENERAL", image: rs },
     { name: "COSSU, MAURICIO ADRIÁN", role: "SECRETARIO DE ORGANIZACIÓN", image: mc },
     { name: "GIMÉNEZ, MARCOS LUIS", role: "SECRETARIO DE SERVICIOS SOCIALES", image: mg },

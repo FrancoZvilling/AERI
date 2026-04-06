@@ -33,7 +33,7 @@ const Navbar = () => {
             title: 'Secretarías',
             links: [
                 { name: 'Secretaría Gremial', path: '/secretarias/gremial' },
-                { name: 'Secretaría de Salud y Servicios Sociales', path: '/secretarias/salud' },
+                { name: 'Secretaría de Servicios Sociales', path: '/secretarias/salud' },
                 { name: 'Secretaría de Prensa y Comunicación', path: '/secretarias/prensa' },
                 { name: 'Secretaría de Mujeres, Géneros y Diversidades', path: '/secretarias/mujer-y-familia' },
                 { name: 'Secretaría de Cultura y Capacitación', path: '/secretarias/cultura' },

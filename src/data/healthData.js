@@ -20,253 +20,210 @@ import {
 export const medicalServices = [
     {
         id: 'consulta',
-        title: 'Consulta Médica',
+        title: 'Consultas Médicas',
         icon: Stethoscope,
-        ioma: [
-            'Categoría A: sin costo para el afiliado (bono a cargo de IOMA)',
-            'Categoría B',
-            'Categoría C'
+        aeri: [
+            'Hasta $5.000 (2 al mes)',
+            'Por convenio con el Instituto Central de Medicina'
         ],
-        aeri: [], // No AERI data provided for this specific item
         requirements: []
     },
     {
-        id: 'bioquimicas',
-        title: 'Prácticas Bioquímicas',
+        id: 'laboratorio',
+        title: 'Bono de Laboratorio',
         icon: FlaskConical,
-        ioma: ['Paga sólo el valor del bono único'],
         aeri: [
-            'Se entrega el bono sin cargo en la sede social y en el local del Ministerio de Economía.',
-            'En el interior de la provincia, lo entregan los delegados.'
+            'Valor: $5.000,00',
+            'Reintegro: $3.500,00'
         ],
         requirements: [
             'Fotocopia de la orden médica',
             'Fotocopia de la historia clínica o del diagnóstico',
-            'Rechazo de FABA',
             'Factura original',
-            'Verificación de AFIP',
             'CBU',
-            'Fotocopia del carnet de IOMA, DNI, recibo de sueldo',
-            'Resultado de los análisis'
+            'Fotocopia del carnet de IOMA, DNI, recibo de sueldo'
         ]
     },
     {
         id: 'kinesiologia',
-        title: 'Kinesiología',
+        title: 'Bono de Kinesiología',
         icon: Activity,
-        ioma: ['Primeras 10 sesiones', 'Adquirir el bono en el consultorio del profesional'],
-        aeri: ['Por reintegro 100%'],
-        requirements: ['Orden médica', 'Bono de IOMA']
-    },
-    {
-        id: 'fonoaudiologia',
-        title: 'Fonoaudiología / Foniatría',
-        icon: Ear,
-        ioma: ['Bono válido para 8 sesiones mensuales', 'Adquirir el bono en el consultorio del profesional'],
-        aeri: ['Por reintegro 100%'],
-        requirements: ['Orden médica', 'Bono de IOMA']
+        aeri: [
+            'Valor: $10.000,00',
+            'Reintegro: $5.000,00 (Cubre 10 sesiones)'
+        ],
+        requirements: ['Orden médica', 'Bono de IOMA / Comprobante de atención']
     },
     {
         id: 'audiologia',
         title: 'Audiología',
         icon: Ear,
-        ioma: [
-            'Audiometría tonal en adultos',
-            'Audiometría tonal en niños',
-            'Logoaudiometría',
-            'Pruebas supraliminares',
-            'Impedanciometría y timpanometría',
-            'Selección de otoamplífonos',
-            'Otoemisiones acústicas',
-            'Adquirir los bonos del profesional'
-        ],
-        aeri: ['Por reintegro 100%'],
-        requirements: ['Orden médica', 'Bono de IOMA']
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'audiometria_adultos',
+        title: 'Audiometría Adultos',
+        icon: Ear,
+        aeri: ['Valor: $4.000,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'audiometria_ninos',
+        title: 'Audiometría Niños',
+        icon: Ear,
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'logoaudiometria',
+        title: 'Logoaudiometría',
+        icon: Ear,
+        aeri: ['Valor: $4.000,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'pruebas_supraliminares',
+        title: 'Pruebas Supraliminares',
+        icon: Ear,
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'impedanciometria',
+        title: 'Impedanciometría / Timpanometría',
+        icon: Ear,
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'fonoaudiologia',
+        title: 'Fonoaudiología',
+        icon: Ear,
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
+    },
+    {
+        id: 'foniatria',
+        title: 'Foniatría',
+        icon: Ear,
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Orden médica', 'Comprobante de pago']
     },
     {
         id: 'odontologia',
-        title: 'Odontología General',
+        title: 'Bono Odontología',
         icon: Smile,
-        ioma: [
-            'Bonos por mes calendario',
-            'Incluye: consultas, preventiva, operatoria, endodoncia, radiología, extracciones simples, biopsias, etc.',
-            'Valores extra para prácticas específicas.',
-            'Restauración',
-            'Tratamiento de conducto',
-            'Extracciones',
-            'Consulta prótesis',
-            'Bono prótesis removible parcial',
-            'Bono prótesis completa',
-            'ICI (extra)'
-        ],
-        aeri: ['Se entrega sin cargo el bono correspondiente'],
-        requirements: ['Interior: reintegro del bono y factura de ICI']
+        aeri: ['Valor: $3.500,00', 'Reintegro Total'],
+        requirements: ['Interior: reintegro del bono y factura']
     },
     {
         id: 'ortodoncia',
         title: 'Ortodoncia',
         icon: SmilePlus,
-        ioma: ['Cobertura según valores preestablecidos por IOMA hasta los 15 años inclusive'],
-        aeri: [],
+        aeri: ['Cobertura según valores preestablecidos por AERI'],
         requirements: []
     },
     {
         id: 'lentes',
-        title: 'Lentes aéreos y de contacto',
+        title: 'Ópticas (Lentes aéreos y de contacto)',
         icon: Glasses,
-        ioma: ['Cobertura según valores preestablecidos por IOMA (según dioptrías)'],
-        aeri: ['Se reconoce un porcentaje del valor'],
-        requirements: ['Interior: orden médica y factura de pago']
+        aeri: [
+            'Reintegro hasta $50.000 por par',
+            'Incluye dos pares al año (de cerca y de lejos)'
+        ],
+        requirements: ['Orden médica y factura de pago']
     },
     {
         id: 'cirugia_ojos',
         title: 'Cirugía de miopía y astigmatismo',
         icon: Eye,
-        ioma: ['Cobertura según valores preestablecidos por IOMA previa autorización'],
-        aeri: [],
-        requirements: []
-    },
-    {
-        id: 'campo_visual',
-        title: 'Campo visual computarizado',
-        icon: ScanEye,
-        ioma: ['Valor del bono que se autoriza en Círculo Médico'],
-        aeri: ['Por reintegro'],
+        aeri: ['Consultar cobertura vigente en sede social'],
         requirements: []
     },
     {
         id: 'audifonos',
         title: 'Audífonos',
         icon: Ear,
-        ioma: ['Cobertura según valores preestablecidos por IOMA'],
         aeri: ['Hasta el 20% del valor presupuestado'],
         requirements: [
             'Orden del profesional',
             'Presupuesto',
             'Resultado de la audiometría',
-            'Fotocopia carnet IOMA, DNI, recibo',
-            'Fotocopia presentación IOMA',
-            'Resolución IOMA',
-            'Comprobante depósito IOMA'
+            'Fotocopia carnet IOMA, DNI, recibo'
         ]
     },
     {
         id: 'protesis_ortesis',
         title: 'Prótesis y órtesis',
-        icon: ActivitySquare, // Changed from Bone (not in Lucide basic or imports) to ActivitySquare
-        ioma: ['Cobertura según valores preestablecidos por IOMA'],
+        icon: ActivitySquare,
         aeri: ['Hasta el 20% del valor presupuestado'],
         requirements: [
             'Orden del profesional',
             'Presupuesto',
-            'Fotocopia carnet IOMA, DNI, recibo',
-            'Fotocopia presentación IOMA',
-            'Resolución IOMA',
-            'Comprobante depósito IOMA'
+            'Fotocopia carnet IOMA, DNI, recibo'
         ]
     },
     {
         id: 'discapacidad',
         title: 'Discapacidad',
-        icon: HeartPulse, // Changed from Wheelchair
-        ioma: ['Cobertura según valores preestablecidos por IOMA'],
-        aeri: [],
-        requirements: []
-    },
-    {
-        id: 'estimulacion',
-        title: 'Estimulación Temprana y Rehabilitación',
-        icon: Baby,
-        ioma: [
-            'Escuela especial, centro de día, hogar',
-            'Acompañamiento terapéutico',
-            'Tratamiento ambulatorio (fono, psico, etc.)',
-            'Rehabilitación, equipamiento, transporte',
-            'Internación domiciliaria'
-        ],
-        aeri: [],
+        icon: HeartPulse,
+        aeri: ['Consultar beneficios específicos'],
         requirements: []
     },
     {
         id: 'practicas_baja',
         title: 'Prácticas de Baja Complejidad',
         icon: Activity,
-        ioma: ['Se paga sólo el valor indicado del bono', 'Ecografía, mamografía, densitometría, etc.'],
-        aeri: [],
-        requirements: []
-    },
-    {
-        id: 'practicas_media',
-        title: 'Prácticas de Mediana Complejidad',
-        icon: Microscope,
-        ioma: ['Cobertura del 100%', 'Videocolonoscopía, espirometría, etc.'],
-        aeri: [],
+        aeri: ['Consultar reintegros disponibles'],
         requirements: []
     },
     {
         id: 'practicas_alta',
         title: 'Prácticas de Alta Complejidad',
         icon: ScanEye,
-        ioma: ['Cobertura del 100%', 'TAC, RMN, ecoDoppler, angiografía'],
-        aeri: [],
+        aeri: ['Consultar reintegros disponibles'],
         requirements: []
     },
     {
         id: 'internaciones',
         title: 'Internaciones',
         icon: Bed,
-        ioma: ['Cobertura del 100%'],
-        aeri: [],
-        requirements: []
-    },
-    {
-        id: 'medicamentos',
-        title: 'Medicamentos',
-        icon: Pill,
-        ioma: ['Promedio 70% ambulatorios', '100% patologías crónicas/prevalentes'],
         aeri: [
-            'AERI cubre hasta 2 recetas por mes y por grupo familiar.',
-            'Coseguro IOMA: cobertura 100% en vademecum.',
-            'Hasta 60% fuera del vademecum.'
+            'Subsidio por internación',
+            'Consultar montos según categoría'
         ],
         requirements: []
     },
     {
-        id: 'meppes',
-        title: 'Plan MEPPES (Alta Complejidad)',
+        id: 'medicamentos',
+        title: 'Cobertura en Medicación',
         icon: Pill,
-        ioma: ['Cobertura 100% (Oncológicos, HIV, Esclerosis, etc.)'],
-        aeri: [],
+        aeri: [
+            '60% de lo que no cubre IOMA',
+            '60% en medicación que está en vademécum',
+            '60% en medicación por guardia',
+            'Los productos de venta libre no tienen reintegro'
+        ],
         requirements: []
     },
     {
         id: 'alta_complejidad_internacion',
         title: 'Alta Complejidad en Internación',
         icon: Bed,
-        ioma: ['Cobertura del 100%'],
-        aeri: [],
+        aeri: ['Consultar cobertura especial'],
         requirements: []
     },
     {
         id: 'anestesia',
         title: 'Anestesia',
         icon: Syringe,
-        ioma: ['Cobertura del 100%'],
-        aeri: [],
+        aeri: ['Reintegro según valores de nomenclador'],
         requirements: []
     }
 ].sort((a, b) => a.title.localeCompare(b.title));
 
-export const optics = [
-    { name: "BERMUDEZ I", address: "5 Y 43 N 499" },
-    { name: "BERMUDEZ II", address: "7 Nº 1077 e/ 54 y 55 - La Plata" },
-    { name: "BERMUDEZ QUILMES", address: "Paseo Rivadavia 324 - Quilmes" },
-    { name: "LUMI", address: "Diag 80 ESQ. 3 n 797 y 7 y 43 (Nueva)" },
-    { name: "EUROVISION", address: "8 N 780" },
-    { name: "MULTIVISION", address: "48 N 614" },
-    { name: "RENO", address: "Diag 79 N 735" },
-    { name: "ESPACIO VISION", address: "47 E/ 11 Y 12 N 839 1/2" }
-];
+export const optics = [];
 
 export const pharmacies = [
     { city: "25 de MAYO", name: "COL. FARMACEUTICO", address: "CALLE 30 Nº 493", phone: "0345 3706" },
@@ -287,7 +244,6 @@ export const pharmacies = [
     { city: "LA PLATA", name: "Farmacia Zorich", address: "7 y 54", phone: "" },
     { city: "LA PLATA", name: "Farmacia Inglesa", address: "47 e/ 7 y 8", phone: "" },
     { city: "LA PLATA", name: "Farmacia La Doce", address: "12 e/ 59 y 60", phone: "" },
-    // Adding a few notable ones for brevity in preview, user said "alphabetic organization"
     { city: "MAR DEL PLATA", name: "NUEVA CORDOBA", address: "Avda Cordoba 4546", phone: "0223 4941294" },
     { city: "MAR DEL PLATA", name: "AMERICANA", address: "Rivadavia 3201", phone: "0223 4950011" },
     { city: "TANDIL", name: "Crishec", address: "SARMIENTO nº 797 esq. ALEM", phone: "427246" },
@@ -298,69 +254,42 @@ export const safetyData = {
     definitions: [
         {
             title: "¿Qué debo hacer en el caso de accidente o enfermedad profesional?",
-            content: "Debe informar el hecho ante su empleador, quien tiene la obligación de comunicar el accidente o enfermedad a la ART si la tuviera o brindarle en forma inmediata las prestaciones médicas y asistenciales si se trata de un empleador autoasegurado."
+            content: "Debe informar el hecho ante su empleador, quien tiene la obligación de brindar en forma inmediata las prestaciones médicas y asistenciales."
         },
         {
             title: "Accidente de trabajo",
-            content: "Se considera accidente de trabajo a todo acontecimiento súbito y violento ocurrido por el hecho o en ocasión del trabajo, o en el trayecto entre el domicilio del trabajador y el lugar de trabajo, siempre y cuando el damnificado no hubiere interrumpido o alterado dicho trayecto por causas ajenas al trabajo. El trabajador podrá declarar por escrito ante el empleador, y éste dentro de las setenta y dos (72) horas ante el asegurador, que el in-itinere se modifica por razones de estudio, concurrencia a otro empleo o atención de familiar directo enfermo y no conviviente."
+            content: "Se considera accidente de trabajo a todo acontecimiento súbito y violento ocurrido por el hecho o en ocasión del trabajo, o en el trayecto entre el domicilio del trabajador y el lugar de trabajo."
         },
         {
             title: "Enfermedad profesional",
-            content: "Se consideran enfermedades profesionales aquellas que se encuentran incluidas en el listado de enfermedades profesionales que elaborará y revisará el Poder Ejecutivo anualmente. Las enfermedades no incluidas en el listado como sus consecuencias en ningún caso serán consideradas resarcibles."
-        },
-        {
-            title: "Exclusiones",
-            content: "Quedan excluidos: a) Los accidentes y enfermedades profesionales causados por dolo del trabajador o por fuerza mayor extraña al trabajo; b) Las incapacidades preexistentes acreditadas en el examen preocupacional."
+            content: "Se consideran enfermedades profesionales aquellas causadas por agentes de riesgo en el ambiente laboral."
         }
     ],
     rightsAndDuties: [
         {
-            role: "Aseguradoras de Riesgos del Trabajo (ART)",
-            items: [
-                "Denunciarán ante la SRT los incumplimientos de sus afiliados.",
-                "Tendrán acceso a la información necesaria para cumplir con las prestaciones.",
-                "Promoverán la prevención e informarán a la SRT.",
-                "Mantendrán un registro de siniestralidad por establecimiento.",
-                "Informarán a los interesados sobre su composición y balances.",
-                "No podrán realizar exámenes psicofísicos previos a la afiliación."
-            ]
-        },
-        {
             role: "Empleadores",
             items: [
-                "Recibirán información de la ART respecto de alícuotas y prestaciones.",
-                "Notificarán a los trabajadores acerca de la ART a la que se encuentren afiliados.",
-                "Denunciarán a la ART y a la SRT los accidentes y enfermedades.",
-                "Cumplirán con las normas de higiene y seguridad.",
-                "Mantendrán un registro de siniestralidad."
+                "Notificarán a los trabajadores acerca de la ART.",
+                "Denunciarán los accidentes y enfermedades.",
+                "Cumplirán con las normas de higiene y seguridad."
             ]
         },
         {
             role: "Trabajadores",
             items: [
-                "Recibirán capacitación en prevención de riesgos del trabajo.",
                 "Cumplirán con las normas de higiene y seguridad.",
-                "Informarán al empleador hechos relacionados con riesgos.",
-                "Se someterán a exámenes médicos y tratamientos de rehabilitación.",
-                "Denunciarán ante el empleador los accidentes y enfermedades."
+                "Informarán hechos relacionados con riesgos.",
+                "Denunciarán ante el empleador los accidentes."
             ]
         }
     ],
     important: {
-        text: "De acuerdo a la Ley de Riesgos del Trabajo, la credencial identificatoria del agente cubierto deberá portarse en forma permanente y presentarse obligatoriamente ante cualquier trámite relacionado con el autoseguro.",
-        steps: "Para descargar credencial de ART, ingrese a Portal Siape > Inicio > Autoseguro > Click en Credencial > Descargar."
+        text: "La credencial identificatoria del agente cubierto deberá portarse en forma permanente para cualquier trámite.",
+        steps: "Descargar desde Portal Siape > Inicio > Autoseguro > Credencial."
     },
     legislation: [
-        "Ley 14.226 - Creación de CoMiSaSEP, Decreto Reglamentario 120b/2011.",
-        "Recomendación 01/2017 Prevención enfermedades infectocontagiosas en ARBA.",
-        "Recomendación 01/2018 Protocolo prevención en mudanzas (ARBA).",
-        "Decreto 1338/96.- Servicios de Medicina y de Higiene y Seguridad.",
-        "Resolución 523/07 de la Superintendencia de Riesgos de Trabajo.",
-        "Ley 27348 - Modificatoria del Sistema de Riesgo del Trabajo.",
-        "Resolución 925/15 SRT.",
-        "Decreto 1521/14.",
-        "Ley 19587 Ley de Seguridad e Higiene - Decreto 351/79 Reglamentario.",
-        "Ley 13894 Ley Antitabaco - Decreto Reglamentario 1626.",
-        "Resolución 07/14 SPPRRHH - Decreto 1047/09 Gripe A - Resolución Interna ARBA 178/09."
+        "Ley 14.226 - Creación de CoMiSaSEP",
+        "Ley 27348 - Sistema de Riesgo del Trabajo",
+        "Ley 19587 - Seguridad e Higiene"
     ]
 };

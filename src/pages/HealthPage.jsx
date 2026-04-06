@@ -34,7 +34,7 @@ const HealthPage = () => {
     return (
         <div className="bg-gray-50 pb-20">
             <HeroSection
-                title="Secretaría de Salud y Servicios Sociales"
+                title="Secretaría de Servicios Sociales"
                 subtitle="Cobertura integral y beneficios exclusivos para el cuidado de tu salud."
                 backgroundImage="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=2000&auto=format&fit=crop"
             >
@@ -82,6 +82,24 @@ const HealthPage = () => {
                     {/* 1. SERVICES TAB */}
                     {activeTab === 'services' && (
                         <div className="space-y-4">
+                            {/* General Information Box */}
+                            <div className="bg-[#023e73] text-white p-6 rounded-2xl shadow-md mb-8 relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:rotate-12 transition-transform duration-500">
+                                    <Info className="w-24 h-24" />
+                                </div>
+                                <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
+                                    <div className="p-3 bg-white/20 rounded-full backdrop-blur-md">
+                                        <AlertTriangle className="w-6 h-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold mb-1">Información General para Reintegros</h3>
+                                        <p className="text-blue-100 text-sm leading-relaxed">
+                                            Para todos los servicios que requieran reintegro, es <strong>obligatorio</strong> presentar: orden médica original, factura o comprobante de pago legal y CBU del titular. Los trámites se reciben en sede central o a través de sus delegados.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                             {medicalServices.map((service) => {
                                 const Icon = service.icon;
                                 const isOpen = openServiceId === service.id;
@@ -109,23 +127,10 @@ const HealthPage = () => {
                                                     exit={{ height: 0, opacity: 0 }}
                                                     className="border-t border-gray-100 bg-gray-50/50"
                                                 >
-                                                    <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                                                        {/* IOMA */}
-                                                        <div className="bg-blue-50/50 p-6 rounded-xl border border-blue-100">
-                                                            <h4 className="font-bold text-primary mb-3 uppercase tracking-wider text-sm border-b border-blue-200 pb-2">Cobertura IOMA</h4>
-                                                            <ul className="space-y-2">
-                                                                {service.ioma.map((item, idx) => (
-                                                                    <li key={idx} className="flex items-start text-gray-700 text-sm">
-                                                                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5 mr-2 flex-shrink-0" />
-                                                                        {item}
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
+                                                    <div className="p-6 grid grid-cols-1 gap-8">
 
                                                         {/* AERI + Requirements */}
-                                                        <div className="space-y-6">
+                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                                             {service.aeri.length > 0 && (
                                                                 <div className="bg-[#39c3ef]/10 p-6 rounded-xl border border-[#39c3ef]/20">
                                                                     <h4 className="font-bold text-[#39c3ef] mb-3 uppercase tracking-wider text-sm border-b border-[#39c3ef]/30 pb-2">Cobertura AERI</h4>
@@ -141,15 +146,15 @@ const HealthPage = () => {
                                                             )}
 
                                                             {service.requirements.length > 0 && (
-                                                                <div className="p-4 rounded-xl border border-gray-200 bg-white">
-                                                                    <h4 className="font-bold text-gray-800 mb-3 flex items-center text-sm">
-                                                                        <Info className="w-4 h-4 mr-2 text-gray-400" />
+                                                                <div className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
+                                                                    <h4 className="font-bold text-gray-800 mb-3 flex items-center text-sm uppercase tracking-wider">
+                                                                        <FileCheck className="w-4 h-4 mr-2 text-[#39c3ef]" />
                                                                         Requisitos de Trámite
                                                                     </h4>
                                                                     <ul className="space-y-1">
                                                                         {service.requirements.map((req, idx) => (
                                                                             <li key={idx} className="text-gray-600 text-sm pl-6 relative">
-                                                                                <span className="absolute left-0 text-gray-300">•</span>
+                                                                                <span className="absolute left-0 text-[#39c3ef]">•</span>
                                                                                 {req}
                                                                             </li>
                                                                         ))}
@@ -223,7 +228,7 @@ const HealthPage = () => {
                                 <div>
                                     <h3 className="font-bold text-primary text-lg mb-1">Información Importante</h3>
                                     <p className="text-blue-800">
-                                        En el interior se trabaja por reintegro hasta un monto establecido por par, hasta 2 pares al año.
+                                        Reintegro hasta <strong>$50.000</strong> por par. Incluye dos pares al año (de cerca y de lejos).
                                     </p>
                                 </div>
                             </div>
@@ -239,19 +244,25 @@ const HealthPage = () => {
                                 <Search className="w-6 h-6 text-gray-400 absolute left-4 top-4" />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {filteredOptics.map((optic, idx) => (
-                                    <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start space-x-4">
-                                        <div className="p-3 bg-[#1e6df9]/10 rounded-full text-[#1e6df9]">
-                                            <Glasses className="w-6 h-6" />
+                            {filteredOptics.length === 0 ? (
+                                <div className="text-center py-20 bg-white rounded-2xl border border-gray-100 shadow-sm">
+                                    <p className="text-gray-500 text-lg">No se encuentran ópticas adheridas por el momento. Los beneficios se gestionan por vía de reintegro.</p>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {filteredOptics.map((optic, idx) => (
+                                        <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow flex items-start space-x-4">
+                                            <div className="p-3 bg-[#1e6df9]/10 rounded-full text-[#1e6df9]">
+                                                <Glasses className="w-6 h-6" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold text-gray-800">{optic.name}</h3>
+                                                <p className="text-gray-500 text-sm mt-1">{optic.address}</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <h3 className="text-lg font-bold text-gray-800">{optic.name}</h3>
-                                            <p className="text-gray-500 text-sm mt-1">{optic.address}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     )}
 
