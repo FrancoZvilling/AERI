@@ -12,7 +12,7 @@ const SorteoStatusCard = () => {
     useEffect(() => {
         const checkWinner = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1&_t=${Date.now()}`);
                 if (response.ok) {
                     const data = await response.json();
                     if (data.data && data.data.length > 0) {

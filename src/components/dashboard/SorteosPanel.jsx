@@ -34,12 +34,17 @@ const SorteosPanel = () => {
     useEffect(() => {
         const fetchInitialWinner = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1&_t=${Date.now()}`);
                 if (response.ok) {
                     const data = await response.json();
+                    console.log("Raffle API Response:", data); // Debug log
                     if (data.data && data.data.length > 0) {
                         setLastWinner(data.data[0]);
+                    } else {
+                        setLastWinner(null);
                     }
+                } else {
+                    setLastWinner(null);
                 }
             } catch (error) {
                 console.error("Error fetching initial winner:", error);
@@ -72,11 +77,13 @@ const SorteosPanel = () => {
         if (phase === 'SPINNING') {
             const fetchWinner = async () => {
                 try {
-                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1`);
+                    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1&_t=${Date.now()}`);
                     if (response.ok) {
                         const data = await response.json();
                         if (data.data && data.data.length > 0) {
                             setNextWinner(data.data[0]);
+                        } else {
+                            setNextWinner(null);
                         }
                     }
                 } catch (error) {
