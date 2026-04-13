@@ -50,11 +50,6 @@ const RegisterForm = () => {
             return;
         }
 
-        if (isAffiliate && !formData.numero_socio) {
-            setError('Ingresá tu número de socio para validar tu afiliación.');
-            return;
-        }
-
         setIsLoading(true);
 
         // --- Función de Normalización (Capa de Seguridad antes de la BD) ---
@@ -76,8 +71,8 @@ const RegisterForm = () => {
         try {
             if (isAffiliate) {
                 // ESCENARIO A: Ya soy afiliado
-                // 1. Check if affiliate exists in Strapi (Con DNI limpio y n° socio)
-                const checkResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${datosNormalizados.dni}&filters[numero_socio][$eq]=${datosNormalizados.numero_socio}`);
+                // 1. Check if affiliate exists in Strapi (Con DNI limpio)
+                const checkResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${datosNormalizados.dni}`);
                 const checkData = await checkResponse.json();
 
                 if (!checkResponse.ok || !checkData.data || checkData.data.length === 0) {
@@ -162,7 +157,7 @@ const RegisterForm = () => {
         } catch (err) {
             console.error('Registration error:', err);
             if (err.message === 'validacion_fallida') {
-                setError('Los datos no coinciden con nuestros registros. Por favor, verificá tu DNI y Número de Socio o comunicate con el sindicato.');
+                setError('Los datos no coinciden con nuestros registros. Por favor, verificá tu DNI o comunicate con el sindicato.');
             } else if (err.message.includes('Email or Username')) {
                 setError('El DNI o el Email ya se encuentran registrados en la plataforma web.');
             } else {
@@ -291,8 +286,8 @@ const RegisterForm = () => {
                             </div>
                         </div>
 
-                        {/* Fila: DNI y Número Socio (Condicional) */}
-                        <div className="grid grid-cols-2 gap-4">
+                        {/* DNI */}
+                        <div className="grid grid-cols-1 gap-4">
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-1">DNI</label>
                                 <div className="relative">
@@ -310,30 +305,6 @@ const RegisterForm = () => {
                                 </div>
                             </div>
 
-                            <AnimatePresence>
-                                {isAffiliate && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0.95 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.95 }}
-                                    >
-                                        <label className="block text-xs font-medium text-gray-700 mb-1">Nº de Socio</label>
-                                        <div className="relative">
-                                            <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
-                                                <CreditCard className="h-4 w-4 text-gray-400" />
-                                            </div>
-                                            <input
-                                                type="text"
-                                                name="numero_socio"
-                                                value={formData.numero_socio}
-                                                onChange={handleChange}
-                                                className="pl-8 block w-full rounded-xl border-gray-300 shadow-sm focus:ring-primary focus:border-primary sm:text-sm py-2.5 pr-3 border bg-yellow-50 focus:bg-white transition-colors"
-                                                placeholder="Ej. 12345"
-                                            />
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
                         </div>
 
                         {/* Email y Contraseña */}
