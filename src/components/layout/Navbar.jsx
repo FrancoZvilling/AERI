@@ -130,14 +130,81 @@ const Navbar = () => {
                             </Link>
                         )}
 
-                        <a
-                            href="https://www.grupoie.com.ar/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg"
-                        >
-                            <span>IE Emergencias</span>
-                        </a>
+                        {/* IE Emergencias Dropdown */}
+                        <div className="relative group cursor-pointer">
+                            <div className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                                <span>IE Emergencias</span>
+                            </div>
+                            
+                            {/* Dropdown Content */}
+                            <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-2xl p-5 border-t-4 border-red-600 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform origin-top-right">
+                                <div className="text-red-700 font-black mb-3 text-sm border-b border-gray-100 pb-2">
+                                    EMERGENCIAS MÉDICAS AERI
+                                </div>
+                                <div className="space-y-3 mb-5">
+                                    <a href="tel:08006668256" className="flex items-center text-gray-800 font-bold hover:text-red-600 transition-colors">
+                                        <span className="bg-red-50 p-2 rounded-full mr-3 text-red-600 text-lg leading-none">☎</span>
+                                        0800-666-8256
+                                    </a>
+                                    <a href="tel:08009992996" className="flex items-center text-gray-800 font-bold hover:text-red-600 transition-colors">
+                                        <span className="bg-red-50 p-2 rounded-full mr-3 text-red-600 text-lg leading-none">☎</span>
+                                        0800-999-2996
+                                    </a>
+                                </div>
+                                <div className="text-red-700 font-black mb-3 text-sm border-b border-gray-100 pb-2">
+                                    ASISTENCIA MÉDICA AERI ASSISTE
+                                </div>
+                                <div>
+                                    <a href="tel:08003338425" className="flex items-center text-gray-800 font-bold hover:text-red-600 transition-colors">
+                                        <span className="bg-red-50 p-2 rounded-full mr-3 text-red-600 text-lg leading-none">☎</span>
+                                        0800-333-8425
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Violencias/Acoso Dropdown */}
+                        <div className="relative group cursor-pointer">
+                            <div className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                                <span>Violencias / Acoso</span>
+                            </div>
+                            
+                            {/* Dropdown Content */}
+                            <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-xl shadow-2xl p-5 border-t-4 border-purple-600 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform origin-top-right">
+                                <div className="text-purple-700 font-black mb-3 text-sm border-b border-gray-100 pb-2">
+                                    ASISTENCIA INMEDIATA (24HS)
+                                </div>
+                                <div className="space-y-3 mb-5">
+                                    <a href="tel:144" className="flex items-center text-gray-800 font-bold hover:text-purple-600 transition-colors">
+                                        <span className="bg-purple-50 p-2 rounded-full mr-3 text-purple-600 text-lg leading-none">☎</span>
+                                        Línea 144
+                                    </a>
+                                    <a href="https://wa.me/5492215085988" target="_blank" rel="noopener noreferrer" className="flex items-center text-gray-800 font-bold hover:text-purple-600 transition-colors">
+                                        <span className="bg-purple-50 p-2 rounded-full mr-3 text-purple-600 text-lg leading-none">💬</span>
+                                        WhatsApp 221 508-5988
+                                    </a>
+                                </div>
+                                <div className="text-purple-700 font-black mb-3 text-sm border-b border-gray-100 pb-2">
+                                    INTERVENCIÓN INSTITUCIONAL
+                                </div>
+                                <div className="space-y-3 text-sm">
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-gray-900">ARBA:</span>
+                                        <a href="tel:2215072134" className="text-gray-800 hover:text-purple-600 transition-colors">☎ 221 507-2134</a>
+                                        <a href="mailto:equipointer.genero@arba.gov.ar" className="text-gray-800 hover:text-purple-600 transition-colors truncate">✉ equipointer.genero@arba.gov.ar</a>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-gray-900">Min. Economía:</span>
+                                        <a href="mailto:equipointer@ec.gba.gov.ar" className="text-gray-800 hover:text-purple-600 transition-colors truncate">✉ equipointer@ec.gba.gov.ar</a>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-gray-900">Lotería:</span>
+                                        <a href="https://wa.me/5492213588968" target="_blank" rel="noopener noreferrer" className="text-gray-800 hover:text-purple-600 transition-colors">💬 WhatsApp 221-3588968</a>
+                                        <a href="mailto:equipogeneroloteria@gmail.com" className="text-gray-800 hover:text-purple-600 transition-colors truncate">✉ equipogeneroloteria@gmail.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -249,15 +316,41 @@ const Navbar = () => {
                                 </Link>
                             )}
 
-                            <a
-                                href="https://www.grupoie.com.ar/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block w-full text-center px-3 py-2 rounded-md text-base font-bold bg-red-600 text-white hover:bg-red-700 mt-3 transition-colors shadow-sm"
-                                onClick={toggleMenu}
-                            >
-                                IE Emergencias
-                            </a>
+                            {/* Mobile Emergencias Section */}
+                            <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 shadow-sm mx-1 mb-4">
+                                <div className="text-red-700 font-black text-center mb-4 text-sm uppercase tracking-wider">
+                                    Emergencias Médicas AERI
+                                </div>
+                                <div className="space-y-3">
+                                    <a href="tel:08006668256" className="flex items-center justify-center bg-white border-2 border-red-200 text-red-600 font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-red-50 active:bg-red-100 transition-colors">
+                                        <span className="mr-2">☎</span> 0800-666-8256
+                                    </a>
+                                    <a href="tel:08009992996" className="flex items-center justify-center bg-white border-2 border-red-200 text-red-600 font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-red-50 active:bg-red-100 transition-colors">
+                                        <span className="mr-2">☎</span> 0800-999-2996
+                                    </a>
+                                </div>
+                                <div className="text-red-700 font-black text-center mt-5 mb-4 text-sm uppercase tracking-wider border-t border-red-200 pt-4">
+                                    Asistencia AERI Assiste
+                                </div>
+                                <a href="tel:08003338425" className="flex items-center justify-center bg-red-600 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-red-700 active:bg-red-800 transition-colors mb-2">
+                                    <span className="mr-2">☎</span> 0800-333-8425
+                                </a>
+                            </div>
+
+                            {/* Mobile Violencias Section */}
+                            <div className="mt-6 bg-purple-50 p-4 rounded-xl border border-purple-100 shadow-sm mx-1">
+                                <div className="text-purple-700 font-black text-center mb-4 text-sm uppercase tracking-wider">
+                                    Violencias y Acoso
+                                </div>
+                                <div className="space-y-3">
+                                    <a href="tel:144" className="flex items-center justify-center bg-white border-2 border-purple-200 text-purple-600 font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-purple-50 active:bg-purple-100 transition-colors">
+                                        <span className="mr-2">☎</span> Línea 144
+                                    </a>
+                                    <a href="https://wa.me/5492215085988" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center bg-white border-2 border-purple-200 text-purple-600 font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-purple-50 active:bg-purple-100 transition-colors">
+                                        <span className="mr-2">💬</span> WA 221 508-5988
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 )}

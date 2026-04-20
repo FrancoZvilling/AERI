@@ -22,10 +22,7 @@ export const medicalServices = [
         id: 'consulta',
         title: 'Consultas Médicas',
         icon: Stethoscope,
-        aeri: [
-            'Hasta $5.000 (2 al mes)',
-            'Por convenio con el Instituto Central de Medicina'
-        ],
+        aeri: ['La cobertura es solo para el Instituto Central de Medicina'],
         requirements: []
     },
     {
@@ -118,13 +115,6 @@ export const medicalServices = [
         requirements: ['Interior: reintegro del bono y factura']
     },
     {
-        id: 'ortodoncia',
-        title: 'Ortodoncia',
-        icon: SmilePlus,
-        aeri: ['Cobertura según valores preestablecidos por AERI'],
-        requirements: []
-    },
-    {
         id: 'lentes',
         title: 'Ópticas (Lentes aéreos y de contacto)',
         icon: Glasses,
@@ -135,64 +125,10 @@ export const medicalServices = [
         requirements: ['Orden médica y factura de pago']
     },
     {
-        id: 'cirugia_ojos',
-        title: 'Cirugía de miopía y astigmatismo',
-        icon: Eye,
-        aeri: ['Consultar cobertura vigente en sede social'],
-        requirements: []
-    },
-    {
-        id: 'audifonos',
-        title: 'Audífonos',
-        icon: Ear,
-        aeri: ['Hasta el 20% del valor presupuestado'],
-        requirements: [
-            'Orden del profesional',
-            'Presupuesto',
-            'Resultado de la audiometría',
-            'Fotocopia carnet IOMA, DNI, recibo'
-        ]
-    },
-    {
-        id: 'protesis_ortesis',
-        title: 'Prótesis y órtesis',
-        icon: ActivitySquare,
-        aeri: ['Hasta el 20% del valor presupuestado'],
-        requirements: [
-            'Orden del profesional',
-            'Presupuesto',
-            'Fotocopia carnet IOMA, DNI, recibo'
-        ]
-    },
-    {
-        id: 'discapacidad',
-        title: 'Discapacidad',
-        icon: HeartPulse,
-        aeri: ['Consultar beneficios específicos'],
-        requirements: []
-    },
-    {
-        id: 'practicas_baja',
-        title: 'Prácticas de Baja Complejidad',
+        id: 'practicas_medicas',
+        title: 'Prácticas Médicas',
         icon: Activity,
-        aeri: ['Consultar reintegros disponibles'],
-        requirements: []
-    },
-    {
-        id: 'practicas_alta',
-        title: 'Prácticas de Alta Complejidad',
-        icon: ScanEye,
-        aeri: ['Consultar reintegros disponibles'],
-        requirements: []
-    },
-    {
-        id: 'internaciones',
-        title: 'Internaciones',
-        icon: Bed,
-        aeri: [
-            'Subsidio por internación',
-            'Consultar montos según categoría'
-        ],
+        aeri: ['Hasta $5.000 por prácticas médicas con código de IOMA'],
         requirements: []
     },
     {
@@ -205,20 +141,6 @@ export const medicalServices = [
             '60% en medicación por guardia',
             'Los productos de venta libre no tienen reintegro'
         ],
-        requirements: []
-    },
-    {
-        id: 'alta_complejidad_internacion',
-        title: 'Alta Complejidad en Internación',
-        icon: Bed,
-        aeri: ['Consultar cobertura especial'],
-        requirements: []
-    },
-    {
-        id: 'anestesia',
-        title: 'Anestesia',
-        icon: Syringe,
-        aeri: ['Reintegro según valores de nomenclador'],
         requirements: []
     }
 ].sort((a, b) => a.title.localeCompare(b.title));

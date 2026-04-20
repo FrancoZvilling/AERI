@@ -227,9 +227,12 @@ const HealthPage = () => {
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-primary text-lg mb-1">Información Importante</h3>
-                                    <p className="text-blue-800">
+                                    <p className="text-blue-800 mb-2">
                                         Reintegro hasta <strong>$50.000</strong> por par. Incluye dos pares al año (de cerca y de lejos).
                                     </p>
+                                    <div className="inline-flex items-center bg-blue-100/80 text-blue-900 border border-blue-200 px-3 py-1.5 rounded-lg text-sm font-medium">
+                                        ✨ Reintegro vía transferencia bancaria, ópticas a elección del afiliado
+                                    </div>
                                 </div>
                             </div>
 

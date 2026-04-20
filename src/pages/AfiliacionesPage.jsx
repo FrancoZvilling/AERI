@@ -120,14 +120,13 @@ const AfiliacionesPage = () => {
                             </div>
 
                             <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                                Extiende los beneficios a tu salud y bienestar. Accedé a reintegros, farmacia propia, ópticas y convenios médicos de primer nivel.
+                                Extiende los beneficios a tu salud y bienestar. Accedé a reintegros, prácticas médicas y ópticas.
                             </p>
 
                             <ul className="space-y-4 mb-10 text-gray-700">
                                 {[
                                     "Cobertura y reintegros médicos",
                                     "Descuentos en farmacias adheridas",
-                                    "Convenios y prácticas de alta complejidad",
                                     "Atención en consultorios propios (Sede Central)",
                                     "Subsidios por casamiento, nacimiento, etc."
                                 ].map((item, i) => (
