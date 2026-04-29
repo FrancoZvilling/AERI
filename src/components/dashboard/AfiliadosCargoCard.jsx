@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, User, ChevronDown } from 'lucide-react';
 
-const AfiliadosCargoCard = ({ familiares }) => {
+const AfiliadosCargoCard = ({ familiares, externos }) => {
     const [isOpen, setIsOpen] = useState(false);
 
+    // Extraer familiares_a_cargo
     let familiaresArray = familiares || [];
-
-    // Extraer el array de forma segura, ya sea que venga directo o anidado en 'data' o 'attributes'
     if (familiaresArray && !Array.isArray(familiaresArray)) {
         if (Array.isArray(familiaresArray.data)) {
             familiaresArray = familiaresArray.data;
         }
     }
-
     const listaFamiliares = Array.isArray(familiaresArray) ? familiaresArray : [];
-    const dependentsCount = listaFamiliares.length;
+
+    // Extraer familiar_externos
+    let externosArray = externos || [];
+    if (externosArray && !Array.isArray(externosArray)) {
+        if (Array.isArray(externosArray.data)) {
+            externosArray = externosArray.data;
+        }
+    }
+    const listaExternos = Array.isArray(externosArray) ? externosArray : [];
+
+    // Combinar listas
+    const listaCompleta = [...listaFamiliares, ...listaExternos];
+    const dependentsCount = listaCompleta.length;
 
     return (
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
@@ -58,7 +68,7 @@ const AfiliadosCargoCard = ({ familiares }) => {
                                     No tenés familiares a cargo registrados.
                                 </p>
                             ) : (
-                                listaFamiliares.map((familiar, index) => (
+                                listaCompleta.map((familiar, index) => (
                                     <motion.div
                                         initial={{ opacity: 0, x: -10 }}
                                         animate={{ opacity: 1, x: 0 }}
