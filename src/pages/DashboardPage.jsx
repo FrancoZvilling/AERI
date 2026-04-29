@@ -40,7 +40,7 @@ const DashboardPage = () => {
             }
 
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}&populate[0]=*&populate[1]=familiares_a_cargo&populate[2]=familiar_externos`, {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/afiliados?filters[dni][$eq]=${user.username}&populate=*`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
