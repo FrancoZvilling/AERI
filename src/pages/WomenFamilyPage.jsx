@@ -70,7 +70,7 @@ const WomenFamilyPage = () => {
         <div className="bg-gray-50 pb-20">
             <HeroSection
                 title="Secretaría de Mujeres, Géneros y Diversidades"
-                subtitle="Género e Igualdad. Defendiendo los derechos y oportunidades de todas las trabajadoras."
+                subtitle="Igualdad e inclusión por la defensa de los derechos de las mujeres y diversidades trabajadoras"
                 backgroundImage={coverMujer}
             />
 
