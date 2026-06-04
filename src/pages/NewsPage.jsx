@@ -28,7 +28,7 @@ const NewsPage = () => {
         const fetchCategories = async () => {
             try {
                 // Determine if we need to access attributes or flat data
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?fields[0]=categoria&pagination[pageSize]=1000`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/noticias?fields[0]=categoria&sort=fecha:desc&pagination[pageSize]=1000`);
                 if (response.ok) {
                     const json = await response.json();
                     const data = json.data || [];

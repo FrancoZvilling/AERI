@@ -205,6 +205,11 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Convenios Link */}
+                        <Link to="/convenios" className="bg-[#00a0e1] hover:bg-[#04b2d9] text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                            <span>Convenios</span>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -350,6 +355,13 @@ const Navbar = () => {
                                         <span className="mr-2">💬</span> WA 221 508-5988
                                     </a>
                                 </div>
+                            </div>
+
+                            {/* Mobile Convenios Section */}
+                            <div className="mt-6 mx-1">
+                                <Link to="/convenios" onClick={toggleMenu} className="flex items-center justify-center bg-[#00a0e1] text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-[#04b2d9] transition-colors">
+                                    Convenios
+                                </Link>
                             </div>
                         </div>
                     </motion.div>

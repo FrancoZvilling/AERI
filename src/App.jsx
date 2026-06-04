@@ -18,6 +18,7 @@ import NewsPage from './pages/NewsPage';
 import NewsDetailPage from './pages/NewsDetailPage';
 import ScrollToTop from './components/utils/ScrollToTop';
 import AfiliacionesPage from './pages/AfiliacionesPage';
+import ConveniosPage from './pages/ConveniosPage';
 import AuthPage from './pages/auth/AuthPage';
 import { useAuth } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
@@ -35,6 +36,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/afiliaciones" element={<AfiliacionesPage />} />
+          <Route path="/convenios" element={<ConveniosPage />} />
 
 
           {/* Nueva página dedicada a Subsidios */}
