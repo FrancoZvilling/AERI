@@ -54,8 +54,8 @@ const Navbar = () => {
                     </div>
 
                     {/* Desktop Menu */}
-                    <div className="hidden md:flex items-center space-x-8">
-                        <Link to="/" className="hover:text-gray-300 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                    <div className="hidden md:flex items-center space-x-2 lg:space-x-4 xl:space-x-8">
+                        <Link to="/" className="hover:text-gray-300 transition-colors px-2 py-2 rounded-md text-sm font-medium whitespace-nowrap">
                             Inicio
                         </Link>
 
@@ -66,7 +66,7 @@ const Navbar = () => {
                                 onMouseEnter={() => setActiveDropdown(item.title)}
                                 onMouseLeave={() => setActiveDropdown(null)}
                             >
-                                <button className="flex items-center space-x-1 hover:text-gray-300 transition-colors px-3 py-2 rounded-md text-sm font-medium focus:outline-none">
+                                <button className="flex items-center space-x-1 hover:text-gray-300 transition-colors px-2 py-2 rounded-md text-sm font-medium focus:outline-none whitespace-nowrap">
                                     <span>{item.title}</span>
                                     <ChevronDown className="w-4 h-4" />
                                 </button>
@@ -96,18 +96,18 @@ const Navbar = () => {
                             </div>
                         ))}
 
-                        <Link to="/noticias" className="hover:text-gray-300 transition-colors px-3 py-2 rounded-md text-sm font-medium">
+                        <Link to="/noticias" className="hover:text-gray-300 transition-colors px-2 py-2 rounded-md text-sm font-medium whitespace-nowrap">
                             Noticias
                         </Link>
                     </div>
 
                     {/* Mi AERI & IE Emergencias Buttons */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
                         {isAuthenticated ? (
                             <div className="flex items-center space-x-3">
                                 <Link
                                     to="/mi-aeri"
-                                    className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2"
+                                    className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2 whitespace-nowrap"
                                 >
                                     <User className="w-4 h-4" />
                                     <span>Mi Panel</span>
@@ -123,7 +123,7 @@ const Navbar = () => {
                         ) : (
                             <Link
                                 to="/login"
-                                className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2 shadow-sm"
+                                className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2 shadow-sm whitespace-nowrap"
                             >
                                 <User className="w-4 h-4" />
                                 <span>Mi AERI</span>
@@ -131,8 +131,8 @@ const Navbar = () => {
                         )}
 
                         {/* IE Emergencias Dropdown */}
-                        <div className="relative group cursor-pointer">
-                            <div className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                        <div className="relative group cursor-pointer whitespace-nowrap">
+                            <div className="bg-red-600 hover:bg-red-700 text-white px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
                                 <span>IE Emergencias</span>
                             </div>
                             
@@ -164,8 +164,8 @@ const Navbar = () => {
                         </div>
 
                         {/* Violencias/Acoso Dropdown */}
-                        <div className="relative group cursor-pointer">
-                            <div className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                        <div className="relative group cursor-pointer whitespace-nowrap">
+                            <div className="bg-purple-600 hover:bg-purple-700 text-white px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
                                 <span>Violencias / Acoso</span>
                             </div>
                             
@@ -207,13 +207,13 @@ const Navbar = () => {
                         </div>
 
                         {/* Convenios Link */}
-                        <Link to="/convenios" className="bg-[#00a0e1] hover:bg-[#04b2d9] text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg">
+                        <Link to="/convenios" className="bg-[#00a0e1] hover:bg-[#04b2d9] text-white px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg whitespace-nowrap">
                             <span>Convenios</span>
                         </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden flex items-center">
+                    <div className="lg:hidden flex items-center">
                         <button
                             onClick={toggleMenu}
                             className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-300 focus:outline-none"
@@ -231,7 +231,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-primary shadow-inner max-h-[calc(100vh-5rem)] overflow-y-auto"
+                        className="lg:hidden bg-primary shadow-inner max-h-[calc(100vh-5rem)] overflow-y-auto"
                     >
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             <Link
