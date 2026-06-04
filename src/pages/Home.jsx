@@ -98,7 +98,7 @@ const Home = () => {
                 <section className="mb-12">
                     <div className="flex items-center justify-between mb-8">
                         <h2 className="text-3xl font-bold text-primary border-l-4 border-[#00a0e1] pl-4">
-                            Novedades Gremiales
+                            Novedades Recientes
                         </h2>
                         <Link to="/noticias" className="hidden md:flex items-center text-[#023e73] font-semibold hover:text-primary transition-colors">
                             Ver todas <ArrowRight className="w-4 h-4 ml-1" />
