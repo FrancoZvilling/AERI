@@ -20,8 +20,10 @@ import ScrollToTop from './components/utils/ScrollToTop';
 import AfiliacionesPage from './pages/AfiliacionesPage';
 import ConveniosPage from './pages/ConveniosPage';
 import AuthPage from './pages/auth/AuthPage';
-import { useAuth } from './context/AuthContext';
+import { useAuth, AuthProvider } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
+
+import VersionChecker from './components/utils/VersionChecker';
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
@@ -30,21 +32,20 @@ const ProtectedRoute = ({ children }) => {
 
 const App = () => {
   return (
-    <Router>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/afiliaciones" element={<AfiliacionesPage />} />
-          <Route path="/convenios" element={<ConveniosPage />} />
+    <AuthProvider>
+      <Router>
+        <VersionChecker />
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/afiliaciones" element={<AfiliacionesPage />} />
+            <Route path="/convenios" element={<ConveniosPage />} />
+            
+            {/* Nueva página dedicada a Subsidios */}
+            <Route path="/subsidios" element={<SubsidiesPage />} />
 
-
-          {/* Nueva página dedicada a Subsidios */}
-          <Route path="/subsidios" element={<SubsidiesPage />} />
-
-
-
-          {/* Páginas Específicas de Secretarías */}
+            {/* Páginas Específicas de Secretarías */}
           <Route path="/secretarias/turismo" element={<TourismPage />} />
           <Route path="/secretarias/salud" element={<HealthPage />} />
           <Route path="/secretarias/woman-and-family" element={<WomenFamilyPage />} /> {/* Legacy mapping kept for safety if needed, or remove if unused. Checking standard routing.. */}
@@ -118,6 +119,7 @@ const App = () => {
         </Routes>
       </Layout>
     </Router>
+    </AuthProvider>
   );
 };
 
