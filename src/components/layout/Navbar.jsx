@@ -44,7 +44,7 @@ const Navbar = () => {
 
     return (
         <nav className="bg-primary text-white fixed w-full z-50 shadow-md">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-[1440px] mx-auto px-4 lg:px-8 xl:px-12">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <div className="flex-shrink-0 flex items-center">
@@ -208,7 +208,7 @@ const Navbar = () => {
 
                         {/* Convenios Link */}
                         <Link to="/convenios" className="bg-[#00a0e1] hover:bg-[#04b2d9] text-white px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg whitespace-nowrap">
-                            <span>Convenios</span>
+                            <span>Convenios / Descuentos</span>
                         </Link>
                     </div>
 
@@ -360,7 +360,7 @@ const Navbar = () => {
                             {/* Mobile Convenios Section */}
                             <div className="mt-6 mx-1">
                                 <Link to="/convenios" onClick={toggleMenu} className="flex items-center justify-center bg-[#00a0e1] text-white font-bold py-3 px-4 rounded-lg shadow-md hover:bg-[#04b2d9] transition-colors">
-                                    Convenios
+                                    Convenios / Descuentos
                                 </Link>
                             </div>
                         </div>

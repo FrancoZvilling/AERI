@@ -29,6 +29,18 @@ import imgOrtopedia59 from '../assets/convenios/ortopedia_59.webp';
 import imgPapelTec from '../assets/convenios/papel_tec.webp';
 import imgRaGym from '../assets/convenios/ra_gimnasio.webp';
 import imgSpinelli from '../assets/convenios/spinelli_ortopedia.webp';
+import imgPanaderia from '../assets/convenios/panaderia.webp';
+import imgCentral from '../assets/convenios/central_empanadas.webp';
+import imgGatti from '../assets/convenios/gatti_veterinaria.webp';
+import imgJota from '../assets/convenios/jota.webp';
+import imgPintorcitos from '../assets/convenios/pintorcitos.webp';
+import imgPortofino from '../assets/convenios/porofino.webp';
+import imgRayuela from '../assets/convenios/rayuela.webp';
+import imgVeraUnas from '../assets/convenios/vera_uñas.webp';
+import imgBelleDeco from '../assets/convenios/belle_deco.webp';
+import imgCoquitos from '../assets/convenios/cosquitos.webp';
+import imgLaBianca from '../assets/convenios/la_bianca.webp';
+import imgVuCosmiatria from '../assets/convenios/vu.webp';
 
 // -------------------------------------------------------------
 // 1. CATEGORIAS Y MAPEO DE ICONOS
@@ -71,9 +83,9 @@ const CONVENIOS_DATA = [
         id: 1,
         title: "SOSBA",
         category: "gimnasios",
-        discount: "Acceso predio",
-        description: "Camping, Salón de Fiestas y más instalaciones.",
-        fullDescription: "Acceso al predio de SOSBA. Camping de martes a domingo (10 a 20 hs, apertura temporada a partir del 02/01/26). Requisitos: Carnet o recibo de sueldo. Salón de Fiestas disponible en horarios diurnos y nocturnos.",
+        discount: "Instalaciones",
+        description: "Uso de predio, pileta y salón de fiestas.",
+        fullDescription: "El Sindicato Obras Sanitarias (SOSBA) ofrece sus instalaciones con descuento para afiliados AERI.\nEl camping está abierto solo en época de temporada de verano, después se cierra. El salón de fiestas está habilitado todo el año. Reservas al 221-540-2166.",
         location: "Ensenada",
         address: "Predio: 32 E/ 127 Y 128 (Ensenada). Reservas: 48 N 319 e/ 1 y 2 (La Plata)",
         phone: "2215402166",
@@ -106,8 +118,8 @@ const CONVENIOS_DATA = [
     },
     {
         id: 4,
-        title: "Brew Bar",
-        category: "gastronomia",
+        title: "Brow Bar",
+        category: "belleza",
         discount: "15% OFF (Efectivo)",
         description: "Domingos de Bodegón (11am a 16pm).",
         fullDescription: "Domingo de Bodegón. ¡Te esperamos para que disfrutes de nuestros platos! 15% OFF en efectivo para afiliados de AERI. Aclaración: No se cobra servicio de mesa.",
@@ -132,10 +144,11 @@ const CONVENIOS_DATA = [
         id: 6,
         title: "Grand Brizo La Plata Hotel",
         category: "eventos",
-        discount: "Tarifas Especiales",
+        discount: "Tarifas corporativas",
         description: "Reserva de habitaciones, salones y eventos.",
-        fullDescription: "Tarifas especiales para afiliados y afiliadas de AERI aplicables a reservas de habitaciones, salones y eventos.",
+        fullDescription: "Convenio con precios corporativos para afiliados y afiliadas de AERI aplicables a reservas de habitaciones, salones y eventos.\nCel. Habitaciones: 221-437-5607\nCel. Salones y Eventos: 221-304-3865",
         location: "La Plata",
+        address: "Calle 51 N° 715 e/9 y 10",
         phone: "2214375607",
         email: "reservas.lp@grandbrizohoteles.com",
         image: imgGrandBrizo
@@ -146,7 +159,7 @@ const CONVENIOS_DATA = [
         category: "gimnasios",
         discount: "Tarifa Invitado",
         description: "Uso de las instalaciones de la Casa de Campo y Deportes.",
-        fullDescription: "Uso de todas las instalaciones de la Casa de Campo y Deportes 'Alejandro Carlos Larrechart'. Afiliados/as pagan arancel de 'invitados/as'. Descuentos especiales para grupos familiares. Sujeto a cupo y/o reservas. Requisito: presentar credencial de afiliación.",
+        fullDescription: "Uso de todas las instalaciones de la Casa de Campo y Deportes 'Alejandro Carlos Larrechart'. Afiliados/as pagan arancel de 'invitados/as'. Descuentos especiales para grupos familiares. Sujeto a cupo y/o reservas. Requisito: presentar credencial de afiliación.\nConsultas y reservas por el salón de fiestas: Damián Lagos 221-656-1174",
         location: "Villa Elisa",
         address: "Calle 436 entre 148 y 150, Villa Elisa",
         phone: "2216561174",
@@ -157,9 +170,9 @@ const CONVENIOS_DATA = [
     {
         id: 8,
         title: "CASA Cavalletti",
-        category: "hogar",
+        category: "librerias",
         discount: "15% OFF",
-        description: "Descuento en compras pagando en efectivo o cuenta DNI.",
+        description: "Librería y artículos escolares.",
         fullDescription: "Descuento del 15% para afiliados presentando carnet o recibo de haberes. Válido pagando en efectivo o cuenta DNI. *No acumulable con otras promociones.",
         location: "La Plata",
         address: "Av. 7 711 E/ 46 y 47",
@@ -207,7 +220,7 @@ const CONVENIOS_DATA = [
         category: "eventos",
         discount: "100% Matrícula",
         description: "20% descuento en actividades y entradas de obras de teatro.",
-        fullDescription: "100% Bonificación en matrícula anual. 20% de descuento en todas las actividades y 20% en las entradas de sus obras de teatro.",
+        fullDescription: "Centro Recreativo Intercultural de Artes - Biblioteca Popular\n• 100% descuento matricula anual en todas actividades\n• 20% actividades culturales y artisticas\n• 20% descuento en entradas para las obras de teatro",
         location: "La Plata",
         address: "1 N° 477 E/ 41 y 42",
         whatsapp: "5492215580207",
@@ -220,7 +233,7 @@ const CONVENIOS_DATA = [
         category: "gastronomia",
         discount: "10% OFF",
         description: "Club de arte, pizza & cerveza.",
-        fullDescription: "10% de descuento para nuestros afiliados/as pagando en efectivo, cuenta DNI o MercadoPago.",
+        fullDescription: "10% de descuento para nuestros afiliados/as pagando en efectivo, cuenta DNI o MercadoPago.\nEl descuento es en los dias jueves a domingo de 19:00 hs a 23:30 hs.",
         location: "City Bell",
         address: "Calle 12 y 471",
         image: imgPatio
@@ -267,7 +280,7 @@ const CONVENIOS_DATA = [
         description: "Mes a $33.990. Sin mínimo de permanencia.",
         fullDescription: "¡Tu bienestar empieza ahora! Mes a $33.990 (descuento sobre valor efectivo mensual). Pago por débito automático (Visa/Mastercard bancarizada). Sin mínimo de permanencia. Activá por WhatsApp.",
         location: "Múltiples Sedes",
-        whatsapp: "5491162709766",
+        whatsapp: "https://wa.me/message/3YOMGHBYK6RCN1",
         image: imgOnFit
     },
     {
@@ -276,11 +289,10 @@ const CONVENIOS_DATA = [
         category: "salud",
         discount: "15% OFF",
         description: "Descuento abonando en efectivo o débito.",
-        fullDescription: "15% de descuento presentando carnet o recibo de haberes. Pago en efectivo o débito. *No acumulable con otras promociones.",
+        fullDescription: "15% de descuento presentando carnet o recibo de haberes. Pago en efectivo o débito. *No acumulable con otras promociones.\nURGENCIAS: 221-459-0346",
         location: "La Plata",
-        address: "Calle 59 N°651 e/ 8 y 9",
-        phone: "2214228741",
-        whatsapp: "5492215079632",
+        address: "59 N 1098 esquina 17",
+        phone: "2214590346",
         image: imgOrtopedia59
     },
     {
@@ -313,11 +325,11 @@ const CONVENIOS_DATA = [
         category: "eventos",
         discount: "Hasta 20% OFF",
         description: "Servicio de alquiler de atriles infantiles.",
-        fullDescription: "20% de descuento de lunes a viernes y 15% sábados y domingos. Válido por pago de contado o MercadoPago.",
+        fullDescription: "Servicio de alquiler de atriles.\n20% de descuento de lunes a viernes y 15% sábados y domingos. Válido por pago de contado o MercadoPago.",
         location: "La Plata",
         whatsapp: "5492215991359",
         instagram: "pintorcitoskids.lp",
-        image: imgMap.eventos
+        image: imgPintorcitos
     },
     {
         id: 22,
@@ -328,7 +340,7 @@ const CONVENIOS_DATA = [
         fullDescription: "15% de descuento para el afiliado/a y UN acompañante. Válido por pago en efectivo o Cuenta DNI presentando DNI o carnet de afiliado.",
         location: "La Plata",
         address: "Av. 13 esquina 42",
-        image: imgMap.gastronomia
+        image: imgPortofino
     },
     {
         id: 23,
@@ -339,7 +351,7 @@ const CONVENIOS_DATA = [
         fullDescription: "10% de descuento en material de libros y lectura pagando en efectivo. No incluye manuales en inglés ni textos escolares.",
         location: "La Plata",
         address: "Plaza Italia n° 187 e/ 44 y diagonal 77",
-        image: imgMap.librerias
+        image: imgRayuela
     },
     {
         id: 24,
@@ -351,7 +363,7 @@ const CONVENIOS_DATA = [
         location: "La Plata y City Bell",
         address: "Calle 8 N° 616 (LP) / Cantilo y 14 N° 320 PA (City Bell)",
         phone: "2215628490",
-        image: imgMap.belleza
+        image: imgVeraUnas
     },
     {
         id: 25,
@@ -363,7 +375,7 @@ const CONVENIOS_DATA = [
         location: "La Plata",
         address: "Calle 6 N°643",
         phone: "2216196085",
-        image: imgMap.mascotas
+        image: imgGatti
     },
     {
         id: 26,
@@ -371,10 +383,10 @@ const CONVENIOS_DATA = [
         category: "gastronomia",
         discount: "10% OFF",
         description: "Aplica en efectivo, exclusivo en el local.",
-        fullDescription: "10% de descuento pagando en efectivo. Descuento exclusivo para retiro en ese local.",
+        fullDescription: "10% de descuento pagando en efectivo. Descuento exclusivo en local.",
         location: "La Plata",
         address: "Calle 46 N 606 ½ en 7 y 8",
-        image: imgMap.gastronomia
+        image: imgCentral
     },
     {
         id: 27,
@@ -386,7 +398,7 @@ const CONVENIOS_DATA = [
         location: "La Plata",
         address: "7 n°1756 e/ 68 y 69",
         phone: "2215348635",
-        image: imgMap.eventos
+        image: imgJota
     },
     {
         id: 28,
@@ -397,20 +409,20 @@ const CONVENIOS_DATA = [
         fullDescription: "10% de descuento ADICIONAL para afiliados/as, pagando con cualquier medio de pago.",
         location: "La Plata",
         address: "Plaza Italia y Diagonal 74",
-        image: imgMap.hogar
+        image: imgBelleDeco
     },
     {
         id: 29,
-        title: "Coquitos Zapatilleria",
-        category: "compras",
-        discount: "15% OFF",
-        description: "Descuento en calzado abonando en efectivo.",
-        fullDescription: "15% de descuento para afiliados abonando en efectivo.",
+        title: "Coquito's Natural Market",
+        category: "alimentos",
+        discount: "20% OFF",
+        description: "Tienda Saludable. Descuento abonando en efectivo.",
+        fullDescription: "Tienda Saludable. 20% de descuento para afiliados abonando en efectivo.",
         location: "La Plata",
-        address: "Calle 48 e/ 8 y 9 N° 683",
+        address: "46 N° 608 entre 7 y 8",
         whatsapp: "5492215083642",
         instagram: "coquitos_zapatilleria",
-        image: imgMap.compras
+        image: imgCoquitos
     },
     {
         id: 30,
@@ -418,29 +430,140 @@ const CONVENIOS_DATA = [
         category: "alimentos",
         discount: "15% OFF",
         description: "Descuento de martes a viernes (todos los medios de pago).",
-        fullDescription: "15% de descuento válido de martes a viernes con TODAS las formas de pago. Múltiples sucursales en La Plata, Villa Elisa, Chascomús, San Carlos y Los Hornos.",
+        fullDescription: "15% de descuento válido de martes a viernes con TODAS las formas de pago. Sucursales:\n- Av. 38 e/ 9 y 10 N° 704\n- Calle 57 esq 6 N° 548\n- Diagonal 73 N° 1243 e/ 7 y 8\n- Camino Gral. Belgrano N° 239 (City Bell)\n- Camino Centenario e/ 51 y 52 (Villa Elisa)\n- San Carlos, Chascomús y Los Hornos.",
         location: "Varias Sucursales",
-        address: "Av. 38 e/ 9 y 10 N°704 / Calle 57 esq 6 / etc.",
-        image: imgMap.alimentos
+        address: "Múltiples sucursales (ver detalle)",
+        image: imgLaBianca
     },
     {
         id: 31,
         title: "Vu Cosmiatría",
         category: "belleza",
         discount: "20% OFF",
-        description: "Radiofrecuencia, dermapen, hidraglos, peeling, etc.",
-        fullDescription: "20% de descuento para afiliadas/os y grupo familiar primario. A cargo de Patricia V. Pizarro.",
+        description: "Radiofrecuencia, dermapen, hidraglos, peeling, electroporación, limpieza.",
+        fullDescription: "Servicios: Radiofrecuencia, Dermapen, Hidraglos en labios, Peeling primavera, Electroporación, Limpieza con extracción.\nBeneficio para afiliadas/os y grupo familiar primario.\nProfesional a cargo: Patricia Viviana Pizarro (Mat. 20986).\n\nSucursales y WhatsApp:\n- La Plata 1 (Calle 8 N° 616 e/ 44 y 45): 221-562-8490\n- City Bell (Cantilo y 14 N° 320 PA): 221-586-2949\n- La Plata 2 (34 N° 1168): 221-507-7910",
         location: "La Plata y City Bell",
-        address: "Calle 8 N° 616 / 34 N° 1168 / Cantilo y 14 N° 320 PA",
+        address: "Múltiples sucursales (Ver detalle)",
         whatsapp: "5492215628490",
-        image: imgMap.belleza
+        image: imgVuCosmiatria
+    },
+    {
+        id: 32,
+        title: "LOS TRIGALES (Panadería y Pastelería)",
+        category: "alimentos",
+        discount: "Hasta 20% OFF",
+        description: "20% OFF en efectivo y 10% OFF con tarjeta/billetera virtual.",
+        fullDescription: "Beneficios para afiliados AERI: 20% OFF pagando en efectivo y 10% OFF pagando con tarjeta o billetera virtual. Válido en todos sus productos. Requisito para acceder: Presentar DNI, recibo de sueldo y/o carnet de afiliación.",
+        location: "La Plata",
+        address: "Calle 10 N° 416 entre 40 y 41",
+        phone: "02214215249",
+        image: imgPanaderia
     }
 ];
 
 // -------------------------------------------------------------
-// 3. COMPONENTE MODAL DE CONVENIO
+// 3. COMPONENTE DE FORMATO VISUAL PARA DESCRIPCIONES
+// -------------------------------------------------------------
+const FormatDescription = ({ text }) => {
+    if (!text) return null;
+
+    const boldKeywords = (str) => {
+        const regex = /(\d+% OFF|\d+%|Gratis|Sin cargo|efectivo|Cuenta DNI|MercadoPago|débito|tarjeta|DNI|recibo de sueldo|carnet de afiliación)/gi;
+        const parts = str.split(regex);
+        return parts.map((part, i) => {
+            if (part.match(regex)) {
+                return <strong key={i} className="text-[#00a0e1] font-black">{part}</strong>;
+            }
+            return part;
+        });
+    };
+
+    const blocks = text.split('\n\n');
+
+    return (
+        <div className="space-y-4">
+            {blocks.map((block, i) => {
+                const lines = block.split('\n');
+                
+                // If it's a pure list block
+                const isList = lines.length > 1 && lines.every(l => l.trim().startsWith('-') || l.trim().startsWith('•'));
+                
+                if (isList) {
+                    return (
+                        <div key={i} className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-blue-50/50 p-4 rounded-xl border border-blue-100">
+                            {lines.map((line, j) => {
+                                const cleanLine = line.trim().replace(/^[-•]\s*/, '');
+                                return (
+                                    <div key={j} className="flex items-start">
+                                        <Sparkles className="w-4 h-4 text-[#00a0e1] mt-1 mr-2 flex-shrink-0" />
+                                        <span className="text-gray-700 leading-snug">{boldKeywords(cleanLine)}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    );
+                }
+
+                return (
+                    <div key={i} className="space-y-2">
+                        {lines.map((line, j) => {
+                            const trimmed = line.trim();
+                            
+                            // Mixed lists / bullets
+                            if (trimmed.startsWith('-') || trimmed.startsWith('•')) {
+                                const cleanLine = trimmed.replace(/^[-•]\s*/, '');
+                                return (
+                                    <div key={j} className="flex items-start ml-2 bg-gray-50/50 rounded-lg p-2">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#00a0e1] mt-2 mr-3 flex-shrink-0" />
+                                        <span className="text-gray-700">{boldKeywords(cleanLine)}</span>
+                                    </div>
+                                );
+                            }
+                            
+                            // Detect headers (ends with colon or contains colon in short text)
+                            if (trimmed.includes(':') && trimmed.split(':')[0].length < 45 && !trimmed.startsWith('http')) {
+                                const [header, ...rest] = trimmed.split(':');
+                                const content = rest.join(':').trim();
+                                
+                                if (!content) {
+                                    return <h5 key={j} className="font-bold text-gray-900 border-b border-gray-200 pb-1 mt-4 mb-2 uppercase text-xs tracking-wider">{header}</h5>;
+                                }
+                                
+                                return (
+                                    <div key={j} className="bg-gray-50 px-4 py-3 rounded-xl border border-gray-100 mt-2 flex flex-col sm:flex-row sm:items-baseline">
+                                        <strong className="text-gray-900 sm:mr-2 flex-shrink-0">{header}:</strong> 
+                                        <span className="text-gray-700 mt-1 sm:mt-0">{boldKeywords(content)}</span>
+                                    </div>
+                                );
+                            }
+
+                            return (
+                                <p key={j} className="text-gray-600 leading-relaxed text-base">
+                                    {boldKeywords(trimmed)}
+                                </p>
+                            );
+                        })}
+                    </div>
+                );
+            })}
+        </div>
+    );
+};
+
+// -------------------------------------------------------------
+// 4. COMPONENTE MODAL DE CONVENIO
 // -------------------------------------------------------------
 const ConvenioModal = ({ convenio, onClose }) => {
+    const [showPhone, setShowPhone] = useState(false);
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+        if (convenio) {
+            setShowPhone(false);
+            setCopied(false);
+        }
+    }, [convenio]);
+
     // Cerrar si presiona ESC
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -505,7 +628,7 @@ const ConvenioModal = ({ convenio, onClose }) => {
 
                         <div className="mb-8">
                             <h3 className="text-lg font-bold text-gray-900 mb-3">Detalle del Convenio</h3>
-                            <p className="text-gray-600 leading-relaxed text-base">{convenio.fullDescription}</p>
+                            <FormatDescription text={convenio.fullDescription} />
                             
                             {convenio.address && (
                                 <div className="mt-4 p-4 bg-gray-50 rounded-xl border border-gray-100 flex items-start">
@@ -522,7 +645,7 @@ const ConvenioModal = ({ convenio, onClose }) => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-auto">
                             {convenio.whatsapp && (
                                 <a 
-                                    href={`https://wa.me/${convenio.whatsapp.replace(/\D/g,'')}`}
+                                    href={convenio.whatsapp.startsWith('http') ? convenio.whatsapp : `https://wa.me/${convenio.whatsapp.replace(/\D/g,'')}`}
                                     target="_blank" rel="noopener noreferrer"
                                     className="flex items-center justify-center py-3 px-4 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
                                 >
@@ -530,12 +653,49 @@ const ConvenioModal = ({ convenio, onClose }) => {
                                 </a>
                             )}
                             {convenio.phone && !convenio.whatsapp && (
-                                <a 
-                                    href={`tel:${convenio.phone.replace(/\D/g,'')}`}
-                                    className="flex items-center justify-center py-3 px-4 bg-gray-800 hover:bg-gray-900 text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer"
+                                <button 
+                                    onClick={(e) => {
+                                        if (!showPhone) {
+                                            setShowPhone(true);
+                                        } else {
+                                            navigator.clipboard.writeText(convenio.phone);
+                                            setCopied(true);
+                                            setTimeout(() => setCopied(false), 2000);
+                                        }
+                                    }}
+                                    className="flex items-center justify-center py-3 px-4 bg-gray-800 hover:bg-gray-900 text-white rounded-xl font-bold transition-colors shadow-sm cursor-pointer overflow-hidden relative"
                                 >
-                                    <Phone className="w-5 h-5 mr-2" /> Llamar
-                                </a>
+                                    <AnimatePresence mode="wait">
+                                        {!showPhone ? (
+                                            <motion.div 
+                                                key="btn-call"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                className="flex items-center"
+                                            >
+                                                <Phone className="w-5 h-5 mr-2" /> Llamar
+                                            </motion.div>
+                                        ) : (
+                                            <motion.div 
+                                                key="btn-number"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0, y: -10 }}
+                                                className="flex items-center text-sm tracking-wider"
+                                            >
+                                                {copied ? (
+                                                    <span className="text-green-400">¡Copiado!</span>
+                                                ) : (
+                                                    <>
+                                                        <Phone className="w-4 h-4 mr-2 opacity-50" />
+                                                        {convenio.phone}
+                                                    </>
+                                                )}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </button>
                             )}
                             {convenio.instagram && (
                                 <a 
