@@ -119,7 +119,7 @@ const CONVENIOS_DATA = [
     {
         id: 4,
         title: "Brow Bar",
-        category: "belleza",
+        category: "gastronomia",
         discount: "15% OFF (Efectivo)",
         description: "Domingos de Bodegón (11am a 16pm).",
         fullDescription: "Domingo de Bodegón. ¡Te esperamos para que disfrutes de nuestros platos! 15% OFF en efectivo para afiliados de AERI. Aclaración: No se cobra servicio de mesa.",
@@ -337,7 +337,7 @@ const CONVENIOS_DATA = [
         category: "gastronomia",
         discount: "15% OFF",
         description: "Válido para el afiliado y un acompañante.",
-        fullDescription: "15% de descuento para el afiliado/a y UN acompañante. Válido por pago en efectivo o Cuenta DNI presentando DNI o carnet de afiliado.",
+        fullDescription: "15% de descuento para el afiliado/a y UN acompañante. Válido por pago en efectivo o Cuenta DNI presentando DNI y carnet de afiliado.",
         location: "La Plata",
         address: "Av. 13 esquina 42",
         image: imgPortofino
