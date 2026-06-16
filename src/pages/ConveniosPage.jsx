@@ -41,6 +41,7 @@ import imgBelleDeco from '../assets/convenios/belle_deco.webp';
 import imgCoquitos from '../assets/convenios/cosquitos.webp';
 import imgLaBianca from '../assets/convenios/la_bianca.webp';
 import imgVuCosmiatria from '../assets/convenios/vu.webp';
+import imgSantoDomingo from '../assets/convenios/santo_domingo.webp';
 
 // -------------------------------------------------------------
 // 1. CATEGORIAS Y MAPEO DE ICONOS
@@ -458,6 +459,19 @@ const CONVENIOS_DATA = [
         address: "Calle 10 N° 416 entre 40 y 41",
         phone: "02214215249",
         image: imgPanaderia
+    },
+    {
+        id: 33,
+        title: "Estancia Santo Domingo",
+        category: "gastronomia",
+        discount: "10% OFF",
+        description: "Descuento abonando en efectivo (martes a jueves).",
+        fullDescription: "Parrilla Argentina, Asador y Bodega de vinos argentinos.\n\nBeneficio exclusivo para afiliados: 10% de descuento abonando en efectivo los días martes, miércoles y jueves.\n\nAclaración: No acumulable con otras promociones.",
+        location: "La Plata",
+        address: "Avenida 13 esq 61",
+        whatsapp: "5492216123614",
+        instagram: "parrillasantodomingo",
+        image: imgSantoDomingo
     }
 ];
 
