@@ -20,6 +20,7 @@ import ScrollToTop from './components/utils/ScrollToTop';
 import AfiliacionesPage from './pages/AfiliacionesPage';
 import ConveniosPage from './pages/ConveniosPage';
 import AuthPage from './pages/auth/AuthPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 import { useAuth, AuthProvider } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -113,7 +114,10 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          {/* Authentication & Account Recovery */}
           <Route path="/login" element={<AuthPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
           <Route path="*" element={<div className="p-20 text-center text-gray-500">Página no encontrada (404)</div>} />
 
         </Routes>
