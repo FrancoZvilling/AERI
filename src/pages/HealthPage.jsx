@@ -1,8 +1,29 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ChevronDown, ChevronUp, MapPin, Phone, Info, Glasses, ShieldCheck, FileCheck, ArrowDown, AlertTriangle } from 'lucide-react';
-import { medicalServices, pharmacies, optics, safetyData } from '../data/healthData';
+import { Search, ChevronDown, ChevronUp, MapPin, Phone, Info, ShieldCheck, FileCheck, ArrowDown, AlertTriangle, Loader2 } from 'lucide-react';
+import { Stethoscope, FlaskConical, Activity, Ear, Smile, SmilePlus, Glasses, Eye, ScanEye, Microscope, Baby, ActivitySquare, Bed, Pill, Syringe, HeartPulse } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import { pharmacies, optics, safetyData } from '../data/healthData';
+
+const ICON_MAP = {
+    "Estetoscopio": Stethoscope,
+    "Matraz": FlaskConical,
+    "Pulso": Activity,
+    "Oreja": Ear,
+    "Cara Feliz": Smile,
+    "Cara Feliz Plus": SmilePlus,
+    "Anteojos": Glasses,
+    "Ojo": Eye,
+    "Escaneo de Ojo": ScanEye,
+    "Microscopio": Microscope,
+    "Bebé": Baby,
+    "Pulso Cuadrado": ActivitySquare,
+    "Cama": Bed,
+    "Pastilla": Pill,
+    "Jeringa": Syringe,
+    "Corazón": HeartPulse
+};
 
 const HealthPage = () => {
     const [activeTab, setActiveTab] = useState('services'); // 'services', 'pharmacies', 'optics'
@@ -10,7 +31,36 @@ const HealthPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [safetyExpanded, setSafetyExpanded] = useState(null); // 'definitions', 'rights', 'legislation'
 
+    const [prestaciones, setPrestaciones] = useState([]);
+    const [isLoadingPrestaciones, setIsLoadingPrestaciones] = useState(true);
+
     const safetyRef = useRef(null);
+
+    useEffect(() => {
+        const fetchPrestaciones = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestaciones`);
+                const json = await response.json();
+                
+                // Transform Strapi response
+                const formatted = json.data.map(item => ({
+                    id: item.id,
+                    title: item.attributes.titulo,
+                    iconName: item.attributes.icono,
+                    cobertura: item.attributes.cobertura,
+                    requisitos: item.attributes.requisitos
+                }));
+
+                setPrestaciones(formatted);
+            } catch (error) {
+                console.error("Error fetching prestaciones:", error);
+            } finally {
+                setIsLoadingPrestaciones(false);
+            }
+        };
+
+        fetchPrestaciones();
+    }, []);
 
     const toggleService = (id) => {
         setOpenServiceId(openServiceId === id ? null : id);
@@ -100,76 +150,97 @@ const HealthPage = () => {
                                 </div>
                             </div>
 
-                            {medicalServices.map((service) => {
-                                const Icon = service.icon;
-                                const isOpen = openServiceId === service.id;
+                            {isLoadingPrestaciones ? (
+                                <div className="flex justify-center items-center py-12">
+                                    <Loader2 className="w-8 h-8 text-[#39c3ef] animate-spin" />
+                                    <span className="ml-3 text-gray-500 font-medium">Cargando prestaciones...</span>
+                                </div>
+                            ) : (
+                                prestaciones.map((service) => {
+                                    const Icon = ICON_MAP[service.iconName] || Activity;
+                                    const isOpen = openServiceId === service.id;
+                                    const hasRequirements = service.requisitos && service.requisitos.trim().length > 0;
 
-                                return (
-                                    <div key={service.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-                                        <button
-                                            onClick={() => toggleService(service.id)}
-                                            className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors text-left"
-                                        >
-                                            <div className="flex items-center space-x-4">
-                                                <div className={`p-3 rounded-full ${isOpen ? 'bg-[#39c3ef] text-white' : 'bg-gray-100 text-gray-500'} transition-colors`}>
-                                                    <Icon className="w-6 h-6" />
-                                                </div>
-                                                <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
-                                            </div>
-                                            {isOpen ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
-                                        </button>
-
-                                        <AnimatePresence>
-                                            {isOpen && (
-                                                <motion.div
-                                                    initial={{ height: 0, opacity: 0 }}
-                                                    animate={{ height: 'auto', opacity: 1 }}
-                                                    exit={{ height: 0, opacity: 0 }}
-                                                    className="border-t border-gray-100 bg-gray-50/50"
-                                                >
-                                                    <div className="p-6 grid grid-cols-1 gap-8">
-
-                                                        {/* AERI + Requirements */}
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                                            {service.aeri.length > 0 && (
-                                                                <div className="bg-[#39c3ef]/10 p-6 rounded-xl border border-[#39c3ef]/20">
-                                                                    <h4 className="font-bold text-[#39c3ef] mb-3 uppercase tracking-wider text-sm border-b border-[#39c3ef]/30 pb-2">Cobertura AERI</h4>
-                                                                    <ul className="space-y-2">
-                                                                        {service.aeri.map((item, idx) => (
-                                                                            <li key={idx} className="flex items-start text-gray-700 text-sm">
-                                                                                <div className="w-1.5 h-1.5 bg-[#39c3ef] rounded-full mt-1.5 mr-2 flex-shrink-0" />
-                                                                                {item}
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            )}
-
-                                                            {service.requirements.length > 0 && (
-                                                                <div className="p-4 rounded-xl border border-gray-200 bg-white shadow-sm">
-                                                                    <h4 className="font-bold text-gray-800 mb-3 flex items-center text-sm uppercase tracking-wider">
-                                                                        <FileCheck className="w-4 h-4 mr-2 text-[#39c3ef]" />
-                                                                        Requisitos de Trámite
-                                                                    </h4>
-                                                                    <ul className="space-y-1">
-                                                                        {service.requirements.map((req, idx) => (
-                                                                            <li key={idx} className="text-gray-600 text-sm pl-6 relative">
-                                                                                <span className="absolute left-0 text-[#39c3ef]">•</span>
-                                                                                {req}
-                                                                            </li>
-                                                                        ))}
-                                                                    </ul>
-                                                                </div>
-                                                            )}
-                                                        </div>
-
+                                    return (
+                                        <div key={service.id} className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                                            <button
+                                                onClick={() => toggleService(service.id)}
+                                                className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors text-left"
+                                            >
+                                                <div className="flex items-center space-x-4">
+                                                    <div className={`p-3 rounded-full ${isOpen ? 'bg-[#39c3ef] text-white' : 'bg-gray-100 text-gray-500'} transition-colors`}>
+                                                        <Icon className="w-6 h-6" />
                                                     </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
-                                    </div>
-                                );
-                            })}
+                                                    <h3 className="text-xl font-bold text-gray-800">{service.title}</h3>
+                                                </div>
+                                                {isOpen ? <ChevronUp className="w-5 h-5 text-gray-400" /> : <ChevronDown className="w-5 h-5 text-gray-400" />}
+                                            </button>
+
+                                            <AnimatePresence>
+                                                {isOpen && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        className="border-t border-gray-100 bg-gray-50/50"
+                                                    >
+                                                        <div className="p-6">
+                                                            {/* AERI + Requirements */}
+                                                            <div className={`grid grid-cols-1 ${hasRequirements ? 'md:grid-cols-2' : ''} gap-8`}>
+                                                                
+                                                                {service.cobertura && (
+                                                                    <div className="bg-[#39c3ef]/10 p-6 rounded-xl border border-[#39c3ef]/20">
+                                                                        <h4 className="font-bold text-[#39c3ef] mb-3 uppercase tracking-wider text-sm border-b border-[#39c3ef]/30 pb-2">Cobertura AERI</h4>
+                                                                        <div className="text-gray-700 text-sm">
+                                                                            <ReactMarkdown
+                                                                                components={{
+                                                                                    ul: ({node, ...props}) => <ul className="space-y-2" {...props} />,
+                                                                                    li: ({node, ...props}) => (
+                                                                                        <li className="flex items-start">
+                                                                                            <div className="w-1.5 h-1.5 bg-[#39c3ef] rounded-full mt-1.5 mr-2 flex-shrink-0" />
+                                                                                            <span>{props.children}</span>
+                                                                                        </li>
+                                                                                    )
+                                                                                }}
+                                                                            >
+                                                                                {service.cobertura}
+                                                                            </ReactMarkdown>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+
+                                                                {hasRequirements && (
+                                                                    <div className="p-6 rounded-xl border border-gray-200 bg-white shadow-sm">
+                                                                        <h4 className="font-bold text-gray-800 mb-3 flex items-center text-sm uppercase tracking-wider border-b border-gray-100 pb-2">
+                                                                            <FileCheck className="w-4 h-4 mr-2 text-[#39c3ef]" />
+                                                                            Requisitos de Trámite
+                                                                        </h4>
+                                                                        <div className="text-gray-600 text-sm">
+                                                                            <ReactMarkdown
+                                                                                components={{
+                                                                                    ul: ({node, ...props}) => <ul className="space-y-1" {...props} />,
+                                                                                    li: ({node, ...props}) => (
+                                                                                        <li className="pl-4 relative mb-1">
+                                                                                            <span className="absolute left-0 text-[#39c3ef]">•</span>
+                                                                                            {props.children}
+                                                                                        </li>
+                                                                                    )
+                                                                                }}
+                                                                            >
+                                                                                {service.requisitos}
+                                                                            </ReactMarkdown>
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    );
+                                })
+                            )}
                         </div>
                     )}
 
