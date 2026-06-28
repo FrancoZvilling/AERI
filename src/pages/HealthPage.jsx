@@ -43,13 +43,17 @@ const HealthPage = () => {
                 const json = await response.json();
                 
                 // Transform Strapi response
-                const formatted = json.data.map(item => ({
-                    id: item.id,
-                    title: item.attributes.titulo,
-                    iconName: item.attributes.icono,
-                    cobertura: item.attributes.cobertura,
-                    requisitos: item.attributes.requisitos
-                }));
+                const formatted = json.data.map(item => {
+                    // Strapi v4 usa item.attributes, Strapi v5 o flattened lo pone directo en item
+                    const attrs = item.attributes || item;
+                    return {
+                        id: item.id || item.documentId,
+                        title: attrs.titulo,
+                        iconName: attrs.icono,
+                        cobertura: attrs.cobertura,
+                        requisitos: attrs.requisitos
+                    };
+                });
 
                 setPrestaciones(formatted);
             } catch (error) {
