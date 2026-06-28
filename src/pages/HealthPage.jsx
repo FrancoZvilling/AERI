@@ -53,7 +53,7 @@ const HealthPage = () => {
                         cobertura: attrs.cobertura,
                         requisitos: attrs.requisitos
                     };
-                });
+                }).sort((a, b) => a.title.localeCompare(b.title));
 
                 setPrestaciones(formatted);
             } catch (error) {
