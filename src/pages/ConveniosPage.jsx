@@ -77,9 +77,9 @@ const imgMap = {
 };
 
 // -------------------------------------------------------------
-// 2. DATA COMPLETA (31 Convenios)
+// 2. DATA COMPLETA (Obsoleta, ahora viene de Strapi)
 // -------------------------------------------------------------
-const CONVENIOS_DATA = [
+/* const CONVENIOS_DATA = [
     {
         id: 1,
         title: "SOSBA",
@@ -122,8 +122,8 @@ const CONVENIOS_DATA = [
         title: "Brow Bar",
         category: "gastronomia",
         discount: "15% OFF (Efectivo)",
-        description: "Domingos de Bodegón (11am a 16pm).",
-        fullDescription: "Domingo de Bodegón. ¡Te esperamos para que disfrutes de nuestros platos! 15% OFF en efectivo para afiliados de AERI. Aclaración: No se cobra servicio de mesa.",
+        description: "Descuento en efectivo todos los días.",
+        fullDescription: "¡Te esperamos para que disfrutes de nuestros platos todos los días! 15% OFF en efectivo para afiliados de AERI. Aclaración: No se cobra servicio de mesa.",
         location: "La Plata",
         address: "Calle 61 e/ 12 y 13",
         whatsapp: "5492213076127",
@@ -473,7 +473,7 @@ const CONVENIOS_DATA = [
         instagram: "parrillasantodomingo",
         image: imgSantoDomingo
     }
-];
+]; */
 
 // -------------------------------------------------------------
 // 3. COMPONENTE DE FORMATO VISUAL PARA DESCRIPCIONES
@@ -751,12 +751,61 @@ const ConvenioModal = ({ convenio, onClose }) => {
 const ConveniosPage = () => {
     const [activeCategory, setActiveCategory] = useState('todos');
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedConvenio, setSelectedConvenio] = useState(null); // Estado para el modal
+    const [selectedConvenio, setSelectedConvenio] = useState(null);
+    const [conveniosData, setConveniosData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    const filteredConvenios = CONVENIOS_DATA.filter(convenio => {
+    useEffect(() => {
+        const fetchConvenios = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/convenios?populate=*`);
+                const json = await response.json();
+                
+                const formatted = json.data.map(item => {
+                    const attrs = item.attributes || item;
+                    
+                    // Manejar imagen
+                    let imageUrl = imgMap[attrs.categoria] || imgMap['compras'];
+                    if (attrs.imagen?.data?.attributes?.url) {
+                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen.data.attributes.url}`;
+                    } else if (attrs.imagen?.[0]?.url) {
+                        // Strapi v5 o flattened
+                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen[0].url}`;
+                    } else if (attrs.imagen?.url) {
+                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen.url}`;
+                    }
+
+                    return {
+                        id: item.id || item.documentId,
+                        title: attrs.titulo,
+                        category: attrs.categoria,
+                        discount: attrs.descuento,
+                        description: attrs.descripcion_corta,
+                        fullDescription: attrs.descripcion_completa,
+                        location: attrs.ubicacion,
+                        address: attrs.direccion,
+                        phone: attrs.whatsapp, // Usamos whatsapp como telefono si no hay otro
+                        whatsapp: attrs.whatsapp,
+                        instagram: attrs.instagram,
+                        image: imageUrl
+                    };
+                }).sort((a, b) => a.title.localeCompare(b.title));
+
+                setConveniosData(formatted);
+            } catch (error) {
+                console.error("Error fetching convenios:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchConvenios();
+    }, []);
+
+    const filteredConvenios = conveniosData.filter(convenio => {
         const matchesCategory = activeCategory === 'todos' || convenio.category === activeCategory;
         const matchesSearch = convenio.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                              convenio.description.toLowerCase().includes(searchTerm.toLowerCase());
+                              convenio.description?.toLowerCase().includes(searchTerm.toLowerCase());
         return matchesCategory && matchesSearch;
     });
 
