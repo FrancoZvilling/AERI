@@ -764,15 +764,14 @@ const ConveniosPage = () => {
                 const formatted = json.data.map(item => {
                     const attrs = item.attributes || item;
                     
-                    // Manejar imagen
+                    // Manejar imagen inteligentemente (local vs Cloudinary/S3)
                     let imageUrl = imgMap[attrs.categoria] || imgMap['compras'];
-                    if (attrs.imagen?.data?.attributes?.url) {
-                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen.data.attributes.url}`;
-                    } else if (attrs.imagen?.[0]?.url) {
-                        // Strapi v5 o flattened
-                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen[0].url}`;
-                    } else if (attrs.imagen?.url) {
-                        imageUrl = `${import.meta.env.VITE_API_URL}${attrs.imagen.url}`;
+                    const imgData = attrs.imagen?.data?.attributes || attrs.imagen?.[0] || attrs.imagen;
+                    
+                    if (imgData?.url) {
+                        imageUrl = imgData.url.startsWith('http') 
+                            ? imgData.url 
+                            : `${import.meta.env.VITE_API_URL}${imgData.url}`;
                     }
 
                     return {
