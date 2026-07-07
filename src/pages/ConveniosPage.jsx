@@ -758,7 +758,7 @@ const ConveniosPage = () => {
     useEffect(() => {
         const fetchConvenios = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/convenios?populate=*`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/convenios?populate=*&pagination[pageSize]=100`);
                 const json = await response.json();
                 
                 const formatted = json.data.map(item => {

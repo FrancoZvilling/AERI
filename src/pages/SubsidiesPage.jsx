@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/ui/HeroSection';
 import { motion } from 'framer-motion';
 import {
@@ -11,77 +11,68 @@ import {
     ShieldCheck,
     Phone,
     Ambulance,
-    Calendar
+    Calendar,
+    Star,
+    HeartPulse
 } from 'lucide-react';
 
+const iconMap = {
+    Matrimonio: HeartHandshake,
+    Nacimiento: Baby,
+    Adopcion: ShieldCheck,
+    Fallecimiento: HeartCrack,
+    Anteojos: Glasses,
+    Laboratorio: TestTube,
+    PracticasMedicas: Stethoscope,
+    Estrella: Star,
+    Salud: HeartPulse,
+    Ambulancia: Ambulance
+};
+
+const colorMap = {
+    rose: { color: "text-rose-500", bg: "bg-rose-50" },
+    blue: { color: "text-blue-500", bg: "bg-blue-50" },
+    indigo: { color: "text-indigo-500", bg: "bg-indigo-50" },
+    gray: { color: "text-gray-500", bg: "bg-gray-50" },
+    teal: { color: "text-teal-500", bg: "bg-teal-50" },
+    purple: { color: "text-purple-500", bg: "bg-purple-50" },
+    green: { color: "text-green-600", bg: "bg-green-50" },
+    orange: { color: "text-orange-500", bg: "bg-orange-50" }
+};
+
 const SubsidiesPage = () => {
-    const subsidies = [
-        {
-            id: 1,
-            title: "Matrimonio",
-            amount: "$50.000",
-            description: "Subsidio único por enlace matrimonial.",
-            icon: HeartHandshake,
-            color: "text-rose-500",
-            bg: "bg-rose-50"
-        },
-        {
-            id: 2,
-            title: "Nacimiento",
-            amount: "$50.000",
-            description: "Por nacimiento de hijo/a. Incluye ajuar completo.",
-            icon: Baby,
-            color: "text-blue-500",
-            bg: "bg-blue-50"
-        },
-        {
-            id: 3,
-            title: "Adopción",
-            amount: "$50.000",
-            description: "Ayuda económica por adopción legal.",
-            icon: ShieldCheck, // Using ShieldCheck as a symbol of protection/family integration
-            color: "text-indigo-500",
-            bg: "bg-indigo-50"
-        },
-        {
-            id: 4,
-            title: "Fallecimiento",
-            amount: "$100.000",
-            description: "Subsidio de contención familiar.",
-            icon: HeartCrack,
-            color: "text-gray-500",
-            bg: "bg-gray-50"
-        },
-        {
-            id: 5,
-            title: "Anteojos Recetados",
-            amount: "$50.000",
-            limit: "x par (2/año)",
-            description: "Cobertura en cristales y armazones.",
-            icon: Glasses,
-            color: "text-teal-500",
-            bg: "bg-teal-50"
-        },
-        {
-            id: 6,
-            title: "Bono de Laboratorio",
-            amount: "$2.000",
-            description: "Cobertura para análisis clínicos.",
-            icon: TestTube,
-            color: "text-purple-500",
-            bg: "bg-purple-50"
-        },
-        {
-            id: 7,
-            title: "Prácticas Médicas",
-            amount: "$5.000",
-            limit: "por práctica",
-            description: "Reintegro en prácticas especializadas.",
-            icon: Stethoscope,
-            color: "text-green-600",
-            bg: "bg-green-50"
-        }
-    ];
+    const [subsidies, setSubsidies] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSubsidies = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/subsidios?pagination[pageSize]=100`);
+                const json = await response.json();
+                
+                const formatted = json.data.map(item => {
+                    const attrs = item.attributes || item;
+                    return {
+                        id: item.id || item.documentId,
+                        title: attrs.titulo,
+                        amount: attrs.precio,
+                        limit: attrs.detalle,
+                        description: attrs.descripcion_corta,
+                        icon: iconMap[attrs.icono] || Star,
+                        ...colorMap[attrs.color] || colorMap.blue
+                    };
+                });
+
+                setSubsidies(formatted);
+            } catch (error) {
+                console.error("Error fetching subsidios:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchSubsidies();
+    }, []);
 
     const categories = [
         { title: "Mejores Servicios", text: "Amplia cobertura médica y un variado menú de servicios para nuestros afiliados." },

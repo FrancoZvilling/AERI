@@ -39,7 +39,7 @@ const HealthPage = () => {
     useEffect(() => {
         const fetchPrestaciones = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestaciones`);
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestaciones?pagination[pageSize]=100`);
                 const json = await response.json();
                 
                 // Transform Strapi response
