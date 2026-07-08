@@ -952,10 +952,10 @@ const ConveniosPage = () => {
                         <Building2 className="w-16 h-16 text-[#00a0e1] mb-6" />
                         <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">¿Tenés un comercio y querés sumarte a la red AERI?</h3>
                         <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                            Buscamos constantemente expandir nuestros beneficios. Si querés proponer un convenio o sumar tu comercio, ponete en contacto con nuestra Secretaría de Acción Social.
+                            Buscamos constantemente expandir nuestros beneficios. Si querés proponer un convenio o sumar tu comercio, ponete en contacto con nuestra Secretaría de Organización.
                         </p>
                         <a 
-                            href="mailto:accionsocial@aeri.org.ar" 
+                            href="mailto:secretaria.organizacion@aeri.org.ar" 
                             className="bg-[#00a0e1] hover:bg-[#39c3ef] text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-[#00a0e1]/50 flex items-center group cursor-pointer"
                         >
                             <ExternalLink className="w-5 h-5 mr-3 group-hover:translate-x-1 transition-transform" />
