@@ -4,6 +4,7 @@ import { Calendar, ArrowRight, ImageOff } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { extractStrapiImage } from '../../utils/strapi';
+import FlyerModal from './FlyerModal';
 
 const NewsCard = ({ noticia }) => {
     // 1. Resolve attributes (Strapi v4 vs v5 vs Flat object)
@@ -25,6 +26,10 @@ const NewsCard = ({ noticia }) => {
         extractStrapiImage(attributes.foto_backup_url) ||
         extractStrapiImage(attributes.image_url);
     const isExternal = attributes.isExternal;
+    const isFlyer = attributes.es_flayer === true;
+
+    // Estado para el modal del Flyer
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
 
     // 3. Helpers
     const formatDate = (dateString) => {
@@ -54,6 +59,55 @@ const NewsCard = ({ noticia }) => {
     // and handle the link via the "Read More" button or wrapping the whole card if preferred.
     // The previous design wrapped the whole card. Let's stick to that.
     const Wrapper = isExternal ? 'a' : Link;
+
+    if (isFlyer) {
+        return (
+            <>
+                <div 
+                    onClick={() => setIsModalOpen(true)}
+                    className="group relative h-full w-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col border border-[#004080] cursor-pointer"
+                >
+                    <div className="w-full h-full relative bg-gray-100 flex-shrink-0">
+                        {imageSrc ? (
+                            <img
+                                src={imageSrc}
+                                alt={title || "Flyer"}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop";
+                                }}
+                            />
+                        ) : (
+                            <div className="w-full h-full flex items-center justify-center text-gray-400 min-h-[250px]">
+                                <ImageOff className="w-12 h-12" />
+                            </div>
+                        )}
+                        
+                        {/* Indicador visual de hover (Ampliar) */}
+                        <div className="absolute inset-0 bg-[#004080]/0 group-hover:bg-[#004080]/30 transition-colors duration-300 flex items-center justify-center">
+                            <span className="bg-white text-[#004080] font-bold px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0 shadow-lg flex items-center">
+                                Ampliar <ArrowRight className="w-4 h-4 ml-2" />
+                            </span>
+                        </div>
+
+                        {category && (
+                            <div className="absolute top-4 left-4 bg-[#023e73] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md z-10 pointer-events-none">
+                                {category}
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                <FlyerModal 
+                    isOpen={isModalOpen} 
+                    onClose={() => setIsModalOpen(false)} 
+                    imageSrc={imageSrc} 
+                    title={title} 
+                />
+            </>
+        );
+    }
 
     return (
         <Wrapper
