@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { X, ZoomIn, ZoomOut } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
@@ -12,7 +13,7 @@ const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
 
-    return (
+    const modalContent = (
         <AnimatePresence>
             {isOpen && (
                 <motion.div
@@ -52,6 +53,8 @@ const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
             )}
         </AnimatePresence>
     );
+
+    return createPortal(modalContent, document.body);
 };
 
 export default FlyerModal;
