@@ -3,10 +3,6 @@ import { X, ZoomIn, ZoomOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
-    const [isZoomed, setIsZoomed] = useState(false);
-    const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-    const imgRef = useRef(null);
-
     // Cerrar con tecla Escape
     useEffect(() => {
         const handleEsc = (e) => {
@@ -16,22 +12,6 @@ const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
 
-    // Reseteamos el zoom al cerrar
-    useEffect(() => {
-        if (!isOpen) {
-            setIsZoomed(false);
-        }
-    }, [isOpen]);
-
-    const handleMouseMove = (e) => {
-        // Solo aplicar el zoom exacto si estamos haciendo hover y no estamos en táctil puro
-        if (!imgRef.current) return;
-        const { left, top, width, height } = imgRef.current.getBoundingClientRect();
-        const x = ((e.clientX - left) / width) * 100;
-        const y = ((e.clientY - top) / height) * 100;
-        setMousePos({ x, y });
-    };
-
     return (
         <AnimatePresence>
             {isOpen && (
@@ -39,7 +19,7 @@ const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-2 sm:p-8"
+                    className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 backdrop-blur-md p-2 sm:p-8"
                     onClick={onClose} // Clic afuera cierra
                 >
                     <div 
@@ -57,32 +37,15 @@ const FlyerModal = ({ isOpen, onClose, imageSrc, title }) => {
 
                         {/* Contenedor Interactivo */}
                         <div 
-                            className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden cursor-zoom-in group select-none"
-                            onMouseMove={handleMouseMove}
-                            onMouseEnter={() => setIsZoomed(true)}
-                            onMouseLeave={() => setIsZoomed(false)}
-                            onClick={() => setIsZoomed(!isZoomed)}
+                            className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden select-none"
                         >
-                            {/* La Imagen con efecto lupa */}
+                            {/* La Imagen */}
                             <img 
-                                ref={imgRef}
                                 src={imageSrc} 
                                 alt={title || "Flyer ampliado"}
-                                className="w-full h-full object-contain transition-transform duration-300 ease-out"
-                                style={{
-                                    transformOrigin: `${mousePos.x}% ${mousePos.y}%`,
-                                    transform: isZoomed ? 'scale(2.5)' : 'scale(1)'
-                                }}
+                                className="w-full h-full object-contain"
                                 draggable={false}
                             />
-
-                            {/* Indicador Flotante (solo para que se entienda la acción) */}
-                            <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center space-x-2 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
-                                {isZoomed ? <ZoomOut className="w-5 h-5" /> : <ZoomIn className="w-5 h-5" />}
-                                <span className="text-sm font-medium hidden sm:inline">
-                                    {isZoomed ? 'Quitar Lupa' : 'Lupa Activa'}
-                                </span>
-                            </div>
                         </div>
                     </div>
                 </motion.div>
