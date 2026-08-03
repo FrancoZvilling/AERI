@@ -21,6 +21,7 @@ import AfiliacionesPage from './pages/AfiliacionesPage';
 import ConveniosPage from './pages/ConveniosPage';
 import AuthPage from './pages/auth/AuthPage';
 import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import InstallAppPage from './pages/InstallAppPage';
 import { useAuth, AuthProvider } from './context/AuthContext';
 import { Navigate } from 'react-router-dom';
 
@@ -42,6 +43,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/afiliaciones" element={<AfiliacionesPage />} />
             <Route path="/convenios" element={<ConveniosPage />} />
+            <Route path="/instalar-app" element={<InstallAppPage />} />
             
             {/* Nueva página dedicada a Subsidios */}
             <Route path="/subsidios" element={<SubsidiesPage />} />

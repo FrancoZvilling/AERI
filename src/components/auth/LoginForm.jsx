@@ -97,7 +97,7 @@ const LoginForm = () => {
                 throw new Error(data.error?.message || 'Error al solicitar la recuperación. Verificá que el correo sea correcto.');
             }
 
-            setSuccessMessage('¡Listo! Te enviamos un correo con un enlace para restablecer tu contraseña. Revisá tu bandeja de entrada o spam.');
+            setSuccessMessage('Si tu correo electrónico está registrado en nuestro sistema, en los próximos minutos recibirás un enlace para restablecer tu contraseña. Si no lo recibís, verificá que estés usando el mismo correo con el que te afiliaste.');
             setForgotEmail('');
         } catch (err) {
             console.error('Forgot password error:', err);

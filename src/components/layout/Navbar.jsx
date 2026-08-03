@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronDown, User, Calendar, Newspaper, LogOut } from 'lucide-react';
+import { Menu, X, ChevronDown, User, Calendar, Newspaper, LogOut, LogIn, Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../../context/AuthContext';
 
@@ -105,13 +105,29 @@ const Navbar = () => {
                     <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
                         {isAuthenticated ? (
                             <div className="flex items-center space-x-3">
-                                <Link
-                                    to="/mi-aeri"
-                                    className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center space-x-2 whitespace-nowrap"
-                                >
-                                    <User className="w-4 h-4" />
-                                    <span>Mi Panel</span>
-                                </Link>
+                                <div className="relative group cursor-pointer whitespace-nowrap z-50">
+                                    <div className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg space-x-2">
+                                        <User className="w-4 h-4" />
+                                        <span>Mi AERI</span>
+                                    </div>
+                                    
+                                    <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-2xl p-2 border-t-4 border-[#39c3ef] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform origin-top-right">
+                                        <div className="flex flex-col space-y-1">
+                                            <Link to="/mi-aeri" className="group px-3 py-3 text-gray-700 hover:bg-blue-50 rounded-lg transition-all flex items-center">
+                                                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 group-hover:bg-[#39c3ef] transition-colors">
+                                                    <User className="w-4 h-4 text-[#002855] group-hover:text-white" />
+                                                </div>
+                                                <span className="font-bold text-sm group-hover:text-[#002855]">Ir a mi Panel</span>
+                                            </Link>
+                                            <Link to="/instalar-app" className="group px-3 py-3 text-gray-700 hover:bg-blue-50 rounded-lg transition-all flex items-center">
+                                                <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 group-hover:bg-[#39c3ef] transition-colors">
+                                                    <Smartphone className="w-4 h-4 text-[#002855] group-hover:text-white" />
+                                                </div>
+                                                <span className="font-bold text-sm group-hover:text-[#002855]">¿Cómo instalar APP?</span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
                                 <button
                                     onClick={handleLogout}
                                     className="text-red-400 hover:text-red-500 hover:bg-red-50/10 px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center"
@@ -121,13 +137,29 @@ const Navbar = () => {
                                 </button>
                             </div>
                         ) : (
-                            <Link
-                                to="/login"
-                                className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2 shadow-sm whitespace-nowrap"
-                            >
-                                <User className="w-4 h-4" />
-                                <span>Mi AERI</span>
-                            </Link>
+                            <div className="relative group cursor-pointer whitespace-nowrap z-50">
+                                <div className="bg-[#39c3ef] hover:bg-[#39c3ef]/80 text-[#002855] px-3 lg:px-4 py-2 rounded-lg text-sm font-bold transition-colors flex items-center shadow-md hover:shadow-lg space-x-2">
+                                    <User className="w-4 h-4" />
+                                    <span>Mi AERI</span>
+                                </div>
+                                
+                                <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-2xl p-2 border-t-4 border-[#39c3ef] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 transform origin-top-right">
+                                    <div className="flex flex-col space-y-1">
+                                        <Link to="/login" className="group px-3 py-3 text-gray-700 hover:bg-blue-50 rounded-lg transition-all flex items-center">
+                                            <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 group-hover:bg-[#39c3ef] transition-colors">
+                                                <LogIn className="w-4 h-4 text-[#002855] group-hover:text-white" />
+                                            </div>
+                                            <span className="font-bold text-sm group-hover:text-[#002855]">Iniciar Sesión</span>
+                                        </Link>
+                                        <Link to="/instalar-app" className="group px-3 py-3 text-gray-700 hover:bg-blue-50 rounded-lg transition-all flex items-center">
+                                            <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center mr-3 group-hover:bg-[#39c3ef] transition-colors">
+                                                <Smartphone className="w-4 h-4 text-[#002855] group-hover:text-white" />
+                                            </div>
+                                            <span className="font-bold text-sm group-hover:text-[#002855]">¿Cómo instalar APP?</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         )}
 
                         {/* IE Emergencias Dropdown */}
@@ -289,37 +321,42 @@ const Navbar = () => {
                                 <span>Noticias</span>
                             </Link>
 
-                            {isAuthenticated ? (
-                                <div className="mt-4 space-y-2">
-                                    <Link
-                                        to="/mi-aeri"
-                                        className="w-full text-left px-3 py-2 rounded-md text-base font-bold bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 flex items-center space-x-2 shadow-sm"
-                                        onClick={toggleMenu}
-                                    >
-                                        <User className="w-5 h-5" />
-                                        <span>Ir a mi Panel</span>
-                                    </Link>
-                                    <button
-                                        onClick={() => {
-                                            handleLogout();
-                                            toggleMenu();
-                                        }}
-                                        className="w-full text-left px-3 py-2 rounded-md text-sm font-medium text-red-200 hover:text-red-100 hover:bg-red-900/30 flex items-center space-x-2 transition-colors"
-                                    >
-                                        <LogOut className="w-4 h-4" />
-                                        <span>Cerrar Sesión</span>
-                                    </button>
+                            {/* Mobile Mi AERI Section */}
+                            <div className="mt-4 bg-blue-50/50 p-4 rounded-xl border border-blue-100 shadow-sm mx-1 mb-4">
+                                <div className="text-[#002855] font-black text-center mb-4 text-sm uppercase tracking-wider">
+                                    Mi AERI
                                 </div>
-                            ) : (
-                                <Link
-                                    to="/login"
-                                    className="block w-full text-left px-3 py-2 rounded-md text-base font-medium bg-[#39c3ef] text-[#002855] hover:bg-[#39c3ef]/80 mt-4 flex items-center space-x-2 shadow-sm"
-                                    onClick={toggleMenu}
-                                >
-                                    <User className="w-5 h-5" />
-                                    <span>Mi AERI</span>
-                                </Link>
-                            )}
+                                <div className="space-y-3">
+                                    {isAuthenticated ? (
+                                        <>
+                                            <Link to="/mi-aeri" onClick={toggleMenu} className="flex items-center justify-center bg-[#39c3ef] text-[#002855] font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-[#39c3ef]/80 transition-colors">
+                                                <User className="w-4 h-4 mr-2" /> Ir a mi Panel
+                                            </Link>
+                                            <Link to="/instalar-app" onClick={toggleMenu} className="flex items-center justify-center bg-white border-2 border-[#39c3ef] text-[#002855] font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-50 transition-colors">
+                                                <Smartphone className="w-4 h-4 mr-2" /> ¿Cómo instalar APP?
+                                            </Link>
+                                            <button
+                                                onClick={() => {
+                                                    handleLogout();
+                                                    toggleMenu();
+                                                }}
+                                                className="w-full flex items-center justify-center bg-white border-2 border-red-200 text-red-600 font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-red-50 transition-colors mt-4"
+                                            >
+                                                <LogOut className="w-4 h-4 mr-2" /> Cerrar Sesión
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Link to="/login" onClick={toggleMenu} className="flex items-center justify-center bg-[#39c3ef] text-[#002855] font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-[#39c3ef]/80 transition-colors">
+                                                <LogIn className="w-4 h-4 mr-2" /> Iniciar Sesión
+                                            </Link>
+                                            <Link to="/instalar-app" onClick={toggleMenu} className="flex items-center justify-center bg-white border-2 border-[#39c3ef] text-[#002855] font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-50 transition-colors">
+                                                <Smartphone className="w-4 h-4 mr-2" /> ¿Cómo instalar APP?
+                                            </Link>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
 
                             {/* Mobile Emergencias Section */}
                             <div className="mt-6 bg-red-50 p-4 rounded-xl border border-red-100 shadow-sm mx-1 mb-4">
