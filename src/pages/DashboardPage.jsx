@@ -319,7 +319,7 @@ END:VCARD`;
                                 <div className="flex border-b border-gray-100 overflow-x-auto">
                                     {[
                                         { id: 'resumen', icon: User, label: 'Mis Datos' },
-                                        { id: 'vouchers', icon: Gift, label: 'Bonos Médicos' },
+                                        { id: 'vouchers', icon: Gift, label: 'Órdenes de Farmacia' },
                                         { id: 'beneficios', icon: MessageSquare, label: 'Mensajería Gremial' },
                                         { id: 'turnos', icon: Ticket, label: 'Sorteos' },
                                     ].map((tab) => (

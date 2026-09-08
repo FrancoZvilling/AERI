@@ -125,9 +125,9 @@ const BonosPanel = ({ affiliateData }) => {
                 <div>
                     <h3 className="text-xl font-bold text-gray-800 flex items-center">
                         <Gift className="w-5 h-5 mr-2 text-primary" />
-                        Bonos Médicos en {affiliateData?.zona ? affiliateData.zona.replace('_', ' ').toUpperCase() : 'TU ZONA'}
+                        Órdenes de Farmacia en {affiliateData?.zona ? affiliateData.zona.replace('_', ' ').toUpperCase() : 'TU ZONA'}
                     </h3>
-                    <p className="text-sm text-gray-500 mt-1">Límite mensual: 2 bonos por afiliado.</p>
+                    <p className="text-sm text-gray-500 mt-1">2 ordenes de farmacia por mes y cobertura de hasta 4 medicamentos por mes.</p>
                 </div>
                 <div className="text-center bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100">
                     <span className="block text-xs text-gray-400 uppercase font-bold tracking-wider mb-1">CUPOS MES</span>
@@ -139,7 +139,7 @@ const BonosPanel = ({ affiliateData }) => {
             {bonos.length === 0 ? (
                 <div className="text-center py-16 bg-gray-50 rounded-xl border border-dashed border-gray-200">
                     <Info className="w-10 h-10 text-gray-400 mb-3 mx-auto" />
-                    <p className="text-gray-600 font-medium">No hay bonos disponibles en tu zona actualmente.</p>
+                    <p className="text-gray-600 font-medium">No hay órdenes de farmacia disponibles en tu zona actualmente.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-4">
@@ -156,7 +156,7 @@ const BonosPanel = ({ affiliateData }) => {
                                         <div>
                                             <div className="flex justify-between items-start mb-2">
                                                 <span className={`text-xs font-bold uppercase px-3 py-1 rounded-full ${isCanjeado ? 'bg-green-100 text-green-700' : 'bg-blue-50 text-primary'}`}>
-                                                    Bono Médico
+                                                    Orden de Farmacia
                                                 </span>
                                                 {bono.fecha_salida && (
                                                     <span className="text-xs text-gray-400 font-mono bg-gray-100 px-2 py-1 rounded">
