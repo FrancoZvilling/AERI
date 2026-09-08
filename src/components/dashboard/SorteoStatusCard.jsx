@@ -9,7 +9,12 @@ const SorteoStatusCard = () => {
     const [isWinner, setIsWinner] = useState(false);
     const [showNumbers, setShowNumbers] = useState(false);
 
+    // FLAG PARA PAUSAR SORTEOS TEMPORALMENTE
+    const SORTEOS_ACTIVOS = false;
+
     useEffect(() => {
+        if (!SORTEOS_ACTIVOS) return;
+
         const checkWinner = async () => {
             try {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/sorteos?populate=ganador&sort=createdAt:desc&pagination[limit]=1&_t=${Date.now()}`);
@@ -38,7 +43,9 @@ const SorteoStatusCard = () => {
         // Hacemos un breve polling para mantenerlo sincronizado con la prop de la Demo
         const interval = setInterval(checkWinner, 60000);
         return () => clearInterval(interval);
-    }, [user]);
+    }, [user, SORTEOS_ACTIVOS]);
+
+    if (!SORTEOS_ACTIVOS) return null;
 
     return (
         <div className={`relative overflow-hidden rounded-xl shadow-sm border p-5 transition-colors duration-500 ${isWinner && !loading ? 'bg-gradient-to-r from-green-100 to-green-50 border-green-300' : 'bg-white border-gray-100'}`}>

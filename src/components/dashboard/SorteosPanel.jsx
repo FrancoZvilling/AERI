@@ -25,6 +25,40 @@ const getSecondsUntilNextDraw = () => {
 };
 
 const SorteosPanel = () => {
+    // FLAG PARA PAUSAR SORTEOS TEMPORALMENTE
+    const SORTEOS_ACTIVOS = false;
+
+    if (!SORTEOS_ACTIVOS) {
+        return (
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex flex-col items-center justify-center py-24 px-4 text-center"
+            >
+                <div className="relative mb-8 group">
+                    <div className="absolute inset-0 bg-[#002855] rounded-full blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+                    <div className="relative w-28 h-28 bg-gradient-to-tr from-[#002855] to-[#39c3ef] rounded-full flex items-center justify-center shadow-2xl transform group-hover:scale-105 transition-transform duration-500">
+                        <Ticket className="w-12 h-12 text-white" />
+                    </div>
+                    {/* Decorative stars */}
+                    <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute -top-2 -right-2">
+                        <div className="w-4 h-4 bg-[#39c3ef] rounded-sm rotate-45"></div>
+                    </motion.div>
+                </div>
+                
+                <h3 className="text-3xl font-black text-gray-900 mb-4 tracking-tight">Sorteos en pausa</h3>
+                <p className="text-gray-500 text-lg max-w-lg mx-auto leading-relaxed">
+                    Todavía no hay sorteos. Estamos preparando nuevas sorpresas y premios espectaculares para nuestros afiliados. ¡Mantenete atento a las novedades!
+                </p>
+
+                <div className="mt-10 px-6 py-3 bg-gray-50 rounded-full border border-gray-100 flex items-center text-gray-400 text-sm font-medium">
+                    <Clock className="w-4 h-4 mr-2" />
+                    Próximamente más novedades
+                </div>
+            </motion.div>
+        );
+    }
+
     const [phase, setPhase] = useState('WAITING'); // 'WAITING', 'SPINNING', 'REVEAL'
     const [countdown, setCountdown] = useState(getSecondsUntilNextDraw);
     const [lastWinner, setLastWinner] = useState(null);
