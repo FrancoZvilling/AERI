@@ -120,42 +120,44 @@ const AfiliadosCargoCard = ({ familiares, externos, titularNumeroSocio, titularZ
             </div>
 
             {/* Modal de Credencial para Familiar */}
-            <AnimatePresence>
-                {isModalOpen && selectedFamiliar && typeof document !== 'undefined' && createPortal(
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsModalOpen(false)}
-                            className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
-                        />
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="relative w-full max-w-sm z-10"
-                        >
-                            <button
+            {typeof document !== 'undefined' && createPortal(
+                <AnimatePresence>
+                    {isModalOpen && selectedFamiliar && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
                                 onClick={() => setIsModalOpen(false)}
-                                className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors"
-                            >
-                                <X className="w-5 h-5" />
-                            </button>
-                            
-                            <DigitalCredential
-                                nombre={selectedFamiliar.nombre}
-                                apellido={selectedFamiliar.apellido}
-                                numero_socio={titularNumeroSocio}
-                                zona={titularZona}
-                                qrPayload={String(selectedFamiliar.dni)}
-                                variant="familiar"
+                                className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"
                             />
-                        </motion.div>
-                    </div>,
-                    document.body
-                )}
-            </AnimatePresence>
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                                className="relative w-full max-w-sm z-10"
+                            >
+                                <button
+                                    onClick={() => setIsModalOpen(false)}
+                                    className="absolute -top-12 right-0 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors"
+                                >
+                                    <X className="w-5 h-5" />
+                                </button>
+                                
+                                <DigitalCredential
+                                    nombre={selectedFamiliar.nombre}
+                                    apellido={selectedFamiliar.apellido}
+                                    numero_socio={titularNumeroSocio}
+                                    zona={titularZona}
+                                    qrPayload={String(selectedFamiliar.dni)}
+                                    variant="familiar"
+                                />
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>,
+                document.body
+            )}
         </>
     );
 };
