@@ -12,6 +12,7 @@ import InstallModal from '../components/ui/InstallModal';
 import SorteosPanel from '../components/dashboard/SorteosPanel';
 import SorteoStatusCard from '../components/dashboard/SorteoStatusCard';
 import AfiliadosCargoCard from '../components/dashboard/AfiliadosCargoCard';
+import DigitalCredential from '../components/dashboard/DigitalCredential';
 import BonosPanel from '../components/dashboard/BonosPanel';
 import MensajesPanel from '../components/dashboard/MensajesPanel';
 import RecentNotifications from '../components/dashboard/RecentNotifications';
@@ -232,83 +233,24 @@ END:VCARD`;
                         <div className="lg:col-span-1 space-y-8">
 
                             {/* Virtual Card Component */}
-                            <div className="group cursor-pointer" style={{ perspective: '1000px' }} onClick={() => setIsFlipped(!isFlipped)}>
-                                <motion.div
-                                    className="relative w-full aspect-[1.586/1] transition-all duration-700"
-                                    style={{ transformStyle: 'preserve-3d' }}
-                                    animate={{ rotateY: isFlipped ? 180 : 0 }}
-                                    transition={{ duration: 0.6 }}
-                                >
-                                    {/* Front */}
-                                    <div
-                                        className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-between overflow-hidden border border-gray-700/50"
-                                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
-                                    >
-                                        {/* Deco */}
-                                        <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl"></div>
-                                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-primary/20 rounded-full translate-y-1/2 -translate-x-1/2 blur-2xl"></div>
-
-                                        <div className="flex justify-between items-start relative z-10">
-                                            <div>
-                                                <h3 className="text-white/80 text-sm font-bold tracking-widest uppercase">Credencial Digital</h3>
-                                                <div className="text-xs text-green-400 font-mono mt-1 flex items-center">
-                                                    <CheckCircle className="w-3 h-3 mr-1" /> Activa
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col items-end">
-                                                <span className="text-white font-bold text-xl italic tracking-tighter">AERI</span>
-                                                <span className="text-[10px] text-white/60">Socio Titular</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-4 relative z-10">
-                                            <div>
-                                                <p className="text-white/40 text-[10px] uppercase tracking-wider mb-1">Afiliado</p>
-                                                <p className="text-white font-medium text-lg tracking-wide">{apellido}, {nombre}</p>
-                                            </div>
-                                            <div className="flex justify-between items-end">
-                                                <div>
-                                                    <p className="text-white/40 text-[10px] uppercase tracking-wider mb-1">Número</p>
-                                                    <p className="text-white font-mono text-lg tracking-widest">{numero_socio || 'N/A'}</p>
-                                                </div>
-                                                <div className="text-right">
-                                                    <p className="text-white/40 text-[10px] uppercase tracking-wider mb-1">ZONA</p>
-                                                    <p className="text-white font-medium capitalize">{zona ? zona.replace('_', ' ') : 'N/A'}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Back */}
-                                    <div
-                                        className="absolute inset-0 bg-gray-800 rounded-2xl p-6 shadow-2xl flex flex-col justify-center items-center border border-gray-700"
-                                        style={{
-                                            backfaceVisibility: 'hidden',
-                                            WebkitBackfaceVisibility: 'hidden',
-                                            transform: 'rotateY(180deg)'
-                                        }}
-                                    >
-                                        <div className="bg-white p-2 rounded-lg mb-4">
-                                            <QRCode
-                                                value={qrPayload}
-                                                size={128}
-                                                bgColor="#ffffff"
-                                                fgColor="#000000"
-                                                level="Q"
-                                            />
-                                        </div>
-                                        <p className="text-white/60 text-xs text-center">Escaneá este código para validar tu afiliación en comercios.</p>
-                                    </div>
-                                </motion.div>
-                                <p className="text-center text-sm text-gray-500 mt-3 flex items-center justify-center">
-                                    <Clock className="w-4 h-4 mr-1" /> Tocá la tarjeta para ver el código QR
-                                </p>
-                            </div>
+                            <DigitalCredential
+                                nombre={nombre}
+                                apellido={apellido}
+                                numero_socio={numero_socio}
+                                zona={zona}
+                                qrPayload={qrPayload}
+                                variant="titular"
+                            />
 
                             {/* Status Card & Afiliados a Cargo */}
                             <div className="flex flex-col gap-4">
                                 <SorteoStatusCard />
-                                <AfiliadosCargoCard familiares={affiliateData?.familiares_a_cargo} externos={affiliateData?.familiar_externos} />
+                                <AfiliadosCargoCard 
+                                    familiares={affiliateData?.familiares_a_cargo} 
+                                    externos={affiliateData?.familiar_externos} 
+                                    titularNumeroSocio={numero_socio}
+                                    titularZona={zona}
+                                />
                             </div>
                         </div>
 
