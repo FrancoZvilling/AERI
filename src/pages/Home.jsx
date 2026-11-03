@@ -8,6 +8,7 @@ import mockData from '../data/mockData.json';
 import aeriEdificio from '../assets/aeri-edificio.jpeg';
 import heroCover from '../assets/hero-cover.jpeg';
 
+
 const iconMap = {
     Banknote: Banknote,
     Plane: Plane,
@@ -22,6 +23,7 @@ const Home = () => {
     // State for latest news from Strapi
     const [latestNews, setLatestNews] = useState([]);
     const [loadingNews, setLoadingNews] = useState(true);
+
 
     useEffect(() => {
         const fetchLatestNews = async () => {
@@ -59,6 +61,7 @@ const Home = () => {
 
     return (
         <div className="bg-gray-50 pb-20">
+
             {/* Hero Section */}
             <HeroSection
                 title="Acompañar, defender y representar a las y los trabajadores."

@@ -21,4 +21,11 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none; /* Chrome, Safari and Opera */
   }
+
+  /* Padrón Electoral Brand Colors */
+  .brand-blue { color: #003366; }
+  .brand-blue-bg { background-color: #003366; }
+  .brand-light-blue { color: #0088cc; }
+  .brand-light-blue-bg { background-color: #0088cc; }
+  .brand-light-blue-bg:hover { background-color: #0077b3; }
 }

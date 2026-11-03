@@ -15,6 +15,10 @@ const RecentNotifications = ({ documentId }) => {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/api/canjes?filters[afiliado][documentId][$eq]=${documentId}`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
+                if (response.status === 401) {
+                    window.dispatchEvent(new Event('aeri_session_expired'));
+                    return;
+                }
                 if (response.ok) {
                     const data = await response.json();
 

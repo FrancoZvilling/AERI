@@ -32,6 +32,10 @@ const BonosPanel = ({ affiliateData }) => {
                 ]);
 
                 if (!bonosRes.ok || !canjesRes.ok) {
+                    if (bonosRes.status === 401 || canjesRes.status === 401) {
+                        window.dispatchEvent(new Event('aeri_session_expired'));
+                        return;
+                    }
                     throw new Error('Error fetching data from server');
                 }
 
@@ -87,6 +91,10 @@ const BonosPanel = ({ affiliateData }) => {
             });
 
             if (!response.ok) {
+                if (response.status === 401) {
+                    window.dispatchEvent(new Event('aeri_session_expired'));
+                    return;
+                }
                 throw new Error('Error al canjear el bono');
             }
 

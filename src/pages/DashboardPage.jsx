@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import HeroSection from '../components/ui/HeroSection';
 import {
@@ -19,10 +20,12 @@ import RecentNotifications from '../components/dashboard/RecentNotifications';
 import QRCode from 'react-qr-code';
 
 const DashboardPage = () => {
-    const { user, token } = useAuth();
+    const { user, token, logout } = useAuth();
+    const navigate = useNavigate();
     const [affiliateData, setAffiliateData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
+    const [isSessionExpired, setIsSessionExpired] = useState(false);
 
     const [isFlipped, setIsFlipped] = useState(false);
     const [activeTab, setActiveTab] = useState('resumen');
@@ -48,9 +51,18 @@ const DashboardPage = () => {
                     }
                 });
 
+                if (response.status === 401) {
+                    setIsSessionExpired(true);
+                    return;
+                }
+
                 const data = await response.json();
 
                 if (!response.ok) {
+                    if (response.status === 401 || data.error?.message === 'Missing or invalid credentials') {
+                        setIsSessionExpired(true);
+                        return;
+                    }
                     throw new Error(data.error?.message || 'Error fetching affiliate data');
                 }
 
@@ -63,7 +75,11 @@ const DashboardPage = () => {
                 }
             } catch (err) {
                 console.error("Error fetching data:", err);
-                setError('Error de conexión al cargar el perfil.');
+                if (err.message === 'Missing or invalid credentials' || err.message?.includes('401')) {
+                    setIsSessionExpired(true);
+                } else {
+                    setError('Error de conexión al cargar el perfil.');
+                }
             } finally {
                 setIsLoading(false);
             }
@@ -71,6 +87,15 @@ const DashboardPage = () => {
 
         fetchAffiliateData();
     }, [user, token]);
+
+    React.useEffect(() => {
+        const handleSessionExpired = () => {
+            setIsSessionExpired(true);
+            setIsLoading(false);
+        };
+        window.addEventListener('aeri_session_expired', handleSessionExpired);
+        return () => window.removeEventListener('aeri_session_expired', handleSessionExpired);
+    }, []);
 
     React.useEffect(() => {
         const handler = (e) => {
@@ -104,6 +129,32 @@ const DashboardPage = () => {
             <div className="min-h-screen bg-gray-50 pt-32 pb-20 flex flex-col items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
                 <p className="text-gray-500 font-medium">Cargando credencial digital...</p>
+            </div>
+        );
+    }
+
+    if (isSessionExpired) {
+        return (
+            <div className="min-h-screen bg-gray-50 pt-32 pb-20 flex flex-col items-center justify-center px-4">
+                <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-xl max-w-md w-full text-center border border-gray-100">
+                    <div className="w-16 h-16 bg-amber-50 rounded-2xl flex items-center justify-center mx-auto mb-5 text-amber-500 border border-amber-100">
+                        <Clock className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Tu sesión ha expirado</h3>
+                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                        Por motivos de seguridad, tu sesión finalizó automáticamente tras varios días de inactividad. Por favor, volvé a ingresar con tus datos.
+                    </p>
+                    <button
+                        onClick={() => {
+                            logout();
+                            navigate('/login');
+                        }}
+                        className="w-full bg-primary hover:bg-[#002855] text-white py-3.5 px-6 rounded-xl font-bold transition-colors shadow-md flex items-center justify-center cursor-pointer"
+                    >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        <span>Volver a Iniciar Sesión</span>
+                    </button>
+                </div>
             </div>
         );
     }
