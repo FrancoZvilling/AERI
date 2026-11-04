@@ -151,6 +151,9 @@ const InstructivoCorreoModal = ({ isOpen, onClose }) => {
                                         <p className="text-gray-600 leading-relaxed text-xs sm:text-[13px]">
                                             Diríjase al <strong>Correo Argentino</strong> más cercano y envíelo por <strong>Servicio Expreso</strong>.
                                         </p>
+                                        <p className="text-[#0088cc] font-bold text-xs sm:text-[13px] mt-1">
+                                            El envío es gratuito: sin costo para el afiliado/a.
+                                        </p>
                                     </div>
                                 </div>
 
