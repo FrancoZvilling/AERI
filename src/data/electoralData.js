@@ -1,4 +1,3 @@
-
 export const electoralIntro = {
     title: "Junta Electoral Central",
     subtitle: "Transparencia y Participación",
@@ -8,12 +7,11 @@ export const electoralIntro = {
 export const centralBoard = {
     title: "JUNTA ELECTORAL CENTRAL",
     members: [
-        { role: "Presidente", name: "MARINO Ricardo Alfredo" },
-        { role: "Secretario de Actas", name: "KENF Diego Hugo" },
-        { role: "Vocal", name: "PONCE VENA Cintia Laura" },
-        { role: "Vocal", name: "MONTEMURRO María Alejandra" },
-        { role: "Vocal", name: "FORMIGO Eduardo Ariel" },
-        { role: "Vocal", name: "LABORDE Pablo Diego" }
+        { role: "Presidente", name: "Carlos Aznar" },
+        { role: "Secretario", name: "Jose Vila Pessoli" },
+        { role: "Vocal", name: "Stella Nieto" },
+        { role: "Vocal", name: "Marcelo Sebastian Fuentes" },
+        { role: "Vocal", name: "Andrea Nigul" }
     ]
 };
 

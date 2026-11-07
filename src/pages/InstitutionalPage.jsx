@@ -171,6 +171,9 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
     };
 
     if (isElectoralPage) {
+        const president = centralBoard.members.find(m => m.role.toLowerCase().includes('presidente'));
+        const secretary = centralBoard.members.find(m => m.role.toLowerCase().includes('secretario'));
+        const vocales = centralBoard.members.filter(m => m.role.toLowerCase().includes('vocal'));
         return (
             <div className="bg-gray-50 pb-20">
                 <HeroSection
@@ -202,33 +205,114 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
 
                     {/* Central Board Highlight */}
                     <div className="mb-16">
-                        <div className="text-center mb-10">
-                            <h2 className="text-3xl font-bold text-gray-900 flex items-center justify-center gap-3">
-                                <span className="w-12 h-1 bg-primary rounded-full"></span>
+                        <div className="text-center mb-8 sm:mb-10">
+                            <span className="text-xs font-bold text-[#0088cc] uppercase tracking-widest bg-blue-50 px-3.5 py-1.5 rounded-full border border-blue-100/80 inline-block mb-3">
+                                Conducción Electoral Central
+                            </span>
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 flex items-center justify-center gap-3 tracking-tight">
+                                <span className="w-8 sm:w-12 h-1 bg-primary rounded-full"></span>
                                 {centralBoard.title}
-                                <span className="w-12 h-1 bg-primary rounded-full"></span>
+                                <span className="w-8 sm:w-12 h-1 bg-primary rounded-full"></span>
                             </h2>
                         </div>
-                        <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {centralBoard.members.map((member, idx) => (
-                                <div key={idx} className="flex items-start group">
-                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0 transition-colors duration-300 ${member.role.toLowerCase().includes('presidente') ? 'bg-primary text-white' : 'bg-gray-50 text-gray-400 group-hover:bg-primary/10 group-hover:text-primary'}`}>
-                                        <User className="w-6 h-6" />
+
+                        {/* Executive Tier: Presidente & Secretario */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-6">
+                            {president && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -4 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="bg-gradient-to-br from-white via-white to-blue-50/40 rounded-2xl p-6 sm:p-7 shadow-md hover:shadow-xl border-2 border-primary/20 relative overflow-hidden flex items-center gap-4 sm:gap-5 group"
+                                >
+                                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary text-white flex items-center justify-center shadow-md shrink-0 group-hover:scale-105 transition-transform">
+                                        <User className="w-7 h-7 sm:w-8 sm:h-8" />
                                     </div>
-                                    <div>
-                                        <div className={`text-xs font-bold uppercase tracking-wider mb-1 w-max px-2 py-0.5 rounded ${getRoleBadgeStyle(member.role)}`}>
-                                            {member.role}
-                                        </div>
-                                        <div className="font-bold text-gray-800 text-lg mt-1">{member.name}</div>
+                                    <div className="flex-1 min-w-0">
+                                        <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-primary text-white shadow-sm mb-1.5">
+                                            {president.role}
+                                        </span>
+                                        <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 group-hover:text-primary transition-colors truncate">
+                                            {president.name}
+                                        </h3>
+                                        <p className="text-xs text-gray-500 mt-0.5">Presidencia de la Junta</p>
                                     </div>
+                                </motion.div>
+                            )}
+
+                            {secretary && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 15 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    whileHover={{ y: -4 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="bg-gradient-to-br from-white via-white to-sky-50/40 rounded-2xl p-6 sm:p-7 shadow-md hover:shadow-xl border-2 border-[#0088cc]/20 relative overflow-hidden flex items-center gap-4 sm:gap-5 group"
+                                >
+                                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-[#0088cc] text-white flex items-center justify-center shadow-md shrink-0 group-hover:scale-105 transition-transform">
+                                        <User className="w-7 h-7 sm:w-8 sm:h-8" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <span className="inline-block text-[11px] sm:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-[#0088cc] text-white shadow-sm mb-1.5">
+                                            {secretary.role}
+                                        </span>
+                                        <h3 className="text-xl sm:text-2xl font-extrabold text-gray-900 group-hover:text-[#0088cc] transition-colors truncate">
+                                            {secretary.name}
+                                        </h3>
+                                        <p className="text-xs text-gray-500 mt-0.5">Secretaría y Actas Electorales</p>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </div>
+
+                        {/* Vocales Tier: 3 Vocales en balance simétrico */}
+                        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sm:p-8">
+                            <div className="flex items-center justify-between border-b border-gray-100 pb-4 mb-6">
+                                <div className="flex items-center gap-2">
+                                    <span className="w-2.5 h-2.5 rounded-full bg-[#0088cc]"></span>
+                                    <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-gray-700">
+                                        Cuerpo de Vocales
+                                    </h3>
                                 </div>
-                            ))}
+                                <span className="text-xs text-gray-400 font-medium">3 Integrantes</span>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                                {vocales.map((vocal, vIdx) => (
+                                    <motion.div
+                                        key={vIdx}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: vIdx * 0.08 }}
+                                        whileHover={{ y: -3 }}
+                                        className="flex items-center p-4 sm:p-5 rounded-xl bg-gray-50/70 border border-gray-100 hover:border-blue-200 hover:bg-blue-50/40 hover:shadow-md transition-all group"
+                                    >
+                                        <div className="w-11 h-11 rounded-xl bg-white border border-gray-200 text-gray-400 group-hover:bg-[#0088cc] group-hover:text-white group-hover:border-[#0088cc] flex items-center justify-center transition-colors duration-200 mr-3.5 shrink-0 shadow-sm">
+                                            <User className="w-5 h-5" />
+                                        </div>
+                                        <div className="min-w-0 flex-1">
+                                            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-100/70 inline-block mb-1">
+                                                {vocal.role}
+                                            </span>
+                                            <h4 className="font-bold text-gray-900 text-sm sm:text-base group-hover:text-primary transition-colors truncate">
+                                                {vocal.name}
+                                            </h4>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
                     {/* Regional Boards Grid */}
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-900 mb-8 border-l-4 border-[#39c3ef] pl-4">Comisiones Seccionales</h2>
+                        <div className="flex items-center gap-3 mb-8">
+                            <span className="w-1.5 h-8 bg-[#39c3ef] rounded-full"></span>
+                            <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Comisiones Seccionales</h2>
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {seccionalBoards.map((board, idx) => (
                                 <motion.div
@@ -236,16 +320,16 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                     initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ delay: idx * 0.1 }}
-                                    className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition-all duration-300 border-t-4 border-gray-200 hover:border-primary group"
+                                    transition={{ delay: idx * 0.08 }}
+                                    className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition-all duration-300 border-t-4 border-gray-200 hover:border-primary group"
                                 >
-                                    <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center min-h-[56px]">
-                                        <div className="p-2 bg-blue-50 text-primary rounded-lg mr-3 group-hover:bg-primary group-hover:text-white transition-colors">
+                                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-5 flex items-center min-h-[50px]">
+                                        <div className="p-2.5 bg-blue-50 text-primary rounded-xl mr-3 group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
                                             <Users className="w-5 h-5" />
                                         </div>
-                                        {board.title}
+                                        <span className="leading-snug">{board.title}</span>
                                     </h3>
-                                    <div className="space-y-4">
+                                    <div className="space-y-3.5">
                                         {board.members.map((member, mIdx) => (
                                             <div key={mIdx} className="flex flex-col border-b border-gray-100 last:border-0 pb-3 last:pb-0">
                                                 <div className="flex justify-between items-center mb-1">
@@ -253,7 +337,7 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                                         {member.role}
                                                     </span>
                                                 </div>
-                                                <span className="font-medium text-gray-700 pl-1">{member.name}</span>
+                                                <span className="font-semibold text-gray-800 text-sm pl-1">{member.name}</span>
                                             </div>
                                         ))}
                                     </div>
