@@ -297,7 +297,11 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-100/70 inline-block mb-1">
                                                 {vocal.role}
                                             </span>
-                                            <h4 className="font-bold text-gray-900 text-sm sm:text-base group-hover:text-primary transition-colors truncate">
+                                            <h4 className={`font-bold text-gray-900 group-hover:text-primary transition-colors leading-snug ${
+                                                vocal.name.length > 20
+                                                    ? 'text-[12px] min-[390px]:text-xs sm:text-sm md:text-base'
+                                                    : 'text-sm sm:text-base'
+                                            }`}>
                                                 {vocal.name}
                                             </h4>
                                         </div>
@@ -330,16 +334,26 @@ const InstitutionalPage = ({ title, subtitle, showAuthorities = false, showDocs 
                                         <span className="leading-snug">{board.title}</span>
                                     </h3>
                                     <div className="space-y-3.5">
-                                        {board.members.map((member, mIdx) => (
-                                            <div key={mIdx} className="flex flex-col border-b border-gray-100 last:border-0 pb-3 last:pb-0">
-                                                <div className="flex justify-between items-center mb-1">
-                                                    <span className={`text-[10px] font-bold uppercase py-0.5 px-2 rounded-full ${getRoleBadgeStyle(member.role)}`}>
-                                                        {member.role}
-                                                    </span>
+                                        {board.members.map((member, mIdx) => {
+                                            const isPending = member.name.toLowerCase().includes('recambio');
+                                            return (
+                                                <div key={mIdx} className="flex flex-col border-b border-gray-100 last:border-0 pb-3 last:pb-0">
+                                                    <div className="flex justify-between items-center mb-1">
+                                                        <span className={`text-[10px] font-bold uppercase py-0.5 px-2 rounded-full ${getRoleBadgeStyle(member.role)}`}>
+                                                            {member.role}
+                                                        </span>
+                                                    </div>
+                                                    {isPending ? (
+                                                        <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-700 bg-amber-50/90 border border-amber-200/80 px-2.5 py-1 rounded-md w-fit italic mt-0.5">
+                                                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                                                            {member.name}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="font-semibold text-gray-800 text-sm pl-1">{member.name}</span>
+                                                    )}
                                                 </div>
-                                                <span className="font-semibold text-gray-800 text-sm pl-1">{member.name}</span>
-                                            </div>
-                                        ))}
+                                            );
+                                        })}
                                     </div>
                                 </motion.div>
                             ))}

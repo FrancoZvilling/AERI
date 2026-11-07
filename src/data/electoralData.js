@@ -28,8 +28,8 @@ export const seccionalBoards = [
         title: "SECCIONAL CONURBANO Y CAP. ARBA",
         members: [
             { role: "Presidente", name: "GONZALEZ Paola Andrea" },
-            { role: "Vocal", name: "SILVA María Florencia" },
-            { role: "Vocal", name: "DIAZ Gastón Gabriel" }
+            { role: "Vocal", name: "En proceso de recambio" },
+            { role: "Vocal", name: "En proceso de recambio" }
         ]
     },
     {
@@ -43,7 +43,7 @@ export const seccionalBoards = [
     {
         title: "SECCIONAL MINISTERIO DE ECONOMIA",
         members: [
-            { role: "Presidente", name: "CARENA Silvana Gisele" },
+            { role: "Presidente", name: "En proceso de recambio" },
             { role: "Vocal", name: "GILLY MEDINA María Belén" },
             { role: "Vocal", name: "GONZALEZ Federico Luis" }
         ]
