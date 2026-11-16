@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Vote } from 'lucide-react';
+import { Vote, Table } from 'lucide-react';
 
 /**
- * Botón flotante para consultar el Padrón Electoral.
+ * Botón flotante para consultar el Escrutinio Oficial de las Elecciones.
  * Ubicación: abajo a la derecha (responsive en desktop y móviles).
  * Efecto: Pulso y parpadeo sutil, pausado y elegante con colores institucionales.
  * Colores: Fondo azul oscuro AERI (#002855), borde blanco de 2px y letras blancas.
@@ -28,7 +28,7 @@ const FloatingElectoralButton = ({ onClick }) => {
                     ease: "easeInOut"
                 }}
                 className="relative flex items-center gap-2 sm:gap-2.5 bg-[#002855] text-white border-2 border-white px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full shadow-2xl hover:bg-[#001f42] transition-colors cursor-pointer touch-manipulation group"
-                aria-label="Consultar Padrón Elecciones 2026"
+                aria-label="Consultar Escrutinio Provisorio Elecciones 2026"
             >
                 {/* Indicador titilante suave */}
                 <span className="relative flex h-2.5 w-2.5">
@@ -39,12 +39,12 @@ const FloatingElectoralButton = ({ onClick }) => {
                     />
                 </span>
 
-                {/* Ícono de Votación */}
+                {/* Ícono de Votación / Escrutinio */}
                 <Vote className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-300" />
 
                 {/* Texto */}
                 <span className="font-extrabold text-xs sm:text-sm tracking-wide uppercase whitespace-nowrap">
-                    Elecciones 2026
+                    Escrutinio 2026
                 </span>
             </motion.button>
         </div>

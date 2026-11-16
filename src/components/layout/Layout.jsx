@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
     const [isPadronOpen, setIsPadronOpen] = useState(location.pathname === '/');
     const [modalView, setModalView] = useState('announcement');
 
-    // Al cargar o navegar a la Home, abrir automáticamente en vista de anuncio
+    // Al cargar o navegar a la Home, abrir automáticamente en vista de anuncio del escrutinio
     useEffect(() => {
         if (location.pathname === '/') {
             setModalView('announcement');
@@ -18,9 +18,9 @@ const Layout = ({ children }) => {
         }
     }, [location.pathname]);
 
-    // Al tocar el botón flotante, abrir directamente el buscador de DNI
-    const handleOpenSearch = () => {
-        setModalView('search');
+    // Al tocar el botón flotante, abrir directamente el escrutinio detallado
+    const handleOpenResults = () => {
+        setModalView('results');
         setIsPadronOpen(true);
     };
 
@@ -32,10 +32,10 @@ const Layout = ({ children }) => {
             </main>
             <Footer />
 
-            {/* Botón flotante "Elecciones 2026" adaptable a móviles */}
-            <FloatingElectoralButton onClick={handleOpenSearch} />
+            {/* Botón flotante "Escrutinio 2026" adaptable a móviles */}
+            <FloatingElectoralButton onClick={handleOpenResults} />
 
-            {/* Modal emergente del Padrón Electoral */}
+            {/* Modal emergente del Escrutinio Oficial */}
             <PadronModal
                 isOpen={isPadronOpen}
                 onClose={() => setIsPadronOpen(false)}
