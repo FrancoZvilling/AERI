@@ -7,7 +7,7 @@ export const escrutinioIntro = {
     title: "Escrutinio Provisorio",
     subtitle: "Elecciones Generales - Jueves 12 de Noviembre de 2026",
     fecha: "12 de Noviembre de 2026",
-    resumen: "Resultados provisorios oficiales correspondientes a la totalidad de las mesas escrutadas para Comisión Directiva y Comisiones Seccionales."
+    resumen: "Resultados provisorios oficiales para Comisión Directiva y Comisiones Seccionales."
 };
 
 export const actasOficiales = [

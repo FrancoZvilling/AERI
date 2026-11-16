@@ -156,7 +156,7 @@ const PadronModal = ({ isOpen, onClose, initialView = 'announcement' }) => {
                                 </h1>
 
                                 <p className="text-xs sm:text-sm text-gray-600 mb-5 sm:mb-6 max-w-lg mx-auto leading-relaxed">
-                                    Concluido el acto comicial y con el <strong>100% de las mesas escrutadas</strong> en toda la provincia de Buenos Aires y CABA, se informan los resultados provisorios oficiales para Comisión Directiva y Comisiones Seccionales.
+                                    Concluido el acto comicial, se informan los resultados provisorios oficiales para Comisión Directiva y Comisiones Seccionales en toda la provincia de Buenos Aires y CABA.
                                 </p>
 
                                 {/* Tarjeta Resumen de Resultados */}
@@ -166,8 +166,8 @@ const PadronModal = ({ isOpen, onClose, initialView = 'announcement' }) => {
                                             <BarChart3 className="w-3.5 h-3.5 text-[#0088cc]" />
                                             Comisión Directiva Central
                                         </span>
-                                        <span className="text-[11px] sm:text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                                            100% Escrutado
+                                        <span className="text-[11px] sm:text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">
+                                            Escrutinio Provisorio
                                         </span>
                                     </div>
 
